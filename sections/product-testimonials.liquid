@@ -1,0 +1,150 @@
+<style>
+.testimonials {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;    
+}
+
+/* Equal Heights for OwlCarousel 2 */
+.owl-carousel .owl-stage {
+  display: flex;
+}
+.owl-carousel .owl-item {
+  display: flex;
+  flex: 1 0 auto;
+}
+.owl-carousel .caption {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+.owl-carousel .flex-text {
+  flex-grow: 1;
+}
+.owl-carousel .thumbnail {
+  display: flex;
+  flex-direction: column;
+  margin: 0 15px;
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+<section class="testimonials section container-fluid light-gray-color py-5 mb-5">
+
+  <div class="container">
+
+		<div class="row mb-5">
+			<div class="col text-center">
+				<h3 class="text-uppercase mb-0">{{ section.settings.title }}</h3>
+			</div>
+		</div>
+
+    <div class="row mb-5">
+      <div class="col">
+
+        <div class="owl-carousel-wrap">
+            <div class="owl-carousel owl-theme">
+
+                {% if section.blocks %}
+                    {% for block in section.blocks %}
+
+        							<div class="item w-100">
+        								<div class="card h-100" style="border: 0;" >
+        									<div class="card-body">
+        										<div class="mb-3">{% for i in (1..5) %}<i class="fa fa-star text-black"></i>{% endfor %}</div>
+        										<h5 class="text-uppercase mb-3">{{ block.settings.name }}</h5>
+        										<p class="mb-3">{{ block.settings.company }}</p>
+        										<p class="mb-0" >{{ block.settings.description }}</p>
+        									</div>
+        								</div>
+        							</div>
+
+                  {% endfor %}
+    					{% endif %}
+
+    				</div>
+            <div class="owl-theme">
+                <div class="owl-controls">
+                    <div class="custom-nav owl-nav"></div>
+                </div>
+            </div>
+  			</div>
+
+      </div>
+    </div>
+
+	</div>
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
+
+<script>
+$(document).ready(function() {
+
+});
+$('.owl-carousel-wrap .owl-carousel').owlCarousel({
+    stagePadding: 50,
+    loop: true,
+    margin: 10,
+    nav: true,
+    navText: [
+        '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+        '<i class="fa fa-angle-right" aria-hidden="true"></i>'
+    ],
+    navContainer: '.owl-carousel-wrap .custom-nav',
+    responsive:{
+        0:{
+            items: 1
+        },
+        600:{
+            items: 3
+        }
+        // ,
+        // 1000:{
+        //     items: 5
+        // }
+    }
+});
+</script>
+
+{% schema %}
+{
+	"name": "Product Testimonials",
+	"settings": [
+		{
+		  "type": "text",
+		  "id": "title",
+		  "label": "Section Title",
+		  "default": "TESTIMONIALS"
+		}
+	],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Testimonial",
+        "settings": [
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Name",
+            "default": "Name"
+          },
+          {
+            "type": "text",
+            "id": "company",
+            "label": "Company",
+            "default": "Company"
+          },
+          {
+            "type": "text",
+            "id": "description",
+            "label": "Description",
+            "default": "Description"
+          }
+        ]
+      }
+    ]
+}
+{% endschema %}

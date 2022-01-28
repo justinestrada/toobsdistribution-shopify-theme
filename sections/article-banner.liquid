@@ -1,0 +1,43 @@
+<style>
+#shopify-section-article-banner {
+    background-color: black;
+    background-image: url("{{ 'default-banner.jpg' | asset_url }}");
+}
+</style>
+
+<section class="article-banner main-banner section" {% if section.settings.banner_bg_img %}style="background-image: url('{{ section.settings.banner_bg_img | img_url: '1920x' }}');"{% endif %} >
+    <div class="container-fluid py-5">
+      <div class="row">
+
+      	<div class="container">
+      		<div class="row">
+    	        <div class="col text-white">
+    	          <h1 class="text-uppercase" >{{ article.title }}</h1>
+                  <p>{{ article.created_at | date: "%a, %b %d, %Y" }}</span>{% if section.settings.show_author %} by <span class="article-author">{{ article.author }}</span>{% endif %}</p>
+    	        </div>
+      		</div>
+      	</div>
+
+      </div>
+    </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Article Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "banner_bg_img",
+        "label": "Article Banner"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_author",
+        "label": "Show Article Author"
+      }
+    ]
+
+  }
+{% endschema %}

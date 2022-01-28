@@ -1,0 +1,35 @@
+<section class="container">
+  <div class="row mb-5">
+    <div class="col">
+      <h3 class="text-uppercase text-center" >{{ section.settings.title }}</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center mb-5">
+    <div class="col col-lg-6">
+      <div class="embed-responsive embed-responsive-16by9 z-depth-1" >
+        <iframe class="embed-responsive-item" src="{{ section.settings.youtube_embed }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Product Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Heading",
+      "default": "Product Video"
+    },
+    {
+      "type": "text",
+      "id": "youtube_embed",
+      "label": "YouTube Embed Link",
+      "default": "https://www.youtube.com/embed/AQDpPPW_wxo"
+    }
+  ]
+}
+{% endschema %}

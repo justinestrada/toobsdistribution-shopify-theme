@@ -1,0 +1,87 @@
+{% comment %}{% include 'page-header', title: {{page.title}} %}{% endcomment %}
+
+{% section 'page-breadcrumb' %}
+
+<section class="contact section mb-5">
+  <div class="container">
+
+    <div class="row mb-5">
+      <div class="col">
+        <div class="section-header text-center">
+          <h1 class="text-uppercase mb-0" >{{ page.title }}</h1>
+        </div>
+      </div>
+    </div>    
+    
+    {% if page.content %}
+      <div class="row justify-content-center mb-5">
+        <div class="col col-xl-10">
+          {{ page.content }}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+      <div class="col col-xl-10">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <p class="note form-success">Thank you for contacting us!</p>
+          {% endif %}
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" class="form-control" name="contact[name]" id="name">
+          </div>
+          
+          <div class="form-group">
+            <input type="email" placeholder="Your Email" class="form-control" name="contact[email]" id="email">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" placeholder="Subject" class="form-control" name="contact[subject]" id="subject">
+          </div>
+          
+          <div class="form-group">
+            <textarea rows="6" placeholder="Message" class="form-control" name="contact[message]" id="message"></textarea> 
+          </div>
+
+          <div class="text-center">
+            <button type="submit" id="contact-submit" class="btn btn-black" value="Submit">Submit</button>
+          </div>
+        {% endform %}
+      </div>
+
+      {% comment %}
+      <div class="contact-details col-md-6 ">
+        <ul class="contact-short-info list-unstyled">
+          {% if settings.address != blank %}
+            <li>
+              <span>{{settings.address}}</span>
+            </li>
+          {% endif %}
+          {% if settings.phone != blank %}
+            <li>
+              <span>Phone: {{settings.phone}}</span>
+            </li>
+          {% endif %}
+          {% if settings.email != blank %}
+            <li>
+              <span>Email: {{settings.email}}</span>
+            </li>
+          {% endif %}
+        </ul>
+        {% if social_icons %}
+          <div class="social-icon">
+            <ul>
+              <li><a class="fb-icon" href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+      {% endcomment %}
+
+    </div>
+  </div>
+</section>

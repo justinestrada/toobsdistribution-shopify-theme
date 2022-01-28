@@ -1,0 +1,112 @@
+{% comment %}{% include 'page-header', title: 'Cart' %}{% endcomment %}
+
+<style>
+.btn-checkout {
+  background: #2ab960;
+  border: none;
+}
+.btn-checkout:hover,
+.btn-checkout:focus {
+  background: #55d184;
+}  
+</style>
+
+<section class="breadcrumb-section container-fluid mb-5">
+    <div class="breadcrumb-page-row row bg-lightgray">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb text-uppercase mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Cart</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section-cart-items container-fluid mb-5">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col col-lg-8 offset-lg-2">
+
+          {% if cart.item_count > 0 %}
+
+            <form id="form-cart" method="post">
+
+              <div class="cart-item-list">
+
+                {% for line_item in cart.items %}
+
+                  <div class="cart-item-row row py-3" product-id="{{line_item.id}}" >
+                    <div class="col-auto px-0">
+                      <img class="cart-item-thumbnail" src="{{line_item.image | product_img_url: '1920x'}}" alt="{{line_item.title}}" />                
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">
+                          <a class="d-block text-black text-uppercase" href="{{line_item.url}}" title="{{line_item.title}}" >{{ line_item.title | replace: " - ", "<br/>" }}</a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col pt-1">
+                          <p class="cart-item-price d-block mb-1" >{{ line_item.original_price | money_without_trailing_zeros }}</p>
+                          <a class="d-inline-block product-remove text-red mb-1" href="/cart/change?line={{forloop.index}}&quantity=0" rel="{{line_item.id}}" >Remove</a>
+                        </div>
+                        <div class="col pl-0 d-flex justify-content-end align-items-center">
+
+                          <div class="row">
+                            <div class="col text-center pt-2 px-0 text-gray cart-item-minus" remove-cart-line="{{forloop.index}}" >-</div>
+                            <div class="col px-1">
+                              <input type="number" name="updates[]" class="d-block text-center mx-auto p-2 w-100" value="{{ line_item.quantity }}" min="0" pattern="[0-9]*" style="border: 1px solid #E8E8E8;" />
+                            </div>
+                            <div class="col text-center pt-2 px-0 text-gray cart-item-plus">+</div>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                {% endfor %}
+
+              </div>
+
+              <div class="row py-3 mb-3 bg-lightgray">
+                <div class="col">
+                  <p class="text-uppercasen mb-0" >Subtotal</p>
+                </div>
+                <div class="col text-right">
+                  <p class="cart-total-price mb-0" >{{ cart.total_price | money_without_trailing_zeros }}</p>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col px-0">
+                    <input type="submit" name="checkout" class="btn btn-checkout text-white py-3 w-100" style="letter-spacing: 1.5px;" value="Checkout">
+                    <!-- <input type="submit" name="update" class="btn btn-outline-black pull-right" style="background: white;" id="update-btn" value="Update"> -->
+                </div>
+              </div>
+
+            </form>
+
+          {% else %}
+    
+          <div class="text-center">
+            <p>Your cart is currently empty.</p>
+            <a href="/" class="btn btn-black" title="Continue Shopping" >Continue Shopping <i class="fa fa-arrow-right" ></i></a>
+          </div>
+            
+          {% endif %}
+
+        </div>
+      </div>
+    </div>    
+  </div>
+</section>

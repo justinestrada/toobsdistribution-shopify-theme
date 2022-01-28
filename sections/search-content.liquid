@@ -1,0 +1,52 @@
+<div class="page container mt-5">
+
+  <div class="row mb-5">
+    <div class="col">
+      <div class="section-header text-center">
+        <h1 class="text-uppercase mb-0" >Search Results</h1>
+      </div>
+    </div>
+  </div>
+
+  {% if search.results == empty %} 
+    <div class="row mb-5">
+      <div class="col text-center">
+        <p>No results found for "{{ search.terms | escape }}". Search again.</p>
+      </div>
+    </div>           
+  {% else %} 
+
+    <div class="row mb-5">
+      <div class="col text-center">
+        <p class="mb-0">Showing results for "{{ search.terms | escape }}"...</p>
+      </div>
+    </div>
+
+    {% paginate search.results by 12 %} 
+
+      <div class="row justify-content-md-center">
+
+        {% assign collection-product-col-class = "col-md-6 col-lg-4" %}
+        {% if search.results.length >= 3 %}
+          {% assign collection-product-col-class = "col-md-6 col-lg-3" %}
+        {% endif %}
+
+        {% for this_product in search.results %}
+          <div class="{{ collection-product-col-class }} mb-5">
+            {% include 'collection-product-card', product: this_product %}
+          </div>
+        {% endfor %}
+        
+      </div> 
+      
+      <div class="row justify-content-md-center mb-5">
+        <div class="col text-center">
+          <div id="pagination" >{{ paginate | default_pagination }}</div>
+        </div>
+      </div>
+    
+    {% endpaginate %} 
+
+  {% endif %}
+
+</div>

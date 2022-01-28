@@ -1,0 +1,119 @@
+<style>
+/*
+* Cart
+*/
+#offCanvasRightSidebarCartModal input[type=number]::-webkit-inner-spin-button, 
+#offCanvasRightSidebarCartModal input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+.my-cart-header {
+	padding: 13.5px 0;
+}  
+.btn-checkout {
+  background: #2ab960;
+  border: none;
+}
+.btn-checkout:hover,
+.btn-checkout:focus {
+  background: #55d184;
+}
+</style>
+
+<div class="modal right fade" id="offCanvasRightSidebarCartModal" tabindex="-1" role="dialog" aria-labelledby="offCanvasRightSidebarCartModalLabel" aria-hidden="true" style="z-index: 10000;" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="padding-top: 0;">
+              <div class="row">
+                <div class="col p-0">
+                  <p class="my-cart-header text-uppercase w-100 text-center text-white mb-0" style="background: black;">My Cart</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col p-0">
+                  <p class="text-dynamic-shipping text-uppercase p-3 w-100 text-center text-green" style="color: #2ab960; letter-spacing: 2.5px; border-bottom: 2px solid #f8f8f8;"><i class="fa fa-check-circle"></i> {{ section.settings.above_cart }}</p>
+                </div>
+              </div>
+              <form id="form-cart" method="post" action="/cart" {% if cart.item_count == 0 %}style="display: none;"{% endif %}>
+
+                <div class="cart-item-list">
+
+                  {% for line_item in cart.items %}
+
+                    <div class="cart-item-row row py-3" product-id="{{ line_item.id }}" >
+                      <div class="col-auto px-0">
+                        <img class="cart-item-thumbnail" src="{{ line_item.image | product_img_url: '1920x' }}" alt="{{ line_item.title }}" />                
+                      </div>
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <a class="d-block text-black text-uppercase" href="{{ line_item.url }}" title="{{ line_item.title }}" >{{ line_item.title | replace: " - ", "<br/>" }}</a>                            
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col pt-1">
+                            <p class="cart-item-price d-block mb-1" >{{ line_item.original_price | money_without_trailing_zeros }}</p>
+                            <a class="cart-item-remove d-inline-block text-red text-uppercase mb-1" href="javascript:void(0);" remove-cart-line="{{ forloop.index }}" rel="{{ line_item.id }}" >Remove</a>                            
+                          </div>
+                          <div class="col pl-0 d-flex justify-content-center align-items-center">
+
+                            <div class="row">
+                              <div class="col text-center pt-2 px-0 text-gray cart-item-minus" remove-cart-line="{{ forloop.index }}" rel="{{ line_item.id }}" >-</div>
+                              <div class="col px-1">
+                                <input type="number" name="updates[]" class="d-block mx-auto p-2 text-center w-100" value="{{ line_item.quantity }}" min="0" pattern="[0-9]*" />
+                              </div>
+                              <div class="col text-center pt-2 px-0 text-gray cart-item-plus">+</div>
+                            </div>
+
+                          </div>                          
+                        </div>
+                      </div>
+                    </div>
+
+                  {% endfor %}
+
+                </div>
+
+                <div class="row py-3 mb-0 bg-lightgray">
+                  <div class="col">
+                    <p class="text-uppercase mb-0" >Subtotal:</p>
+                  </div>
+                  <div class="col text-right">
+                    <p class="cart-total-price mb-0" >{{ cart.total_price | money_without_trailing_zeros }}</p>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col px-0">
+                      <input type="submit" name="checkout" class="btn btn-checkout text-white py-3 w-100" style="letter-spacing: 1.5px;" value="Checkout">
+                  </div>
+                </div>
+                <div class="text-center">
+                  <small class="d-block text-uppercase mb-3">OR</small>
+                  <a data-dismiss="modal" class="btn btn-outline-black text-black" title="Continue Shopping" >Continue Shopping</a>
+                </div>
+
+              </form>
+
+              <div class="empty-cart-wrap text-center" {% if cart.item_count > 0 %}style="display: none;"{% endif %}>
+                <p class="text-uppercase">Your cart is empty.</p>
+                <a data-dismiss="modal" class="btn btn-outline-black text-black" title="Continue Shopping" >Continue Shopping</a>
+              </div>
+                            
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Offcanvas Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "above_cart",
+      "label": "Above Cart",
+      "default": "FREE Shipping On U.S. Orders Over $420"
+    }
+  ]
+}
+{% endschema %}

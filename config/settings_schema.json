@@ -1,0 +1,74 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "VentGripz",
+    "theme_author": "MyDigitalSauce",
+    "theme_version": "0.0.1",
+    "theme_documentation_url": "https:\/\/mydigitalsauce.com\/support",
+    "theme_support_url": "https:\/\/mydigitalsauce.com\/support"
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "site_header_menu_font",
+        "label": "Site Header Menu Font",
+        "default": "futura_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "site_headings_font",
+        "label": "Site Headings Font",
+        "default": "futura_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "site_body_font",
+        "label": "Site Body Font",
+        "default": "futura_n4"
+      }
+    ]
+  },
+  {
+    "name": "About Page",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "about_img",
+        "label": "About Page Image"
+      }
+    ]
+  },
+  {
+    "name": "Contact Page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Contact Page Phone"
+      },
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Contact Page Email"
+      },
+      {
+        "type": "text",
+        "id": "address",
+        "label": "Contact Page Address"
+      }
+    ]
+  }
+]

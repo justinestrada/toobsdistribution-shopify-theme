@@ -1,0 +1,95 @@
+{% if section.settings.show_related_products == true %}
+  <section class="related-products container-fluid pt-5 pt-lg-0" >
+
+    <div class="row">
+      <div class="container">
+
+          <div class="row mb-5">
+            <div class="col text-center">
+              <h3 class="text-uppercase mb-3" >{{ section.settings.title }}</h3>
+            </div>
+          </div>
+            <div class="row justify-content-md-center">
+
+              {% assign related-product-col-class = "col-md-4 col-lg-3" %}
+              {% if section.blocks.size >= 2 %}
+                {% assign related-product-col-class = "col-md-4 col-lg-3" %}              
+              {% endif %}
+              {% if section.blocks.size >= 3 %}
+                {% assign related-product-col-class = "col-md-3" %}
+              {% endif %}
+              {% for block in section.blocks %}
+                <div class="col-6 {{ related-product-col-class }} {% if forloop.index == 2 %} offset-md-3 offset-lg-2 {% endif %} mb-5">
+
+                  <div class="product-item">
+                    <div class="product-thumb">
+                      <a href="{{ block.settings.product_link }}" class="d-block" title="{{ block.settings.product_title }}" >
+                        <img class="img-responsive w-100" src="{{ block.settings.product_image.src | img_url: '1920x' }}" alt="product-img">
+                      </a>
+                    </div>
+                    <div class="product-content">
+                      <h4>
+                        <a href="{{ block.settings.product_link }}" title="{{ block.settings.product_title }}" class="text-uppercase" >{{ block.settings.product_title }}</a>
+                      </h4>
+                      <small class="text-uppercase text-gray mb-0">Starting At</small>
+                      <p class="price font-weight-bold">{{ block.settings.product_price }}</p>
+                    </div>
+                  </div>
+
+                </div>
+              {% endfor %}
+
+            </div>
+        
+      </div>
+    </div>
+
+  </section>
+{% endif %}
+{% schema %}
+{
+  "name": "Related products",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_related_products",
+      "label": "Show related products",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "You May Also Like"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Related Products",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

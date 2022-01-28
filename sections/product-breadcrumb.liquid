@@ -1,0 +1,39 @@
+<section class="breadcrumb-section container-fluid d-none d-lg-block mb-5">
+    <div class="breadcrumb-product-row row bg-lightgray">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-8 p-0">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb text-uppercase mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                {% for collection in product.collections %}
+                  <li class="breadcrumb-item"><a href="{{collection.url}}" class="text-uppercase text-gray" title="{{collection.title}}" >{{collection.title}}</a></li>
+                {% endfor %}
+                <li class="breadcrumb-item active">{{product.title}}</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="d-flex col-md-6 col-lg-4 p-0 justify-content-end align-items-end p-0">
+            <ul class="social-shares-ul mb-0" >
+              <li class="text-uppercase">Share</li>
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ product.url }}" title="Share on Facebook" class="open-share-window text-black px-1" >
+                  <i class="fa fa-facebook"></i>
+                </a>              
+              </li>
+              <li>              
+                <a href="https://twitter.com/intent/tweet?text={{ product.title }}&url={{ shop.url }}{{ product.url }}&via=ventgripz" title="Share on Twitter"  class="open-share-window text-black px-1" >
+                  <i class="fa fa-twitter"></i>
+                </a>            
+              </li>
+              <li>
+                <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_image.src | img_url: image_size }}&description={{ product.title }}" title="Share on Pinterest" class="open-share-window text-black px-1" >
+                  <i class="fa fa-pinterest"></i>
+                </a>            
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

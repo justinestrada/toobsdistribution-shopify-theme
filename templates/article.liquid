@@ -1,0 +1,41 @@
+{% section 'article-breadcrumb' %}
+
+{% section 'article-banner' %}
+
+<div class="article container mt-5">
+
+  <div class="row justify-content-center mb-5">
+
+    <!-- Article -->
+    <div class="col col-xl-8">
+
+      <div class="article-body textile">
+        {{ article.content }}
+      </div>    
+
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center mb-5">
+    <div class="col col-xl-8">
+      {% section 'article-comments' %}
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col text-center">
+      <a href="{{ blog.url }}" class="btn btn-outline-black" title="{{ blog.url }}" >&larr; Back To {{ blog.title }}</a>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12 col-sm-6">
+      <a href="{{ blog.previous_article }}" class="btn-link text-black" style="float: left"><u>« Previous</u></a>
+    </div>
+    <div class="col-12 col-sm-6">
+      <a href="{{ blog.next_article }}" class="btn-link text-black" style="float: right"><u>Next »</u></a>
+    </div>
+  </div>
+
+</div>

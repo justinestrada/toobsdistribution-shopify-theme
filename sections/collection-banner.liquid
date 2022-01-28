@@ -1,0 +1,23 @@
+<style>
+#shopify-section-collection-banner {
+        background-color: black;
+    background-image: url("{{ 'default-banner.jpg' | asset_url }}");
+}
+</style>
+
+<section class="collection-banner main-banner section" {% if collection.image %}style="background-image: url('{{ collection.image | img_url: '1920x' }}');"{% endif %} >
+    <div class="container-fluid py-5">
+      <div class="row">
+
+      	<div class="container">
+      		<div class="row">
+    	        <div class="col col-lg-8 col-xl-6 text-white">
+    	          <h1 class="text-uppercase" >{{ collection.title }}</h1>
+    	          <p class="text-uppercase mb-0" >{{ collection.description }}</p>
+    	        </div>
+      		</div>
+      	</div>
+
+      </div>
+    </div>
+</section>

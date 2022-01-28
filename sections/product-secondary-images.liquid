@@ -1,0 +1,55 @@
+<section class="container">
+  <div class="row">
+    <div class="col">
+      <h3 class="text-uppercase mb-5 text-center" >{{section.settings.title}}</h3>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-6 col-md mb-4 mb-md-0">
+      <img src="{{ section.settings.img-1 | img_url: '1920x' }}" alt="VentGripz" class="w-100">
+    </div>
+    <div class="col-6 col-md mb-4 mb-md-0">
+      <img src="{{ section.settings.img-2 | img_url: '1920x' }}" alt="VentGripz" class="w-100">
+    </div>
+    <div class="col-6 col-md">
+      <img src="{{ section.settings.img-3 | img_url: '1920x' }}" alt="VentGripz" class="w-100">
+    </div>
+    <div class="col-6 col-md">
+      <img src="{{ section.settings.img-4 | img_url: '1920x' }}" alt="VentGripz" class="w-100">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Secondary Images",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Header",
+      "default": "See It In Use"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-1",
+      "label": "First Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-2",
+      "label": "Second Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-3",
+      "label": "Third Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-4",
+      "label": "Fourth Image"
+    }
+  ]
+}
+{% endschema %}

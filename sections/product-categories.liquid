@@ -1,0 +1,93 @@
+<section class="categories container-fluid">
+	<div class="row mb-4">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<h3 class="text-uppercase text-black">Shop By Category</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+      <div class="container">
+      	<div class="row">
+          
+          <div class="homepage-category-col col-md-4 text-center" >
+            <a href="{{section.settings.category-url-1}}" title="{{section.settings.category-title-1}}" class="d-block" >
+                <img src="{{section.settings.category-img-1 | img_url: '1920x'}}" alt="{{section.settings.category-title-1}}" class="category-img w-100 mx-auto mb-4">
+                <h5 class="text-uppercase text-black">{{section.settings.category-title-1}}</h5>
+            </a>
+          </div>
+          <div class="homepage-category-col col-md-4 text-center">
+            <a href="{{section.settings.category-url-2}}" title="{{section.settings.category-title-2}}" class="d-block" >
+                <img src="{{section.settings.category-img-2 | img_url: '1920x'}}" alt="{{section.settings.category-title-2}}" class="category-img w-100 mx-auto mb-4">
+                <h5 class="text-uppercase text-black">{{section.settings.category-title-2}}</h5>
+            </a>
+          </div>
+          <div class="homepage-category-col col-md-4 text-center">
+            <a href="{{section.settings.category-url-3}}" title="{{section.settings.category-title-3}}" class="d-block" >
+                <img src="{{section.settings.category-img-3 | img_url: '1920x'}}" alt="{{section.settings.category-img-3}}" class="category-img w-100 mx-auto mb-4">
+                <h5 class="text-uppercase text-black">{{section.settings.category-title-3}}</h5>
+            </a>
+          </div>
+
+        </div>
+      </div>
+	</div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "category-title-1",
+      "default": "Wireless",
+      "label": "First Category Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "category-img-1",
+      "label": "First Category Image"
+    },
+    {
+      "type": "url",
+      "id": "category-url-1",
+      "label": "First Category Link"
+    },
+    {
+      "type": "text",
+      "id": "category-title-2",
+      "default": "Standard",
+      "label": "Second Category Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "category-img-2",
+      "label": "Second Category Image"
+    },
+    {
+      "type": "url",
+      "id": "category-url-2",
+      "label": "Second Category Link"
+    },
+    {
+      "type": "text",
+      "id": "category-title-3",
+      "default": "Accessories",
+      "label": "Third Category Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "category-img-3",
+      "label": "Third Category Image"
+    },
+    {
+      "type": "url",
+      "id": "category-url-3",
+      "label": "Third Category Link"
+    }
+  ]
+}
+{% endschema %}

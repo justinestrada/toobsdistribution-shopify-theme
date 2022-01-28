@@ -1,0 +1,311 @@
+<style>
+/* utilities */
+.black-color {
+  background-color: black;
+}
+.btn-outline-white {
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+/* extended bootstrap */
+.dropdown-hover:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-menu-right {
+    right: 0;
+    left: auto;  
+}
+.dropdown-menu {
+    border-radius: 0;
+}
+
+/* elements */
+.sub-menu .sub-menu-item .sub-menu-link {
+  position: relative;
+}
+.sub-menu .sub-menu-item.active .sub-menu-link {
+  padding-left: .75rem; 
+}
+.sub-menu .sub-menu-item.active .sub-menu-link::before {
+    content: "";
+    display: block;
+    background-image: url('https://cdn.shopify.com/s/files/1/0377/2037/t/37/assets/nav-icon-hover-right.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 6.5px;
+    height: 18px;
+    transition: transform 0.24s ease 0s;
+    transform: translateX(-6px);
+}
+.sub-menu .sub-menu-item.active .sub-menu-link::before {
+    transform: translateX(0);
+}
+.sub-menu-content .sub-menu-item-content-row {
+  display: none;
+}
+
+
+
+</style>
+
+<header {% if template == 'index' %} class="fixed-top" {% endif %}>
+
+  <div class="container-fluid">
+
+    <div class="top-header-row row bg-black">
+      <div class="container">
+
+        <div class="row bg-black">
+          <div class="col text-center py-3">
+            <p class="top-header-text text-uppercase text-white mb-0" style="letter-spacing: 2.5px;" >{{section.settings.top_header}}</p>      
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="row bg-white">
+
+      <div class="container">
+
+        <nav class="header-nav header-mobile-nav row bg-white d-lg-none">
+            <div class="col-4 text-center">
+              {% if section.settings.header_logo != blank %}
+                <a href="/" class="d-block header-logo" title="{{shop.name}}" >
+                  <img src="{{ section.settings.header_logo | img_url: '300x300' }}" alt="{{shop.name}}" class="d-block mobile-header-logo w-100" />
+                </a>
+              {% else %}
+                <h1 class="m-0" >
+                  <a href="/" class="text-black" title="{{shop.name}}" >{{shop.name}}</a>
+                </h1>
+              {% endif %}
+            </div>
+            <div class="col text-center">
+                <a class="header-nav__menu-link d-block text-uppercase text-black" href="javascript:void(0);" title="Shop" data-toggle="modal" data-target="#offCanvasLeftSidebarMenuModal" >Shop</a>  
+            </div>
+            <div class="col text-center">
+                <a class="header-nav__menu-link d-block text-uppercase text-black" href="/pages/contact" title="Contact">Contact</a> 
+            </div>
+            {% if customer %}
+              <div class="col text-center">    
+                  <a class="header-nav__menu-link d-block text-uppercase text-black" href="/account" title="Account" ><div style="display: inline-block; width: 14px;">{% include 'icon-user' %}</div></a>
+              </div>
+            {% else %}
+              <div class="col text-center">    
+                  <a class="header-nav__menu-link d-block text-uppercase text-black" href="/account" title="Account" ><div style="display: inline-block; width: 14px;">{% include 'icon-user' %}</div></a>
+              </div>
+            {% endif %}
+            {% if cart.item_count > 0 %}
+              <div class="col text-center">
+                  <a class="header-nav__menu-link d-block text-uppercase text-black"  href="javascript:void(0);" data-toggle="modal" data-target="#offCanvasRightSidebarCartModal" title="Cart">{% include 'icon-cart-2' %}</a> 
+              </div>
+            {% endif %}
+        </nav>    
+
+        <nav class="header-nav header-desktop-nav row bg-white hidden-md-down navbar navbar-expand-lg navbar-light white p-0">
+          <div class="col-auto text-center">
+            {% if section.settings.header_logo != blank %}
+              <a href="/" class="d-block header-logo" title="{{shop.name}}" >
+                <img src="{{ section.settings.header_logo | img_url: '300x300' }}" alt="{{shop.name}}" class="d-block w-100" style="max-width: 78px" />
+              </a>
+            {% else %}
+              <h1 class="py-3 m-0" >
+                <a href="/" class="text-black" title="{{shop.name}}" >{{shop.name}}</a>
+              </h1>
+            {% endif %}
+          </div>
+          <div class="col col-lg-5 col-xl-7">
+            <ul class="header-desktop-menu" >
+              {% for link in linklists[section.settings.header_desktop_linklist].links %}
+                <li>
+                  {% if link.links == blank %}
+                    <a class="header-nav__menu-link d-block py-3 text-uppercase text-black" href="{{link.url}}" title="{{link.title}}" >{{link.title}}</a>
+                  {% else %}
+
+                    <!-- News -->
+                    <li class="nav-item dropdown mega-dropdown">
+                       <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
+                      <a class="nav-link dropdown-toggle text-uppercase text-black" id="navbarDropdownMenu{{ link.title }}" href="{{ link.url }}" style="position: relative;">{{ link.title }}
+                        <span class="sr-only">(current)</span>
+                      </a>
+                      <div class="dropdown-menu mega-menu v-1 z-depth-1 white p-3 mt-0" aria-labelledby="navbarDropdownMenu{{ link.title }}">
+                        <div class="row">
+                          <div class="col">
+                            <h5 class="text-uppercase"><u>Shop {{ link.title }}</u></h5>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-auto sub-menu mb-xl-0 mb-5 pt-3">
+
+                            {% assign parent_key = forloop.index | prepend:'header_sub_menu_image_' %}
+                            {% assign parent_key = parent_key | append:'_' %}
+
+                            <ul class="p-0 m-0">
+                              {% for childlink in link.links %}
+                                <li class="sub-menu-item text-uppercase {% if forloop.index == 1 %}active{% endif %}" sub-menu-index="{{ forloop.index }}" >
+                                  <a class="sub-menu-link mt-2 text-black" href="{{ childlink.url }}" title="{{ childlink.title }}">{{ childlink.title }}</a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+
+                          </div>
+                          <div class="col sub-menu-content">
+
+                            {% for childlink in link.links %}
+                              <div class="sub-menu-item-content-row row h-100" sub-menu-index="{{ forloop.index }}" style="{% if forloop.index == 1 %}display: block;{% endif %}" >
+                                {% comment %}{{ parent_key }}{% endcomment %}
+                                {% assign key = forloop.index | prepend:parent_key %}
+                                {% comment %}{{ key }}{% endcomment %}
+                                {% comment %}{{ section.settings[key] }}{% endcomment %}
+
+                                <div class="col h-100">                                  
+                                  <div class="row justify-content-center h-100">
+                                    {% if section.settings[key] %}
+                                    <div class="col-6">
+                                      <img src="{{ section.settings[key] | img_url: '300x300' }}" class="img-fluid w-100" />
+                                    </div>
+                                    {% endif %}
+                                    {% comment %}
+                                    <div class="col d-flex justify-content-center align-items-center">
+                                      <div>
+                                        <h3 class="text-uppercase">{{ childlink.title }}</h3>
+                                        <a href="{{ childlink.url }}" class="btn btn-black">Shop {{ childlink.title }}</a>
+                                      </div>
+                                    </div>
+                                    {% endcomment %}
+                                  </div>
+                                </div>
+
+                              </div>
+                            {% endfor %}
+
+                          </div>
+                        </div>
+
+                      </div>
+                    </li>
+                    
+                  {% endif %}
+                </li>
+              {% endfor %}     
+            </ul>
+          </div>
+
+          <div class="col">
+            <ul class="header-desktop-menu float-right" >
+              <li>
+                {% if customer %}
+
+                  <div class="dropdown dropdown-hover">
+                    <a class="header-nav__menu-link d-block py-3 text-uppercase text-black dropdown-toggle" href="/account" title="Account" id="dropdownMenuAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Account ({{ customer.first_name }})</a>
+
+                    <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMenuAccount">
+                      <a class="dropdown-item btn btn-white mb-3" href="/account">My Account</a>
+                      <a class="dropdown-item btn btn-outline-white" href="/account/logout">Log Out</a>
+                    </div>
+                    
+                  </div>
+
+                {% else %}
+
+                  <div class="dropdown dropdown-hover">
+
+                    <a class="header-nav__menu-link d-block text-uppercase text-black w-100 dropdown-toggle" href="/account" id="dropdownMenuAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2">Account</span><div style="display: inline-block; width: 14px; position: relative; top: 2px;">{% include 'icon-user' %}</div>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMenuAccount">
+                      <a class="dropdown-item btn btn-white mb-3" href="/account/login">Login</a>
+                      <a class="dropdown-item btn btn-outline-white" href="/account/register">Sign Up</a>
+                    </div>
+                    
+                  </div>
+
+                {% endif %}
+              </li>
+              {% if cart.item_count > 0 %}
+                <li>
+                  <a class="header-nav__menu-link d-block py-3 text-uppercase text-black" data-toggle="modal" data-target="#offCanvasRightSidebarCartModal" title="{{link.title}}" href="javascript:void(0);" >Cart {% include 'icon-cart-2' %}</a> 
+                </li>
+              {% endif %}
+            </ul>    
+          </div>
+          <div class="col col-lg-auto" style="padding-top: 1rem; padding-bottom: 1rem;">
+              {% include 'icon-dot-separator' %}
+          </div>
+          <div class="col col-lg-1" style="padding: 1rem;" >
+              <div class="icon-search-wrap p-3" style="cursor: pointer;" >{% include 'icon-search' %}</div>
+              <div class="angle-up-wrap p-3" style="cursor: pointer; display: none;" ><i class="fa fa-angle-up"></i></div>
+          </div>
+        </nav>
+        
+      </div>
+      
+    </div>
+  </div>
+
+</header>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id" : "top_header",
+        "label": "Top Header Text",
+        "default": "Free Shipping On U.S. Orders"
+      },
+      {
+        "type": "image_picker",
+        "id": "header_logo",
+        "label": "Header Logo"
+      },
+      {
+        "type": "link_list",
+        "id" : "header_mobile_linklist",
+        "label": "Mobile Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id" : "header_desktop_linklist",
+        "label": "Desktop Left Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "image_picker",
+        "id": "header_sub_menu_image_1_1",
+        "label": "Sub Menu Item Image - Parent 1 Child 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "header_sub_menu_image_1_2",
+        "label": "Sub Menu Item Image - Parent 1 Child 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "header_sub_menu_image_1_3",
+        "label": "Sub Menu Item Image - Parent 1 Child 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "header_sub_menu_image_2_1",
+        "label": "Sub Menu Item Image - Parent 2 Child 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "header_sub_menu_image_2_2",
+        "label": "Sub Menu Item Image - Parent 2 Child 2"
+      }
+    ]
+
+  }
+{% endschema %}

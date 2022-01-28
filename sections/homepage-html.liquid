@@ -1,0 +1,41 @@
+<section class="homepage-html container-fluid">
+
+	<div class="row mb-5">
+		<div class="col text-center">
+			<h3 class="text-uppercase text-black mb-0">{{ section.settings.title }}</h3>
+		</div>
+	</div>
+	<div class="row mb-5">
+		<div class="col">
+			{{ section.settings.html }}
+		</div>
+	</div>
+			
+</section>
+
+{% schema %}
+  {
+    "name": "HTML",
+    "settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Section Title"
+		},
+	    {
+	      "type": "html",
+	      "id": "html",
+	      "label": "Section HTML"
+	    }
+    ],
+	"presets": [
+		{
+			"name": "HTML",	
+			"settings": {
+					"title": "Section Title",
+					"html": "Custom HTML"
+			}
+		}
+	]
+  }
+{% endschema %}

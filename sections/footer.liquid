@@ -1,0 +1,207 @@
+
+<footer class="footer section white-color pt-5 mb-3 mb-md-0">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-3 col-xl-3 mb-5 text-center text-md-left">
+
+        {% if section.settings.footer_logo != blank %}
+          <a href="/" class="d-block footer-logo mb-3" title="{{shop.name}}" >
+            <img src="{{ section.settings.footer_logo | img_url: '300x300' }}" alt="{{shop.name}}" class="w-100" />
+          </a>
+        {% else %}
+          <h4 class="py-3 m-0" >
+            <a href="/" class="text-black" title="{{shop.name}}" >{{shop.name}}</a>
+          </h4>
+        {% endif %}
+
+        <p class="mb-3" style="font-weight: bold;" >@ToobsDistribution</p>
+        <a class="d-block mb-3 text-black" href="mailto:ToobsDistribution@gmail.com" title="Email" class="d-block text-black mb-3" >ToobsDistribution@gmail.com</a>
+        <p class="mb-3" >{{shop.address.street}} <br class="d-none d-md-block"/>{{shop.address.city}}, {{shop.address.province_code}} {{shop.address.zip}} {{shop.address.country}}</p>
+
+        <ul class="list-inline site-footer__social-icons social-icons">
+          <li class="list-inline-item">
+            <a class="social-icons__link" href="https://www.facebook.com/ToobsDistribution/" title="{{ shop.name }} Facebook" target="_blank" >
+              {% include 'icon-facebook' %}
+              <span class="d-none" >Facebook</span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-icons__link" href="https://www.instagram.com/toobsdistribution/" title="{{ shop.name }} Instagram" target="_blank" >
+              {% include 'icon-instagram' %}
+              <span class="d-none" >Instagram</span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-icons__link" href="https://www.youtube.com/channel/UC9f6c57uiet6jDM_aQLGdNA" title="{{ shop.name }} YouTube" target="_blank" >
+              {% include 'icon-youtube' %}
+              <span class="d-none" >YouTube</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      {% comment %}
+      <div class="col-md-4 col-lg-4 mb-5">
+        <ul class="footer-menu text-center text-center" >
+          <li class="mb-3" >
+            <a href="/pages/ambassador" title="Become An Ambassador" class="d-block btn btn-black text-white text-uppercase mx-auto" style="font-size: 14px; width: 240px;">Become An Ambassador</a>
+          </li>
+          <li>
+            <a href="/pages/wholesale" title="Become An Wholesaler" class="d-block btn btn-black text-white text-uppercase mx-auto" style="font-size: 14px; width: 240px;">Become A Wholesaler</a>
+
+          </li>
+        </ul>
+      </div>
+      {% endcomment %}
+
+      <div class="col-md-3 col-xl-2 col-xl-2 mb-5">
+        {% if section.blocks %}
+          <ul class="footer-menu" >
+            <li class="text-uppercase black-text mb-3" style="font-weight: bold;" >Shop Toobs</li>
+            {% for block in section.blocks %}
+              <li class="mb-1">
+                <a href="{{block.settings.footer_link}}" title="{{block.settings.footer_text}}" class="d-block text-black" >{{block.settings.footer_text}}</a>
+              </li>
+            {% endfor %}            
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="col-md-3 col-xl-2 col-xl-2 mb-5">
+        <ul class="footer-menu" >
+          <li class="text-uppercase black-text mb-3" style="font-weight: bold;" >Customer Service</li>
+          <li class="mb-1">
+            <a href="/pages/contact" title="Contact" class="d-block text-black" >Contact</a>
+          </li>
+          <!-- <li class="mb-1">
+            <a href="/pages/track-order" title="Track Order" class="d-block text-black" >Track Order</a>
+          </li> -->
+          <li class="mb-1">
+            <a href="/pages/faq" title="F.A.Q" class="d-block text-black" >F.A.Q</a>
+          </li>
+          <li class="mb-1">
+            <a href="/pages/toobs-packaging" title="Packaging" class="d-block text-black" >Packaging</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 col-xl-2 col-xl-2 mb-5">
+        <ul class="footer-menu" >
+          <li class="text-uppercase black-text mb-3" style="font-weight: bold;" >Toobs Team</li>
+          <li class="mb-1">
+            <a href="/pages/story" title="Our Story" class="d-block text-black" >Our Story</a>
+          </li>
+          <li class="mb-1">
+            <a href="/blogs/news" title="Latest News" class="d-block text-black" >Latest News</a>
+          </li>
+          <li class="mb-1">
+            <a href="/blogs/toobs-talk" title="Toobs Talk" class="d-block text-black" >Toobs Talk</a>
+          </li>
+        </ul>
+      </div>
+          
+      {% if section.settings.footer_newsletter_enable or section.settings.show_payment_icons %}
+        <div class="col-xl-3 mb-5">
+
+          {% if section.settings.footer_newsletter_enable %}
+            <div class="footer-subscription-form mb-3">
+
+              {% form 'customer' %}
+                {{ form.errors | default_errors }}
+                {% if form.posted_successfully? %}
+                  <p class="form--success">You have successfully subscribed to {{shop.name}}.</p>
+                {% else %}
+                <div class="form-group" style="position: relative;">
+                  <label for="Email" class="text-uppercase text-black">Sign Up For Newsletter</label>
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <input type="email" id="Email"
+                  name="contact[email]"
+                  class="form-control"
+                  placeholder="Enter your email address"
+                  value="{% if customer %}{{ customer.email }}{% endif %}" >
+                  <button class="btn btn-submit box-shadow-none" type="submit" style="padding: .75rem !important;" >
+                    <i class="fa fa-envelope" ></i>
+                  </button>
+                </div>
+                {% endif %}
+              {% endform %}
+
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_payment_icons %}
+            <ul class="payment-icons list--inline">     
+              <li class="payment-icon">
+                {% include 'icon-american_express' %}
+              </li> 
+              <li class="payment-icon">
+                {% include 'icon-discover' %}
+              </li>
+              <li class="payment-icon">
+                {% include 'icon-master' %}
+              </li>
+              <li class="payment-icon">
+                {% include 'icon-visa' %}
+              </li>
+            </ul>
+          {% endif %}
+
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="row pb-5">
+      <div class="col">
+        <div class="site-footer__copyright--bottom text-center">
+          <small class="site-footer__copyright-content text-black">&copy; {{ 'now' | date: "%Y" }} <a href="/" title="{{ shop.name }}" class="text-black">{{ shop.name }}</a><!--  | Powered by <a href="https://mydigitalsauce.com" target="_blank" title="MyDigitalSauce" >MyDigitalSauce</a> --></small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "footer_logo",
+        "label": "Footer Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_newsletter_enable",
+        "label": "Show newsletter signup",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Footer Link",
+        "settings": [
+          {
+            "type": "text",
+            "id": "footer_text",
+            "label": "Text"
+          },
+          {
+            "type": "url",
+            "id": "footer_link",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

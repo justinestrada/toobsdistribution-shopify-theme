@@ -1,0 +1,23 @@
+<section class="breadcrumb-section container-fluid ">
+    <div class="breadcrumb-product-row row bg-lightgray">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb text-uppercase mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                {% if current_tags %}
+                  <li class="breadcrumb-item">
+                    <a href="/collections/{{ collection.handle | downcase }}" >{{ collection.title }}</a>
+                  </li>
+                  <li class="breadcrumb-item active">{{ current_tags }}</li>
+                {% else %}
+                  <li class="breadcrumb-item active"><a href="/collections">{{ collection.title }}</a></li>
+                {% endif %}
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,86 @@
+
+<section class="collection-filters section mb-5">
+  <div class="container">
+
+    <div class="row collection-filters-outer-row">
+      <div class="col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+
+        <form id="form-collection-filters" action="/collections/rolling-paper" method="POST" class="row" >
+
+          {% assign collection_all_tags_size = collection.all_tags | size %}
+          
+          {% if collection_all_tags_size > 0 %}
+            <div class="col col-filter p-0">
+              <div class="dropdown w-100">
+                <button class="btn box-shadow-none dropdown-toggle w-100" id="collectionDropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" >
+                  <span style="font-weight: 500;" >Filter</span>
+                </button>
+                <ul class="dropdown-menu collection-sort-list w-100">
+
+                  {% assign current_tags_size = current_tags | size %}
+                  {% if current_tags_size > 0 %}
+                    <li class="dropdown-item collection-sort-list-item text-uppercase" data-sort-tag="all">All Products</li>
+                  {% endif %}
+
+                  {% for tag in collection.all_tags %}
+                    <li class="dropdown-item collection-sort-list-item text-uppercase {% if current_tags contains tag %}active{% endif %}" data-sort-tag="{{ tag | handle }}">{{ tag }}</li>
+                  {% endfor %}
+                </ul> 
+              </div>
+            </div>
+          {% endif %}
+          <div class="col col-filter p-0">
+
+            <div class="dropdown w-100">
+              <button class="btn box-shadow-none dropdown-toggle w-100" id="collectionDropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" >
+                <span style="font-weight: 500;" >Sort</span>
+              </button>
+              <ul class="dropdown-menu collection-sort-list w-100">
+                <li class="dropdown-item collection-sort-list-item" data-sort-by="manual">FEATURED</li>
+                <li class="dropdown-item collection-sort-list-item" data-sort-by="best-selling">BEST SELLERS</li>
+                <li class="dropdown-item collection-sort-list-item" data-sort-by="created-descending">NEWEST</li>
+                <li class="dropdown-item collection-sort-list-item" data-sort-by="created-ascending">OLDEST</li>
+                <li class="dropdown-item collection-sort-list-item" data-sort-by="price-ascending">PRICE LOW-HIGH</li>
+                <li class="dropdown-item collection-sort-list-item" data-sort-by="price-descending">PRICE HIGH-LOW</li>
+              </ul> 
+            </div>
+            <!-- <input id="SortBy" type="hidden" name="SortBy" value="" /> -->
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="row collection-filters-results-row" style="display: none;" >
+      <div class="col">
+        <p>Resutlts.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+$("#form-collection-filters").on('submit', function(e) {
+  e.preventDefault();
+  submit_Collection_Filters( $(this) );
+});
+
+$(".collection-sort-list-item").on("click", function( ) {
+
+  let selected_sort_tag = $(this).attr("data-sort-tag");
+  let selected_sort_by = $(this).attr("data-sort-by");
+  if ( selected_sort_tag ) {
+
+    selected_sort_tag = ( selected_sort_tag == "all" ) ? "" : selected_sort_tag;
+    window.location.href = "{{ shop.url }}/collections/{{ collection.handle }}/" + selected_sort_tag;
+
+  } else if ( selected_sort_by )  {
+
+    {% assign current_tags_size = current_tags | size %}
+    window.location.href = "{{ shop.url }}/collections/{{ collection.handle }}{% if current_tags_size > 0 %}{{ current_tags[0] | handle }}{% endif %}?sort_by=" + selected_sort_by;
+
+  }
+
+});
+</script>

@@ -1,0 +1,29 @@
+<div class="product-item">
+  <div class="product-thumb">
+    {% comment %}{% if product.compare_at_price and product.compare_at_price != product.price %}
+      <span class="badge">Sale</span>
+    {% endif %}{% endcomment %}
+
+    <img class="img-responsive w-100" src="{{ product.product_image.src | img_url: '1920x' }}" alt="product-img">
+    <div class="preview-meta">
+      <ul>
+        <li>
+          <a href="{{product.url}}" class="btn-white" ><i class="fa fa-search"></i></a>
+        </li>
+        <li>
+          <form id="form-{{product.handle}}" method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{product.variants.first.id}}" >
+            <button type="submit" class="btn-white" ><i class="fa fa-shopping-cart"></i></button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="product-content">
+    <h4>
+      <a href="{{ product.product_link }}" title="{{ product.product_title }}" class="text-uppercase" >{{ product_title }}</a>
+    </h4>
+    <p class="text-uppercase mb-0">Starting At</p>
+    <p class="price font-weight-bold">{{ product.product_price | money}}</p>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+{% section 'blog-banner' %}
+
+<style>
+.blog-card-img {
+	height: 450px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+</style>
+
+<div class="page container pt-5">
+
+    {% paginate blog.articles by 9 %}
+
+		{% if blog.articles.size > 0 %}
+
+			<div class="row">
+
+				{% for article in blog.articles %}
+
+                    {% assign forloop_modulo = forloop.index | minus: 1 | modulo: 3 %}
+
+                    {% if forloop.index != 1 and forloop_modulo == 0 %}
+                      </div><div class="row row-eq-height justify-content-md-center">
+                    {% endif %}
+
+					<div class="col-12 col-lg-4 mb-5">
+
+						<div class="card z-depth-1 h-100">
+
+							{% if article.image.src %}
+								<a class="blog-card-img card-img"  href="{{ article.url }}" title="{{ article.title }}" style="background-image: url('{{ article.image.src | img_url: 'x450'; }}')" >
+									<span style="visibility: hidden;">{{ article.image.alt }}</span>
+								</a>
+							{% endif %}
+
+							<div class="card-body">
+								<h2 class="card-title text-uppercase mt-0 mb-3">
+									<a href="{{ article.url }}" class="text-black" title="{{ article.title }}" >{{ article.title }}</a>
+								</h2>
+								<p class="mb-3">{{ article.excerpt }}</p>
+								<a href="{{ article.url }}" class="btn btn-outline-black text-black" title="Read More" >Read More</a>
+							</div>
+						</div>
+					    
+					</div>
+
+				{% endfor %}
+
+			</div>
+
+            <div class="row mb-5">
+				<div class="col text-center">
+					<div id="pagination">{{ paginate | default_pagination }}</div>
+				</div>
+            </div>
+
+		{% endif %}
+
+    {% endpaginate %}
+
+</div>

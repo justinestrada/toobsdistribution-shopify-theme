@@ -1,0 +1,38 @@
+{% if section.settings.show_countdown %}
+  <div class="add-to-cart-countdown-wrap text-center p-3 mb-3" style="display: none;" >
+      <strong class="add-to-cart-countdown text-gray mb-0" style="font-weight: 500;" >Order in the next x hours, x minutes,<br/>for FREE Next Day Shipment!</strong>
+  </div>
+{% endif %}
+
+{% if section.settings.show_counter %}
+  <div class="live-counter-wrap text-center">
+      <p class="live-counter" data-inc="{{ section.settings.counter_inc }}" >🔥 Live Counter! <span class="live-counter-count" style="color: #db1d1d; font-weight: bold"></span> Sold Today!</p>
+  </div>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Urgency",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_countdown",
+        "label": "Show Countdown",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_counter",
+        "label": "Show Counter",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "counter_inc",
+        "label": "Counter Increment",
+        "default": 11
+      }
+	]
+  }
+{% endschema %}

@@ -1,0 +1,185 @@
+<style>
+.slick-slide img.zoomImg {
+    background: white;
+}
+.single-product-images .slick-dots li a {
+  height: 80px;
+  background-color: white;
+  background-size: contain;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+{% if section.settings.enable-mobile-sticky-cart-btn %}
+  .single-product .btn-mobile-login,
+  .single-product .btn-add-to-cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;  
+  }
+  .single-product .btn-add-to-cart .add-to-cart-price {
+      right: 1rem;
+  }
+  @media (min-width: 992px) {
+    .single-product .btn-mobile-login,
+    .single-product .btn-add-to-cart {
+      position: relative;
+      bottom: initial;
+      left: initial;
+      z-index: initial;
+    }
+  }
+{% endif %}
+</style>
+
+<section class="mobile-title container pt-5 d-lg-none">
+  <div class="title-row row mb-5">
+    <div class="col text-center px-0">
+      <h5 class="product-title text-uppercase m-0" style="font-weight: 500;" >{{ product.title }}</h5>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="variants-row row mb-5">
+    <div class="col-lg-7 col-xl-8">
+
+      <div class="single-product-images-wrap">
+        <div class="single-product-images" style="display: none;" >
+          {% for image in product.images %}
+            <div data-thumb="{{ image.src | img_url: '1920x' }}" data-id="{{ image.id }}"  data-id="{{ image.id }}" data-src="{{ image.src | img_url: '1920x' }}" class="zoom" >
+              <img class="img-fluid" src="{{ image.src | img_url: '1920x' }}" >
+            </div>
+          {% endfor %}
+        </div>
+        <span class="zoom-in-out-wrap"><i class="fa fa-expand" ></i></span>
+      </div>
+
+    </div>
+
+    <div class="col-lg-5 col-xl-4">
+      <div class="desktop-single-product-details d-none d-lg-block">
+
+        <p style="font-weight: 500;">
+          {% for collection in product.collections %}
+            {% if forloop.index > 1 %}, {% endif %}<a href="{{ collection.url }}" class="text-uppercase text-gray" title="{{ collection.title }}" >{{ collection.title }}</a>
+          {% endfor %}
+        </p>
+
+        <h5 class="product-title text-uppercase" style="font-weight: 500;" >{{ product.title }}</h5>
+
+        <div class="price-row row mb-4">
+          <div class="col">
+            {% if customer %}
+              {% if product.compare_at_price and product.compare_at_price > product.price %}
+                <span class="d-inline-block price font-weight-bold" style="font-size: 20px;" >{{ product.price | money_without_trailing_zeros }}</span> <strike class="text-danger strike-price" >{{ product.compare_at_price | money_without_trailing_zeros }}</strike>
+              {% else %}
+                <span class="d-block price font-weight-bold" style="font-size: 20px;" >{{ product.price | money_without_trailing_zeros }}</span>
+              {% endif %}
+            {% else %}
+              <p><a href="/account" title="Account" class="text-green text-uppercase" ><u>Login to view price</u></a></p>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+      <div class="single-product-details">
+        
+        <div class="product-short-description text-center">
+          <span class="text-uppercase text-gray" style="font-weight: 600px; font-size: 1.25rem;" >{{ tagline | strip_html }}</span>
+        </div>
+        
+        {% if customer %}
+          {% if product.available %}
+
+            {% unless product.has_only_default_variant %}
+              <div class="product-variants mb-3" data-index="option{{ forloop.index }}">
+                {% for variant in product.variants %}
+                    <div class="product-variant-wrap {% if forloop.index == 1 %} selected{% endif %}" data-variant-id="{{ variant.id }}" data-featured-image-id="{{ variant.featured_image.id }}" >
+                      <div class="row">
+                        <div class="col">
+                          <span class="variant-label text-uppercase mb-3">{{ variant.title }}</span>
+                        </div>
+                        <div class="col-auto text-right">
+                          {% if variant.price < variant.compare_at_price %} 
+                            <strong class="d-inline-block variant-price">{{ variant.price | money_without_trailing_zeros }}</strong>
+                            <small class="d-inline-block variant-strike-price">
+                              <strike class="text-danger" >{{ variant.compare_at_price | money_without_trailing_zeros }}</strike>
+                            </small>
+                          {% else %}
+                            <span class="d-inline-block variant-price">{{ variant.price | money_without_trailing_zeros }}</span>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+              </div>
+            {% endunless %}
+        
+            <form id="product-cart" method="post" action="/cart/add">
+              {% unless product.has_only_default_variant %}
+
+                {% for product_option in product.options_with_values %}
+                  <div class="product-variants d-none" > 
+                    <span>{{product_option.name}}</span>
+                    <select class="form-control" data-index="option{{forloop.index}}">
+                      {% for value in product_option.values %}
+                        <option value="{{value | escape}}" {% if product_option.selected_value == value %} selected="selected" {% endif %}>{{value}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endfor %}
+
+              {% endunless %}
+
+              {% if section.settings.show-quantity %}
+                <div class="product-quantity mb-3">
+                  <span>Quantity:</span>
+                  <input min="1" type="number" id="quantity" name="quantity" value="1" class="text-center p-2" style="width: 5rem; border: 1px solid #ddd;" />
+                </div>
+              {% endif %}
+
+              <input type="hidden" id="variant-id" name="id" value={{ product.variants.first.id }}>
+              <button type="submit" value="Add to Cart" class="btn btn-add-to-cart w-100 p-3">
+                <span class="btn-add-to-cart-inner-text" >
+                  {{ section.settings.button-text }}
+                  <span class="add-to-cart-price d-lg-none">{{ product.price | money }}</span>
+                </span>
+                <i class="btn-add-to-cart-inner-loading fa fa-2x fa-spin fa-spinner" style="display: none;" ></i>
+              </button>
+            </form>
+          {% else %}
+              <button type="button" class="btn btn-danger text-uppercase w-100 p-3" disabled >Sold Out</button>
+          {% endif %}
+        {% else %}
+          <a class="btn btn-mobile-login text-uppercase w-100 p-3" href="/account" >Login To View Price</a>
+        {% endif %}
+
+        <div class="pt-3">{{ product.description }}</div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show-quantity",
+      "label": "Cart Form Show Quantity",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button-text",
+      "label": "Cart Form Button Text",
+      "default": "Add to Cart"
+    }
+  ]
+}
+{% endschema %}

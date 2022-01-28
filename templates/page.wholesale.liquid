@@ -1,0 +1,84 @@
+{% comment %}{% include 'page-header', title: {{page.title}} %}{% endcomment %}
+
+{% section 'page-breadcrumb' %}
+
+<style>
+.form-control-placeholder {
+  display: none;
+}
+</style>
+
+<div class="page container">
+
+  <div class="row mb-5">
+    <div class="col">
+      <div class="section-header text-center">
+        <h5 class="product-title text-uppercase d-block d-md-none" style="font-weight: 700;" >Wholesale Program</h5>
+        <h1 class="text-uppercase mb-0 d-none d-md-block">Wholesale Program</h1>
+      </div>
+    </div>
+  </div>
+
+  {% comment %}
+  {% if page.content %}
+    <div class="row mb-5">
+      <div class="col">
+        {{ page.content }}
+      </div>
+    </div>
+  {% endif %}
+  {% endcomment %}
+
+  <div class="row mb-5">
+    <div class="col col-lg-6 offset-lg-3">
+
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <p class="note form-success">Thank you for applying to our wholesale program!</p>
+        {% else %}
+          {{ form.errors | default_errors }}
+
+        <div class="mb-5">
+          <div class="form-group">
+            <label class="form-control-placeholder" for="name" >Name</label>
+            <input type="text" class="form-control" name="contact[name]" id="name" placeholder="Name" >
+          </div>
+          
+          <div class="form-group">
+            <label class="form-control-placeholder" for="email" >Email</label>
+            <input type="email" class="form-control" name="contact[email]" id="email" placeholder="Email" >
+          </div>
+          
+          <div class="form-group">
+            <label class="form-control-placeholder" for="company" >Company</label>
+            <input type="text" class="form-control" name="contact[follower]" id="follower" placeholder="Company" >
+          </div>
+          
+          <div class="form-group">
+            <label class="form-control-placeholder" for="social" >Social Handles</label>
+            <input type="text" class="form-control" name="contact[social]" id="social" placeholder="Social Handles">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-control-placeholder" for="wholesale" >Preferred Wholesale Code</label>
+            <input type="text" class="form-control" name="contact[wholesale]" id="wholesale" placeholder="Preferred Wholesale Code">
+          </div>
+          
+        </div>
+
+        <div class="text-uppercase text-center mb-5">
+          <p class="font-weight-bold" >WHOLESALE PRICING</p>
+          <p>$13 PER UNIT (STANDARD MOUNT)</p>
+          <p class="mb-3">$25 PER UNIT (WIRELESS MOUNT)</p>
+          <p>MINIMUM ORDER QUANTITY OF 20 UNITS PER ORDER</p>  
+        </div>
+
+        <button type="submit" id="contact-submit" class="d-block btn btn-black mx-auto w-100" style="max-width: 200px;" >Apply Now</button>
+        
+        {% endif %}
+      {% endform %}
+
+    </div>
+  </div>
+
+</div>

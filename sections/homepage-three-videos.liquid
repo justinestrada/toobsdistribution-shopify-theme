@@ -1,0 +1,150 @@
+
+<section class="homepage-video section container-fluid bg-gray">
+	<div class="row">
+		<div class="container">
+
+			<div class="row mb-5">
+				<div class="col-md-12">
+				  <div class="title text-uppercase text-center">
+				    <h2 class="m-0">{{ section.settings.title }}</h2>
+				  </div>
+				</div>
+			</div>
+
+			<div class="row mb-5">
+
+				<div class="col-12 col-xl-8 mb-3 mb-xl-0">
+					<div class="homepage-video-thumbnail-wrap" video-number="1" >
+						<img src="{{ section.settings.thumbnail_img_1 | img_url: '1920x1080' }}" alt="{{ section.settings.title }}" class="homepage-video-thumbnail img-fluid w-100" />
+						<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase position-absolute" >{{ section.settings.btn_text_1 }}</button>
+					</div>
+
+					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-1 embed-responsive embed-responsive-16by9 z-depth-1" >
+					  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="col-12 col-xl-4">
+
+					<div class="mb-3">
+						<div class="homepage-video-thumbnail-wrap" video-number="2" >
+							<img src="{{ section.settings.thumbnail_img_2 | img_url: '1920x1080' }}" alt="{{ section.settings.title }}" class="homepage-video-thumbnail img-fluid w-100" />
+							<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase position-absolute" >{{ section.settings.btn_text_2 }}</button>
+						</div>
+
+						<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-2 embed-responsive embed-responsive-16by9 z-depth-1" >
+						  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_2 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+					</div>
+
+					<div class="homepage-video-thumbnail-wrap" video-number="3" >
+						<img src="{{ section.settings.thumbnail_img_3 | img_url: '1920x1080' }}" alt="{{ section.settings.title }}" class="homepage-video-thumbnail img-fluid w-100" />
+						<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase position-absolute" >{{ section.settings.btn_text_3 }}</button>
+					</div>
+
+					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-3 embed-responsive embed-responsive-16by9 z-depth-1" >
+					  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_3 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+
+				</div>
+
+			</div>
+			{% if section.settings.show_view_more %}
+		        <div class="row mb-5">
+		        	<div class="col text-center">
+		        		<a href="{{ section.settings.view_more_link }}" class="btn btn-outline-black" title="View More" >View More</a>
+		        	</div>
+		        </div>
+	        {% endif %}
+
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Three Videos",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Section Title"
+		},
+		{
+		    "type":	"image_picker",
+		    "id": "thumbnail_img_1",
+		    "label": "Video Thumbnail 1"
+		},
+		{
+		    "type":	"text",
+		    "id": "youtube_iframe_src_1",
+		    "label": "YouTube iFrame SRC 1"
+		},
+		{
+		    "type":	"text",
+		    "id": "btn_text_1",
+		    "label": "Button Text 1"
+		},
+		{
+		    "type":	"image_picker",
+		    "id": "thumbnail_img_2",
+		    "label": "Video Thumbnail 2"
+		},
+		{
+		    "type":	"text",
+		    "id": "youtube_iframe_src_2",
+		    "label": "YouTube iFrame SRC 2"
+		},
+		{
+		    "type":	"text",
+		    "id": "btn_text_2",
+		    "label": "Button Text 2"
+		},
+		{
+		    "type":	"image_picker",
+		    "id": "thumbnail_img_3",
+		    "label": "Video Thumbnail 3"
+		},
+		{
+		    "type":	"text",
+		    "id": "youtube_iframe_src_3",
+		    "label": "YouTube iFrame SRC 3"
+		},
+		{
+		    "type":	"text",
+		    "id": "btn_text_3",
+		    "label": "Button Text 3"
+		},
+		{
+		    "type":      "checkbox",
+		    "id":        "show_view_more",
+		    "label":     "Show View More Button",
+		    "default":   false
+		},
+		{
+		    "type":      "url",
+		    "id":        "view_more_link",
+		    "label":     "View More Link"
+		}
+	],
+	"presets": [
+		{
+			"name": "Three Videos",	
+			"settings": {
+				"title": "Section Title",
+
+				"thumbnail_img_1": "",
+				"youtube_iframe_src_1": "https://www.youtube.com/embed/9qEv1HG7wk0",
+				"btn_text_1": "Play Episode #4",
+
+				"thumbnail_img_2": "",
+				"youtube_iframe_src_2": "https://www.youtube.com/embed/UauYj_0EVHI",
+				"btn_text_2": "Play Episode #5",
+
+				"thumbnail_img_3": "",
+				"youtube_iframe_src_3": "https://www.youtube.com/embed/rva2L-U2mHI",
+				"btn_text_3": "Play Episode #6"
+			}
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,586 @@
+{
+  "current": {
+    "favicon": "shopify:\/\/shop_images\/TOOBS-Logo.png",
+    "site_header_menu_font": "work_sans_n4",
+    "site_headings_font": "work_sans_n5",
+    "site_body_font": "work_sans_n4",
+    "about_img": "",
+    "phone": "(714)983-7667",
+    "email": "ToobsDistribution@gmail.com",
+    "address": "303 N Placentia Ave Suite G, Fullerton CA 92831",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/TOOBS-Logo.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "small",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#000000",
+    "checkout_button_color": "#000000",
+    "checkout_error_color": "#e32c2b",
+    "bg_color": "#ffffff",
+    "text_color": "#cccccc",
+    "use_logo": true,
+    "checkout_use_storefront_logo": false,
+    "site_font_body": "futura_n7",
+    "share_image": "",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "https:\/\/twitter.com\/mytopshelfgoods",
+    "social_facebook_link": "https:\/\/facebook.com\/mytopshelfgoods",
+    "social_pinterest_link": "",
+    "social_instagram_link": "instagram.com\/topshelfgoods.com",
+    "social_tumblr_link": "",
+    "social_snapchat_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "top_header": "Free Shipping On U.S. Orders Over $420",
+          "mobile_header_logo": "shopify:\/\/shop_images\/Toobs-Logo-cropped.jpg",
+          "header_logo": "shopify:\/\/shop_images\/TOOBS-Logo.png",
+          "header_mobile_linklist": "new-main-menu",
+          "header_desktop_linklist": "new-main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1549662797713": {
+            "type": "text",
+            "settings": {
+              "footer_text": "Rolling Paper",
+              "footer_link": "shopify:\/\/collections\/rolling-paper-wraps"
+            }
+          },
+          "1550827923472": {
+            "type": "text",
+            "settings": {
+              "footer_text": "Glass",
+              "footer_link": "shopify:\/\/collections\/glass"
+            }
+          },
+          "1550827944968": {
+            "type": "text",
+            "settings": {
+              "footer_text": "Silicone",
+              "footer_link": "shopify:\/\/collections\/silicone"
+            }
+          },
+          "1555716400535": {
+            "type": "text",
+            "settings": {
+              "footer_text": "Cleaning",
+              "footer_link": "shopify:\/\/collections\/cleaning"
+            }
+          },
+          "1555716569917": {
+            "type": "text",
+            "settings": {
+              "footer_text": "Grinders",
+              "footer_link": "shopify:\/\/collections\/grinders"
+            }
+          },
+          "1555716716132": {
+            "type": "text",
+            "settings": {
+              "footer_text": "Accessories",
+              "footer_link": "shopify:\/\/collections\/accessories-1"
+            }
+          },
+          "1555716913502": {
+            "type": "text",
+            "settings": {
+              "footer_text": "Supps",
+              "footer_link": "shopify:\/\/collections\/supps"
+            }
+          }
+        },
+        "block_order": [
+          "1549662797713",
+          "1550827923472",
+          "1550827944968",
+          "1555716400535",
+          "1555716569917",
+          "1555716716132",
+          "1555716913502"
+        ],
+        "settings": {
+          "footer_logo": "shopify:\/\/shop_images\/TOOBS-Logo.png",
+          "footer_newsletter_enable": true,
+          "show_payment_icons": true
+        }
+      },
+      "homepage-carousel": {
+        "type": "homepage-carousel",
+        "blocks": {
+          "88391d45-d4ab-4e4e-b91b-f2b1375a9e3f": {
+            "type": "text",
+            "settings": {
+              "slide_image": "shopify:\/\/shop_images\/January_Raffle.png",
+              "slide_title": "",
+              "slide_link": "shopify:\/\/blogs\/news\/illadelph-glass-giveaway-2022"
+            }
+          },
+          "15be2a21-a0af-4311-a2c0-b6fc9f9438fc": {
+            "type": "text",
+            "settings": {
+              "slide_image": "shopify:\/\/shop_images\/OCNE_YOU_DABRITE_YOU_LL_NEVER_DAB_WRONG_AGAIN.png",
+              "slide_title": "",
+              "slide_link": "shopify:\/\/collections\/dab-rite"
+            }
+          },
+          "496c8528-ab0b-4a1e-afc4-5d1745b23f29": {
+            "type": "text",
+            "settings": {
+              "slide_image": "shopify:\/\/shop_images\/UGLY_1.png",
+              "slide_title": "",
+              "slide_link": "shopify:\/\/collections\/ugly-house-dab-tools"
+            }
+          },
+          "1579634057579": {
+            "type": "text",
+            "settings": {
+              "slide_image": "shopify:\/\/shop_images\/PF-Website_Banner_1170x500_2.jpg",
+              "slide_title": "",
+              "slide_link": "shopify:\/\/collections\/pink-formula-cleaner"
+            }
+          },
+          "2f708551-17ea-4b86-8a74-19dd81af7c90": {
+            "type": "text",
+            "settings": {
+              "slide_image": "shopify:\/\/shop_images\/TYSON_RANCH_NOW_IN_STOCK.png",
+              "slide_title": "",
+              "slide_link": "shopify:\/\/collections\/tyson-ranch-x-futurola"
+            }
+          },
+          "5d5ac80f-561c-4198-bdb6-18ab719e3aa8": {
+            "type": "text",
+            "settings": {
+              "slide_image": "shopify:\/\/shop_images\/a_disturbance_or_commotion..png",
+              "slide_title": "",
+              "slide_link": "shopify:\/\/collections\/ruckus-glass"
+            }
+          },
+          "1555715097826": {
+            "type": "text",
+            "settings": {
+              "slide_image": "shopify:\/\/shop_images\/14.png",
+              "slide_title": "",
+              "slide_link": "shopify:\/\/blogs\/toobs-talk"
+            }
+          }
+        },
+        "block_order": [
+          "88391d45-d4ab-4e4e-b91b-f2b1375a9e3f",
+          "15be2a21-a0af-4311-a2c0-b6fc9f9438fc",
+          "496c8528-ab0b-4a1e-afc4-5d1745b23f29",
+          "1579634057579",
+          "2f708551-17ea-4b86-8a74-19dd81af7c90",
+          "5d5ac80f-561c-4198-bdb6-18ab719e3aa8",
+          "1555715097826"
+        ],
+        "settings": {}
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "show-collections-menu": true,
+          "category": "new-main-menu"
+        }
+      },
+      "collection-breadcrumb": {
+        "type": "collection-breadcrumb",
+        "settings": {}
+      },
+      "homepage-jumbotron": {
+        "type": "homepage-jumbotron",
+        "settings": {
+          "bg_img": "",
+          "mobile_bg_img": "",
+          "heading": "SHOP X SHIP X SELL",
+          "first_button_text": "Shop Now",
+          "first_button_link": "shopify:\/\/collections\/all",
+          "second_button_text": "Shop Now",
+          "second_button_link": "shopify:\/\/collections\/all"
+        }
+      },
+      "product-categories": {
+        "type": "product-categories",
+        "settings": {
+          "category-title-1": "Wireless",
+          "category-img-1": "",
+          "category-url-1": "",
+          "category-title-2": "Standard",
+          "category-img-2": "",
+          "category-url-2": "",
+          "category-title-3": "Accessories",
+          "category-img-3": "",
+          "category-url-3": ""
+        }
+      },
+      "trust": {
+        "type": "trust",
+        "settings": {
+          "trust-text-1": "Always Available",
+          "trust-text-2": "Worldwide Shipping",
+          "trust-text-3": "Bulk Delivery Insured",
+          "trust-text-4": "Safe & Secure Checkout"
+        }
+      },
+      "search-form": {
+        "type": "search-form",
+        "settings": {}
+      },
+      "homepage-products-carousel": {
+        "type": "homepage-products-carousel",
+        "settings": {
+          "enable_bg_lightgray": false,
+          "title": "Glass Pieces",
+          "collection": "glass-pieces",
+          "product_limit": 15,
+          "show_add_to_cart": false,
+          "show_view_more": true
+        }
+      },
+      "homepage-collections-carousel": {
+        "type": "homepage-collections-carousel",
+        "blocks": {
+          "1555713333572": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/RAW_LOGO-3_1024x1024_e5a99141-b4a2-4ad8-825e-02dee44264a6.jpg",
+              "collection_title": "RAW",
+              "collection_link": "shopify:\/\/collections\/raw"
+            }
+          },
+          "1555713365861": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/high_hemp_logo.jpg",
+              "collection_title": "High Hemp",
+              "collection_link": "shopify:\/\/collections\/high-hemp"
+            }
+          },
+          "1555714876701": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/Pink_Formula_Final_Logo.png",
+              "collection_title": "Pink Formula",
+              "collection_link": "shopify:\/\/collections\/pink-formula-cleaner"
+            }
+          },
+          "1555713543405": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/zig-zag-logo.jpg",
+              "collection_title": "Zig-Zag",
+              "collection_link": "shopify:\/\/collections\/zig-zag-rolling-papers"
+            }
+          },
+          "1555713583314": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/Canadian-Lumber.jpg",
+              "collection_title": "Canadian Lumber",
+              "collection_link": "shopify:\/\/collections\/canadian-lumber"
+            }
+          },
+          "1555713613928": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/OCB-logo.jpg",
+              "collection_title": "OCB",
+              "collection_link": "shopify:\/\/collections\/ocb"
+            }
+          },
+          "1555713677559": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/iDabGlassDrip.png",
+              "collection_title": "iDab",
+              "collection_link": "shopify:\/\/collections\/idab-glass"
+            }
+          },
+          "1555713708254": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/MAV-Glass-logo.jpg",
+              "collection_title": "MAV",
+              "collection_link": "shopify:\/\/collections\/mav-glass"
+            }
+          },
+          "1555713728966": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/glob_mops_logo_gif.jpg",
+              "collection_title": "Glob Mops",
+              "collection_link": "shopify:\/\/collections\/glob-mops"
+            }
+          },
+          "1555713760298": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/Eyce-Molds-logo.jpg",
+              "collection_title": "Eyce Molds",
+              "collection_link": "shopify:\/\/collections\/eyce-molds"
+            }
+          },
+          "1555713827048": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/juicy-jay-logo.jpg",
+              "collection_title": "Juicy Jay",
+              "collection_link": "shopify:\/\/collections\/juicy-jays"
+            }
+          },
+          "1555714904912": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/antidotelogoupdate-01_2.jpg",
+              "collection_title": "Antidote Glass",
+              "collection_link": "shopify:\/\/collections\/antidote-glass"
+            }
+          },
+          "1555713860215": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/TwistedHemp_Logo-300x300.jpg",
+              "collection_title": "Twisted Hemp",
+              "collection_link": "shopify:\/\/collections\/twisted-hemp"
+            }
+          },
+          "1555713903679": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/unnamed.png",
+              "collection_title": "AFM",
+              "collection_link": "shopify:\/\/collections\/afm"
+            }
+          },
+          "1555713934002": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/king-palm-logo_400x-copy.png",
+              "collection_title": "King Palm",
+              "collection_link": "shopify:\/\/collections\/king-palm"
+            }
+          },
+          "1555714814468": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/skillet-tools.jpg",
+              "collection_title": "Skillet Tools",
+              "collection_link": "shopify:\/\/collections\/skillet-tools"
+            }
+          },
+          "1555714837254": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/Higher-State-Creations-logo.jpg",
+              "collection_title": "Higher State Creations",
+              "collection_link": "shopify:\/\/collections\/higher-state-creations"
+            }
+          },
+          "1555714926199": {
+            "type": "text",
+            "settings": {
+              "collection_image": "shopify:\/\/shop_images\/Toker-Poker-logo.jpg",
+              "collection_title": "Toker Poker",
+              "collection_link": "shopify:\/\/collections\/toker-poker"
+            }
+          }
+        },
+        "block_order": [
+          "1555713333572",
+          "1555713365861",
+          "1555714876701",
+          "1555713543405",
+          "1555713583314",
+          "1555713613928",
+          "1555713677559",
+          "1555713708254",
+          "1555713728966",
+          "1555713760298",
+          "1555713827048",
+          "1555714904912",
+          "1555713860215",
+          "1555713903679",
+          "1555713934002",
+          "1555714814468",
+          "1555714837254",
+          "1555714926199"
+        ],
+        "settings": {
+          "title": "The Industries Hottest Selling Brands"
+        }
+      },
+      "offcanvas-left-sidebar-menu": {
+        "type": "offcanvas-left-sidebar-menu",
+        "settings": {
+          "mobile_menu_header_text": "Shop Menu",
+          "header_mobile_linklist": "new-main-menu"
+        }
+      },
+      "offcanvas-right-sidebar-cart": {
+        "type": "offcanvas-right-sidebar-cart",
+        "settings": {
+          "above_cart": "FREE Shipping On U.S. Orders Over $420"
+        }
+      },
+      "1555713098923": {
+        "type": "homepage-three-videos",
+        "settings": {
+          "title": "Latest Toobs Talk",
+          "thumbnail_img_1": "shopify:\/\/shop_images\/toobs-talk-canadian-lumber-papers.jpg",
+          "youtube_iframe_src_1": "https:\/\/www.youtube.com\/embed\/VorakntrQd8",
+          "btn_text_1": "Play Episode #15",
+          "thumbnail_img_2": "shopify:\/\/shop_images\/toobs-talk-episode-14.jpg",
+          "youtube_iframe_src_2": "https:\/\/www.youtube.com\/embed\/gyPtsxzQg3M",
+          "btn_text_2": "Play Episode #14",
+          "thumbnail_img_3": "shopify:\/\/shop_images\/Toobs-Talk-Cannapods.jpg",
+          "youtube_iframe_src_3": "https:\/\/www.youtube.com\/embed\/DdhmxwnC7mg",
+          "btn_text_3": "Play Episode #13",
+          "show_view_more": true,
+          "view_more_link": "shopify:\/\/blogs\/toobs-talk"
+        }
+      },
+      "1555713196234": {
+        "type": "homepage-html",
+        "disabled": true,
+        "settings": {
+          "title": "Shop Our Instagram",
+          "html": "<script src=\"https:\/\/showcase.abovemarket.com\/embed\/gallery\/13020\" data-gallery-id=\"13020\"><\/script>"
+        }
+      },
+      "1555713268679": {
+        "type": "homepage-html-bg-lightgray",
+        "settings": {
+          "title": "Work With The Best",
+          "html": "<p>Toobs Distribution is the leading west coast distributor of premium brands in the vastly growing industry of smoke shops, head shops and dispensary's.<\/p>\n\t\t\t\t\t<p>Since 2016, Toobs Distribution has been dedicated to meeting the needs of our customers, suppliers and end users of the products we distribute.<\/p>\n\t\t\t\t\t<p>We have achieved this by offering the best products for the industry's best prices, and making sure your order is shipped in a timely manner.<\/p>"
+        }
+      },
+      "collection-banner": {
+        "type": "collection-banner",
+        "settings": {}
+      },
+      "collection-filters": {
+        "type": "collection-filters",
+        "settings": {}
+      },
+      "account-login": {
+        "type": "account-login",
+        "settings": {
+          "bg_img": "shopify:\/\/shop_images\/black-banner.jpg"
+        }
+      },
+      "account-register": {
+        "type": "account-register",
+        "settings": {
+          "bg_img": "shopify:\/\/shop_images\/black-banner.jpg"
+        }
+      },
+      "product-breadcrumb": {
+        "type": "product-breadcrumb",
+        "settings": {}
+      },
+      "product-mobile-title": {
+        "type": "product-mobile-title",
+        "settings": {}
+      },
+      "product-details": {
+        "type": "product-details",
+        "settings": {
+          "show-quantity": true,
+          "button-text": "Add to Cart"
+        }
+      },
+      "product-testimonials": {
+        "type": "product-testimonials",
+        "blocks": {
+          "1555721830752": {
+            "type": "text",
+            "settings": {
+              "name": "Eli",
+              "company": "Ej's Smoke Shop",
+              "description": "I've been working with Toobs from the beginning. Kyle and Duke will always do what they can to help your shop be successful. I highly recommend working with Toobs!"
+            }
+          },
+          "1555721874174": {
+            "type": "text",
+            "settings": {
+              "name": "CJ Burns",
+              "company": "Cloud 9 Headshop",
+              "description": "Ordering from Toobs has really helped me expand my shop clientele. I love calling in, these guys really know their products."
+            }
+          },
+          "1555721887956": {
+            "type": "text",
+            "settings": {
+              "name": "Rocco",
+              "company": "Nitecap Megastore",
+              "description": "I've been ordering from Toobs for about 6 months, I refer to them as my \"Wild Card\". They always answer their phones and do whatever they can to help me."
+            }
+          }
+        },
+        "block_order": [
+          "1555721830752",
+          "1555721874174",
+          "1555721887956"
+        ],
+        "settings": {
+          "title": "TESTIMONIALS"
+        }
+      },
+      "product-related": {
+        "type": "product-related",
+        "settings": {
+          "show_related_products": true,
+          "related_title": "You May Also Like"
+        }
+      },
+      "account-banner": {
+        "type": "account-banner",
+        "settings": {}
+      },
+      "account-template": {
+        "type": "account-template",
+        "settings": {
+          "show_account_recommended_products": true,
+          "recommended_collection": "hot-deals"
+        }
+      },
+      "blog-banner": {
+        "type": "blog-banner",
+        "settings": {
+          "banner_bg_img": "",
+          "banner_sub_title": "Blog posts written by the illustrious Toobs Team."
+        }
+      },
+      "161213275400d103eb": {
+        "type": "homepage-products-carousel",
+        "settings": {
+          "enable_bg_lightgray": false,
+          "title": "Rolling papers",
+          "collection": "rolling-paper",
+          "product_limit": 12,
+          "show_add_to_cart": false,
+          "show_view_more": true
+        }
+      }
+    },
+    "content_for_index": [
+      "1555713098923",
+      "161213275400d103eb",
+      "1555713268679",
+      "1555713196234"
+    ]
+  }
+}

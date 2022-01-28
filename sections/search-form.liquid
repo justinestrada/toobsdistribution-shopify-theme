@@ -1,0 +1,28 @@
+<section class="section-search-form white-color" >
+	<div class="container-fluid">
+		<div class="row">
+			<div class="container">
+				<div class="row">
+					<div class="col col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 py-5" style="position: relative;" >
+						<!-- <button type="button" class="btn btn-black bmd-btn-fab btn-close-search-form circle-rounded" style="position: absolute; top: 1rem; right: 1rem;">
+						  <i class="fa fa-close"></i>
+						</button> -->
+						<form id="search-form" action="/search" method="GET" >
+							<div class="row">
+								<div class="col" style="position: relative;">
+									<div class="form-group">
+										<label for="search-value" class="mb-0" >Search Toobs</label>
+										<input type="text" id="search-value" name="q" class="form-control px-0" style="font-size: 2rem;" placeholder="Search..." />					
+									</div>
+									<input type="hidden" name="type" value="product" />
+									<button type="submit" class="btn btn-white" style="position: absolute; top: 3rem; right: 0; box-shadow: none; padding: .375rem .75rem !important;" >{% include 'icon-search-lg' %}</button>
+								</div>
+							</div>
+						</form>			
+						<button type="button" class="btn btn-outline-black btn-close-search-form ml-0" style="background: white;" >Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</section>

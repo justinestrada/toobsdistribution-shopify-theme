@@ -1,0 +1,47 @@
+<section class="collections-listing pt-5">
+  <div class="container-fluid">
+    <div class="row">
+      
+      <div class="container">
+
+        {% paginate collections by 12 %}
+
+          {% if collections.size > 0 %}
+
+            <div class="row mb-5">
+              <div class="col text-center">
+                <h2 class="m-0" >Product Collections</h2>
+              </div>
+            </div>
+
+            <div class="row justify-content-center mb-5">
+
+              {% for collection in collections %}
+                <div class="col-6 col-lg-4">
+                    <div class="card p-3 mb-3 {{ collection.handle }}-collection">
+                      <a href="{{ collection.url }}" class="text-uppercase text-black">
+                        <u>{{ collection.title | escape }}</u>
+                      </a>
+                      <small class="hint">{{ collection.products_count }} {{ collection.products_count | pluralize: 'product', 'products' }}</small>
+                    </div>
+                </div>
+              {% endfor %}
+                
+            </div>
+
+            <div class="row mb-5">
+              <div class="col text-center">
+                <div id="pagination">{{ paginate | default_pagination }}</div>
+              </div>
+            </div>
+
+          {% else %}
+            <p>No Collections found...</p>
+          {% endif %}
+        {% endpaginate %}
+        
+      </div>
+      
+    </div>
+  </div>
+</section>

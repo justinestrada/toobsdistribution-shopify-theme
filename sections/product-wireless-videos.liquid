@@ -1,0 +1,27 @@
+<section class="container mb-5">
+  <div class="row d-none d-lg-block">
+    <div class="col">
+      <h3 class="text-uppercase mb-5 text-center" >{{section.settings.title}}</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col col-xl-10 mb-5">
+      <!-- <h5 class="text-center text-uppercase mb-3">Comparison</h5> -->
+      <iframe class="responsive-video w-100" src="https://www.youtube.com/embed/XgEujomc0-w?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Heading",
+      "default": "Video"
+    }
+  ]
+}
+{% endschema %}

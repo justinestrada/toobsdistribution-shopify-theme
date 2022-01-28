@@ -1,0 +1,164 @@
+{% section 'account-breadcrumb' %}
+
+{% section 'account-banner' %}
+
+<style>
+@media (max-width: 991px) {
+	.table-responsive-md-down {
+	    display: block;
+	    width: 100%;
+	    overflow-x: auto;
+	    -webkit-overflow-scrolling: touch;
+	}	
+}
+</style>
+
+<div class="page container pt-5">
+
+	<section class="mb-5">
+
+		<div class="row mb-3">
+			<div class="col-12">
+				<a href="/account?view=orders" class="text-uppercase text-black" title="Account" ><u>Return to Order History</u></a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-lg-8 mb-5">
+
+				<table class="table table-responsive-md-down mb-3">
+					<thead>
+						<tr>
+							<th scope="col">Product</th>
+							<th scope="col">SKU</th>
+							<th scope="col">Price</th>
+							<th scope="col" class="text-center">Quantity</th>
+							<th class="text-right" scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						{% for line_item in order.line_items %}
+							<tr>
+								<td>
+									<a href="{{ line_item.product.url }}" title="{{ line_item.title }}" class="text-black" >
+										<u>{{ line_item.title }}</u>
+									</a>
+									{% if line_item.fulfillment %}
+						                <div class="fulfillment-note card mt-3">
+						                  <div class="card-body">
+						                  	<span class="fulfilled-date">Fullfilled {{ line_item.fulfillment.created_at | date: "%a, %b %d, %Y" }}</span>
+						                    <div class="tracking-details">
+						                      {{ line_item.fulfillment.tracking_company }} {% if line_item.fulfillment.tracking_number %} #{{ line_item.fulfillment.tracking_number }} {% endif %}
+						                    </div>
+						                    {% if line_item.fulfillment.tracking_url %}
+						                      <a href="{{ line_item.fulfillment.tracking_url }}" class="d-block text-black" target="_blank" ><u>Track shipment</u></a>
+						                    {% endif %}
+						                  </div>
+						                </div>
+									{% endif %}
+								</td>
+								<td>{{ line_item.sku }}</td>
+								<td>{{ line_item.price | money_without_trailing_zeros }}</td>
+								<td class="text-center" >{{ line_item.quantity }}</td>
+								<td class="text-right" >{{ line_item.line_price | money_without_trailing_zeros }}</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+					<tfoot>
+
+						<tr>
+							<th colspan="4" >Subtotal</td>
+							<td class="text-right" >{{ order.subtotal_price | money_without_trailing_zeros }}</td>
+						</tr>
+
+						{% for discount_application in order.discount_applications %}
+							<tr>
+								<th colspan="4" >
+									<span class="text-uppercase">{{ discount_application.title }}</span> Discount Savings:
+								</th>
+								<td class="text-right" >-{{ discount_application.total_allocated_amount | money_without_trailing_zeros }}</td>
+							</tr>
+						{% endfor %}
+
+						{% for shipping_method in order.shipping_methods %}
+							<tr>
+								<th colspan="4" >{{ customer.order.shipping }} ({{ shipping_method.title }})</th>
+								<td class="text-right">{{ shipping_method.price | money_without_trailing_zeros }}</td>
+							</tr>
+						{% endfor %}
+
+						{% for tax_line in order.tax_lines %}
+							<tr>
+								<th colspan="4" >({{ tax_line.title }} {{ tax_line.rate | times: 100 }}</th>
+								<td class="text-right" >{{ tax_line.price | money_without_trailing_zeros }}</td>
+							</tr>
+						{% endfor %}
+
+						<tr>
+							<th colspan="4" >
+								<strong>Total:</strong>
+							</th>
+							<td class="text-right" >
+								<strong>{{ order.total_price | money_without_trailing_zeros }} {{ order.currency }}</strong>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+
+				{% section 'account-order-btn-place-order-again' %}
+
+			</div>
+			<div class="col-12 col-lg-4 mb-5">
+
+				<div class="card">
+
+					<div class="card-body">
+
+						{% if order.cancelled %}
+							<p class="text-danger" >Order canceled on {{ order.cancelled_at | date: "%a, %b %d, %Y" }}.<br/>Reason: {{ order.cancel_reason }}</p>
+						{% endif %}
+
+						<p>Placed on {{ order.created_at | date: "%a, %b %d, %Y" }}</p>
+
+						<h3 class="text-uppercase mb-3" >Billing Address</h3>
+						<p><span>Payment Status:</span> <span class="badge status_{{ order.financial_status }}">{{ order.financial_status }}</span></p>
+						<p>{{ order.billing_address.name }}</p>
+						<p>{{ order.billing_address.company }}</p>
+						<p>{{ order.billing_address.street }}</p>
+						<p>{{ order.billing_address.city }}, {{ order.billing_address.province }}</p>
+						<p>{{ order.billing_address.country }} {{ order.billing_address.zip }}</p>
+						<p>{{ order.billing_address.phone }}</p>
+
+						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;" >
+
+						<h3 class="text-uppercase mb-3" >Shipping Address</h3>
+						<p><span>Fulfillment Status:</span> <span class="badge status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></p>
+						<p>{{ order.shipping_address.name }}</p>
+						<p>{{ order.shipping_address.company }}</p>
+						<p>{{ order.shipping_address.street }}</p>
+						<p>{{ order.shipping_address.city }}, {{ order.shipping_address.province }}</p>
+						<p>{{ order.shipping_address.country }} {{ order.shipping_address.zip }}</p>
+						<p>{{ order.shipping_address.phone }}</p>
+
+						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;" >
+
+						{% if order.attributes %}
+						  <p>Order notes:</p>
+						  <ul>
+						    {% for attribute in order.attributes %}
+						      <li><strong>{{ attribute | first }}</strong>: {{ attribute | last }}</li>
+						    {% endfor %}
+						  </ul>
+						{% endif %}
+
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+</div>

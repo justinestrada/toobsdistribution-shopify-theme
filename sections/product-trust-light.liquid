@@ -1,0 +1,104 @@
+<section class="trust trust-light container-fluid mb-5 d-none d-lg-block">
+	<div class="row bg-white">
+
+		<div class="container">
+			<div class="row">
+			
+				<div class="trust__col col-md-3 py-4">
+
+					<div class="row">
+						<div class="col-4">
+					      <div class="svg-wrap">
+					        {% include 'icon-plane' %}
+					      </div>
+						</div>
+						<div class="d-flex col-8 pl-0 align-items-center justify-content-left">
+						    <p class="trust-text text-black mb-0" >{{section.settings.trust-text-1}}</p>	    		
+						</div>
+					</div>
+
+				</div>
+				<div class="trust__col col-md-3 py-4">
+
+					<div class="row">
+						<div class="col-4">
+					      <div class="svg-wrap">
+					        {% include 'icon-refresh_arrow' %}
+					      </div>
+						</div>
+						<div class="d-flex col-8 pl-0 align-items-center justify-content-left">
+						    <p class="trust-text text-black mb-0" >{{section.settings.trust-text-2}}</p>	    		
+						</div>
+					</div>
+
+				</div>
+				<div class="trust__col col-md-3 py-4">
+
+					<div class="row">
+						<div class="col-4">
+					      <div class="svg-wrap">
+					        {% include 'icon-certificate' %}
+					      </div>
+						</div>
+						<div class="d-flex col-8 pl-0 align-items-center justify-content-left">
+						    <p class="trust-text text-black mb-0" >{{section.settings.trust-text-3}}</p>		
+						</div>
+					</div>
+
+				</div>
+				<div class="trust__col col-md-3 py-4">
+
+					<div class="row">
+						<div class="col-4">
+					      <div class="svg-wrap">
+					        {% include 'icon-shield' %}
+					      </div>
+					    </div>
+						<div class="d-flex col-8 pl-0 align-items-center justify-content-left">
+						    <p class="trust-text text-black mb-0" >{{section.settings.trust-text-4}}</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+			
+	</div>
+	<div class="row d-none d-lg-block">
+		<hr class="bg-lightgray" />
+	</div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Trust Light",
+  "settings": [
+    {
+      "type": "text",
+      "id": "trust-text-1",
+      "label": "First Trust Text",
+      "default": "WORLDWIDE SHIPPING"
+    },
+    {
+      "type": "text",
+      "id": "trust-text-2",
+      "label": "Second Trust Text",
+      "default": "FREE RETURNS"
+    },
+    {
+      "type": "text",
+      "id": "trust-text-3",
+      "label": "Third Trust Text",
+      "default": "24 MONTH WARRANTY"
+    },
+    {
+      "type": "text",
+      "id": "trust-text-4",
+      "label": "Fourth Trust Text",
+      "default": "100% SECURE CHECKOUT"
+    }
+  ]
+}
+{% endschema %}

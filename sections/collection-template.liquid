@@ -1,0 +1,242 @@
+
+<section class="products section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="container">
+        <div class="row">
+
+          {% if section.settings.show-collections-menu %}
+            <div class="d-none d-lg-block col-lg-3">
+              <div id="collectionAccordion" class="mb-5" >
+
+                {% for link in linklists[section.settings.category].links %}
+
+                  {% assign parent_index = forloop.index %}
+
+                  <div class="card mb-3">
+
+                    {% if link.links == blank %}
+
+                        <div class="card-header" id="heading-{{ parent_index }}">
+                          <h5>
+                            <a href="{{ link.url }}" class="d-block card-header-link text-black no-icon" title="{{ link.title }}" >
+                              {{ link.title }}
+                            </a>
+                          </h5>
+                        </div>
+
+                    {% else %}   
+
+                        <div class="card-header" id="heading-{{ parent_index }}">
+                          <h5>
+                            <a href="#" class="card-header-link text-black collapsed" data-toggle="collapse" data-target="#collapse-{{ parent_index }}" aria-expanded="false" aria-controls="collapse-{{ parent_index }}">
+                              {{ link.title }}
+                            </a>
+                          </h5>
+                        </div>
+
+                        <div id="collapse-{{ parent_index }}" class="collapse {% comment %}{% if forloop.first %} show {% endif %}{% endcomment %}" aria-labelledby="heading-{{ parent_index }}" data-parent="#collectionAccordion">
+                          <div class="card-body">
+
+                            <div id="sub_collectionAccordion-{{ parent_index }}" class="sub_collectionAccordion" class="mb-5" >
+
+                              <div class="card mb-3" data-parent-target="#collapse-{{ parent_index }}" >
+                                <div class="card-header" >
+                                  <h5>
+                                    <a href="{{ link.url }}" class="d-block card-header-link text-black no-icon" title="{{ link.title }}" >All</a>
+                                  </h5>
+                                </div>
+                              </div>
+
+                              {% for childlink in link.links %}
+
+                                {% assign child_index = forloop.index %}
+
+                                <div class="card mb-3" data-parent-target="#collapse-{{ parent_index }}" >
+
+                                  {% if childlink.links == blank %}
+
+                                    <div class="card-header" id="heading-{{ parent_index }}-{{ child_index }}">
+                                      <h5>
+                                        <a href="{{ childlink.url }}" class="d-block card-header-link text-black no-icon" title="{{ childlink.title }}" >
+                                          {{ childlink.title }}
+                                        </a>
+                                      </h5>
+                                    </div>
+
+                                  {% else %}
+
+                                    <div class="card-header" id="heading-{{ parent_index }}-{{ child_index }}">
+                                      <h5>
+                                        <a href="#" class="card-header-link text-black collapsed" data-toggle="collapse" data-target="#collapse-{{ parent_index }}-{{ child_index }}" aria-expanded="true" aria-controls="collapse-{{ parent_index }}-{{ child_index }}">
+                                          {{ childlink.title }}
+                                        </a>
+                                      </h5>
+                                    </div>
+
+                                    <div id="collapse-{{ parent_index }}-{{ child_index }}" class="collapse {% comment %}{% if forloop.first %} show {% endif %}{% endcomment %}" aria-labelledby="heading-{{ parent_index }}-{{ child_index }}-" data-parent="#sub_collectionAccordion-{{ parent_index }}" >
+                                      <div class="card-body">
+
+                                        <ul class="p-0 m-0" >
+
+                                          <li>
+                                            <a href="{{ childlink.url }}" title="{{ childlink.title }}" class="d-block text-black py-2" >All</a>
+                                          </li>
+                                
+                                          {% for child_childlink in childlink.links %}
+                                            <li>
+                                              <a href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" class="d-block text-black py-2" >{{ child_childlink.title }}</a>
+                                            </li>
+                                          {% endfor %}
+                                          
+                                        </ul>
+
+                                      </div>
+                                    </div>
+
+                                  {% endif %}
+
+                                </div>
+
+                              {% endfor %}
+
+                            </div>
+
+                          </div>
+                        </div>
+
+                    {% endif %}
+                  </div>
+
+                {% endfor %}
+
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="col">
+
+            {% paginate collection.products by 12 %}
+
+              {% if collection.products.size > 0 %}
+
+                <div class="row row-eq-height justify-content-md-center mb-5">
+
+                  {% comment %}
+                  {% assign collection-product-col-class = "col-md-6 col-lg-4" %}
+                  {% if collection.products.length >= 3 %}
+                    {% assign collection-product-col-class = "col-md-6 col-lg-4" %}
+                  {% endif %}
+                  {% endcomment %}
+
+                  {% for this_product in collection.products %}
+
+                    {% assign forloop_index = forloop.index | minus: 1 | modulo: 3 %}
+
+                    {% if forloop.index != 1 and forloop_index == 0 %}
+                      </div><div class="row row-eq-height justify-content-md-center mb-lg-5">
+                    {% endif %}
+
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                      {% include 'collection-product-card', product: this_product %}
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <div class="row mb-5">
+                  <div class="col text-center">
+                    <div id="pagination">{{ paginate | default_pagination }}</div>
+                  </div>
+                </div>
+
+              {% else %}
+
+                <div class="row">
+                  <div class="col text-center">
+                    <p>No Products found...</p>
+                  </div>
+                </div>
+
+              {% endif %}
+
+            {% endpaginate %}
+              
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+function stripQueryStringAndHashFromPath(url) {
+  return url.split("?")[0].split("#")[0];
+}
+$(document).ready(function() {
+
+  if ( $("#shopify-section-collection-template").length ) {
+    
+    let this_location = stripQueryStringAndHashFromPath( location.pathname );
+
+    $(".sub_collectionAccordion .card").each( function() {
+      let link_href = $(this).find(".card-header-link").attr("href").trim().toLowerCase().replace(/ /g, '-');
+      let data_parent_target = $(this).attr("data-parent-target");
+      
+      if ( this_location === link_href ) {
+        $(this).addClass("selected");
+        trigger_Accordion( data_parent_target );
+      } else {
+        if ( $(this).find(".card-body").length ) {
+
+          let data_target = $(this).find(".card-header-link").attr("data-target");
+          // console.log("data_target", data_target);
+
+          // check card-body ul
+          $(this).find(".card-body ul li a").each(function() {
+            let sub_link_href = $(this).attr("href").trim().toLowerCase().replace(/ /g, '-');
+
+            if ( this_location == sub_link_href ) {
+              $(this).addClass("selected");
+              trigger_Accordion( data_parent_target );
+              // trigger the sub accordion too
+              
+              trigger_Accordion( data_target );
+            }
+          });  
+
+        }    
+      }
+
+    });
+
+  }
+
+});
+
+
+function trigger_Accordion( data_target ) {
+  console.log("selected data_target", data_target);
+  $('a[data-target="' + data_target + '"]').trigger("click");
+}
+</script>
+
+{% schema %}
+  {
+    "name": "Collection Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show-collections-menu",
+        "label": "Show Collections Menu",
+        "default": true
+      },
+      {
+        "type": "link_list",
+        "id": "category",
+        "label": "Collection Dropdown"
+      }
+    ]
+  }
+{% endschema %}

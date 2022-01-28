@@ -1,0 +1,49 @@
+
+<div class="product-item {% if product.images[1] %} product-item-show-secondary-img {% endif %} h-100">
+  <div class="product-thumb mb-3" style="padding: 1px;" >
+	
+    <a href="{{ product.url }}" title="{{ product.title }}" class="d-block" >
+      <div class="primary-img" style="background-image: url('{{ product.featured_image.src | img_url: '1920x' }}');"></div>
+      {% if product.images[1] %}
+        <div class="secondary-img" style="background-image: url('{{ product.images[1].src| img_url: '1920x' }}');"></div>
+      {% endif %}
+    </a>
+
+  </div>
+  <div class="product-content p-2">
+    {% unless product.available %}
+      <span class="badge btn-danger btn-sold-out mb-3">Sold Out</span>
+    {% endunless %}
+    {% if product.compare_at_price and product.compare_at_price > product.price %}
+      <span class="badge btn-sale mb-3">Sale</span>
+    {% endif %}
+    <h4 class="text-uppercase mt-0 mb-3">
+      <a href="{{ product.url }}" title="{{ product.title }}" >{{product.title}}</a>
+    </h4>
+    {% if customer %}
+      <p class="price mb-0">
+      {% if product.compare_at_price and product.compare_at_price > product.price %}
+          <strong>{{ product.price | money_without_trailing_zeros }}</strong> <strike class="text-danger" >{{ product.compare_at_price | money_without_trailing_zeros }}</strike>
+        </p>
+      {% else %}      
+        {{ product.price | money_without_trailing_zeros }}
+      {% endif %}
+      </p>
+    {% else %}
+      <p><a href="/account" title="Account" class="text-green text-uppercase" ><u>Login to view price</u></a></p>
+    {% endif %}
+  </div>
+
+  {% if product.available and customer %}
+    <div>
+      <form id="form-{{ product.handle }}" class="product-item-add-to-cart-form" method="post" action="/cart/add" product-img-src="{{ product.featured_image.src | img_url: '1920x' }}" >
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" >
+        <button type="submit" class="btn btn-collection-add-to-cart btn-add-to-cart w-100" value="Add to Cart">
+          <span class="btn-add-to-cart-inner-text">Add To Cart</span>
+          <i class="btn-add-to-cart-inner-loading fa fa-spin fa-spinner" style="font-size: 1.25rem; display: none;" ></i>
+        </button>
+      </form>
+    </div>
+  {% endif %}
+
+</div>

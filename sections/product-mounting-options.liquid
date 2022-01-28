@@ -1,0 +1,75 @@
+<section class="container">
+  <div class="row mb-5">
+    <div class="col text-center">
+      <h3 class="text-uppercase mb-3" >{{ section.settings.title }}</h3>
+      <h5 class="text-uppercase mb-0" >{{ section.settings.sub-title }}</h5>
+    </div>
+  </div>
+  <div class="mounting-options-row row mb-5">
+    <div class="col-md-4 col-md mb-4 mb-md-0 text-center">
+      <img src="{{ section.settings.img-1 | img_url: '1920x' }}" alt="VentGripz" class="w-100 mb-3">
+      <h3 class="text-uppercase">{{ section.settings.text-1 }}</h3>
+    </div>
+    <div class="col-md-4 col-md mb-4 mb-md-0 text-center">
+      <img src="{{ section.settings.img-2 | img_url: '1920x' }}" alt="VentGripz" class="w-100 mb-3">
+      <h3 class="text-uppercase">{{ section.settings.text-2 }}</h3>
+    </div>
+    <div class="col-md-4 col-md mb-4 mb-md-0 text-center">
+      <img src="{{ section.settings.img-3 | img_url: '1920x' }}" alt="VentGripz" class="w-100 mb-3">
+      <h3 class="text-uppercase">{{ section.settings.text-3 }}</h3>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mounting Options",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "3 Mounting Options"
+    },
+    {
+      "type": "text",
+      "id": "sub-title",
+      "label": "Section Sub Title",
+      "default": "(All Included)"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-1",
+      "label": "First Image"
+    },
+    {
+      "type": "text",
+      "id": "text-1",
+      "label": "First Text",
+      "default": "Vent"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-2",
+      "label": "Second Image"
+    },
+    {
+      "type": "text",
+      "id": "text-2",
+      "label": "Second Text",
+      "default": "Adhesive"
+    },
+    {
+      "type": "image_picker",
+      "id": "img-3",
+      "label": "Third Image"
+    },
+    {
+      "type": "text",
+      "id": "text-3",
+      "label": "Third Text",
+      "default": "Suction"
+    }
+  ]
+}
+{% endschema %}

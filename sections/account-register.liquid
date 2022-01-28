@@ -1,0 +1,369 @@
+<style>
+input[type="text"].form-control,
+input[type="email"].form-control {
+	letter-spacing: 1.5px;
+}
+@media (min-width: 992px) {
+	body {
+	  background-image: url('{{section.settings.bg_img | img_url: '1920x'}}');
+	}	
+	.text-lg-white {
+		color: white;
+	}
+}
+</style>
+<div class="page container">
+
+	<div class="row pt-5 mb-5">
+		<div class="col-4 offset-2 text-center">
+			<a href="/account/login" class="text-uppercase text-black text-lg-white" title="Sign In" >Sign In</a>
+		</div>
+		{% if shop.customer_accounts_optional %}
+		    <div class="col-4 text-center">
+		    	<span class="text-uppercase text-lg-white" ><u>Create An Account</u></span>
+		    </div>
+		{% endif %}
+	</div>
+
+
+	{% if shop.customer_accounts_enabled %}
+
+		{% if customer %}
+
+			<div class="row mb-5" >
+				<div class="col text-center">	
+
+				    <a href="/account" class="btn btn-outline-white mx-auto" title="Your Account" >Your Account</a>
+				</div>
+			</div>
+
+		{% else %}
+
+		
+			<div class="row justify-content-center mb-5">
+				<div class="col-lg-8 col-xl-6 white-color lg-z-depth-1 p-xl-5">
+					<div class="text-center">
+						<h1 class="text-uppercase">NEW TO Toobs?</h1>
+						<p>Create a new TOOBS account and get faster checkout and be the first to know about our exclusive offers.</p>
+					</div>
+
+					{% comment %}
+					{% form 'create_customer' %}
+
+						{{ form.errors | default_errors }}
+
+						<div class="form-group">
+							<label for="first_name">First Name</label>
+							<input id="first_name" type="text" value="" name="customer[first_name]" size="30" placeholder="First Name" class="form-control" required />
+						</div>
+						<div class="form-group">
+							<label for="last_name">Last Name</label>
+							<input id="last_name" type="text" value="" name="customer[last_name]" size="30" placeholder="Last Name" class="form-control" required />
+						</div>
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input id="email" type="email" value="" name="customer[email]" size="30" placeholder="Email Address" class="form-control" required />
+						</div>
+
+						<div class="form-group">
+							<label for="CompanyName">Company Name!</label>
+							<input type="text" id="CompanyName" name="customer[note][CompanyName]" placeholder="Company Name" class="form-control" required />
+						</div>
+
+						<div class="form-group">
+							<label for="CompanyAddress">Company Address</label>
+							<input type="text" id="CompanyAddress" name="customer[note][CompanyAddress]" placeholder="Company Address" class="form-control" required />
+						</div>
+
+                        <div class="form-group">
+							<label for="CompanyTaxID">Company Tax ID</label>
+							<input type="text" id="CompanyTaxID" name="customer[note][CompanyTaxID]" placeholder="Company Tax ID" class="form-control" required />
+						</div>
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input id="password"type="password" value="" name="customer[password]" size="30" placeholder="Password" class="form-control" required />
+						</div>
+						<p>Must be 6 or more characters and contain at least 1 number</p>
+
+						<button type="submit" value="Create" class="btn btn-black w-100">Create Account</button>
+
+					{% endform %}
+					{% endcomment %}
+					{% comment %}
+					<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdaOj17BQF_OBMZP6xT51-AL_4pna_0457bnOOZ0mGCNnvJLA/viewform?embedded=true" width="100%" height="1271" frameborder="0" marginheight="0" marginwidth="0">
+						Loading...
+					</iframe>
+					{% endcomment %}
+					{% form 'contact' %}
+						{% if form.posted_successfully? %}
+							<p class="note text-success text-center">Thank for submitting your account for approval. We are going to review it as soon as possible. We will contact you soon!</p>
+						{% else %}
+
+							{{ form.errors | default_errors }}
+
+                            <div class="form-group">
+                              <label for="first_name" class="form-control-placeholder" >First Name</label>
+                              <input type="text" class="form-control" name="contact[first_name]" id="first_name" placeholder="First Name" required >
+                            </div>
+
+                            <div class="form-group">
+                              <label for="last_name" class="form-control-placeholder" >Last Name</label>
+                              <input type="text" class="form-control" name="contact[last_name]" id="last_name" placeholder="Last Name" required >
+                            </div>
+
+                            <div class="form-group">
+                              <label for="email" class="form-control-placeholder" >Email Address</label>
+                              <input type="email" class="form-control" name="contact[email]" id="email" placeholder="Email Address" required >
+                            </div>
+
+                            <div class="form-group">
+                              <label for="work_phone" class="form-control-placeholder" >Work Phone</label>
+                              <input type="text" id="work_phone" class="form-control input-medium bfh-phone" name="contact[WorkPhone]" data-format="+1 (ddd) ddd-dddd" required >
+                            </div>
+
+                            <div class="form-group">
+                              <label for="cell_phone" class="form-control-placeholder" >Cell Phone (Optional)</label>
+                              <input type="text" id="cell_phone" class="form-control input-medium bfh-phone" name="contact[CellPhone]" data-format="+1 (ddd) ddd-dddd" />
+                            </div>
+
+                            <div class="form-group">
+                              <label for="CompanyName" class="form-control-placeholder" >Company Name</label>
+                              <input type="text" class="form-control" name="contact[CompanyName]" id="CompanyName" placeholder="Company Name" required />
+                            </div>
+
+                            <div class="form-group">
+                              <label for="CompanyAddress" class="form-control-placeholder" >Company Address</label>
+                              <input type="text" class="form-control" name="contact[CompanyAddress]" id="CompanyAddress" placeholder="Company Address" required />
+                            </div>
+
+                            <div class="form-group">
+								<label for="CompanyTaxID" class="form-control-placeholder" >Company Tax ID</label>
+								<input type="text" id="CompanyTaxID" name="contact[CompanyTaxID]" placeholder="Company Tax ID" class="form-control" required />
+							</div>
+
+                            <div class="form-group">
+								<label for="HowDidYouHearAboutUs" class="form-control-placeholder" >How did you hear about us? (Optional)</label>
+								<input type="text" id="HowDidYouHearAboutUs" name="contact[HowDidYouHearAboutUs]" class="form-control" />
+							</div>
+                  
+							<button type="submit" value="Create" class="btn btn-black w-100">Submit Account For Approval</button>
+
+						{% endif %}
+					{% endform %}
+
+				</div>
+			</div>
+
+		{% endif %}
+
+	{% else %}
+
+		<p>Please enable customer accounts in your Shopify settings.</p>
+
+	{% endif %}	
+
+</div>
+
+<script>
+/* ==========================================================
+ * bootstrap-formhelpers-phone.js
+ * https://github.com/vlamanna/BootstrapFormHelpers
+ * ==========================================================
+ * Copyright 2012 Vincent Lamanna
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================== */
+ 
+ !function ($) {
+
+  "use strict"; // jshint ;_;
+
+
+ /* PHONE CLASS DEFINITION
+  * ====================== */
+
+  var BFHPhone = function (element, options) {
+    this.options = $.extend({}, $.fn.bfhphone.defaults, options)
+    this.$element = $(element)
+    if (this.$element.is('input[type="text"]') || this.$element.is('input[type="tel"]')) {
+      var country = this.options.country
+      
+      var formObject = this.$element.closest('form')
+      
+      if (country != "") {
+		var countryObject = formObject.find('#' + country)
+		
+		if (countryObject.length != 0) {
+		  this.options.format = BFHPhoneFormatList[countryObject.val()]
+		} else {
+		  this.options.format = BFHPhoneFormatList[country]
+		}
+	  }
+      
+      this.addFormatter()
+    }
+    
+    if (this.$element.is("span")) {
+      this.displayFormatter()
+    }
+  }
+
+  BFHPhone.prototype = {
+
+    constructor: BFHPhone
+
+  , getFormattedNumber: function() {
+    var format = this.options.format
+    var phoneNumber = new String(this.options.number)
+    var formattedNumber = ""
+    
+    var newNumber = ""
+    for (var i = 0; i < phoneNumber.length; i++) {
+      if (/[0-9]/.test(phoneNumber.charAt(i))) {
+        newNumber += phoneNumber.charAt(i)
+      }
+    }
+    phoneNumber = newNumber
+    
+    var j = 0
+    for (var i = 0; i < format.length; i++) {
+      if (/[0-9]/.test(format.charAt(i))) {
+        if (format.charAt(i) == phoneNumber.charAt(j)) {
+          formattedNumber += phoneNumber.charAt(j)
+          j++
+        } else {
+          formattedNumber += format.charAt(i)
+        }
+      } else if (format.charAt(i) != "d") {
+        if (phoneNumber.charAt(j) != "" || format.charAt(i) == "+") {
+          formattedNumber += format.charAt(i)
+        }
+      } else {
+        if (phoneNumber.charAt(j) == "") {
+          formattedNumber += ""
+        } else {
+          formattedNumber += phoneNumber.charAt(j)
+          j++
+        }
+      }
+    }
+    
+    return formattedNumber
+  }
+  
+  , addFormatter: function () {
+    var formattedNumber = this.getFormattedNumber()
+    
+    this.$element.addClass('disabled');
+    this.$element.val(formattedNumber)
+    this.$element.removeClass('disabled');
+  }
+  
+  , displayFormatter: function () {
+    var formattedNumber = this.getFormattedNumber()
+    
+    this.$element.html(formattedNumber)
+  }
+  
+  , changeCountry: function (e) {
+      var $this = $(this)
+      var phoneObject = $(this).data('bfhphone')
+      
+      phoneObject.options.format = BFHPhoneFormatList[$this.val()]
+      
+      phoneObject.addFormatter()
+  }
+  
+  , change: function(e) {
+    var $this
+    
+    $this = $(this).data('bfhphone')
+    
+    if ($this.$element.is('.disabled, :disabled')) return false
+    
+    var number = $this.$element.val()
+    var newNumber = ""
+    for (var i = 0; i < number.length; i++) {
+      if (/[0-9]/.test(number.charAt(i))) {
+        newNumber += number.charAt(i)
+      }
+    }
+    
+    $this.options.number = newNumber
+    
+    $this.addFormatter()
+    
+    $this.$element.data('number', $this.options.number)
+    
+    return false
+  }
+
+  }
+
+
+ /* PHONE PLUGIN DEFINITION
+  * ======================= */
+
+  $.fn.bfhphone = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('bfhphone')
+        , options = typeof option == 'object' && option
+      if (!data) $this.data('bfhphone', (data = new BFHPhone(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.bfhphone.Constructor = BFHPhone
+
+  $.fn.bfhphone.defaults = {
+    format: "",
+    number: "",
+    country: ""
+  }
+
+
+ /* PHONE DATA-API
+  * ============== */
+
+  $(window).on('load', function () {
+    $('form input[type="text"].bfh-phone, form input[type="tel"].bfh-phone, span.bfh-phone').each(function () {
+      var $phone = $(this)
+
+      $phone.bfhphone($phone.data())
+    })
+  })
+  
+  $(function () {
+    $('body')
+      .on('propertychange.bfhphone.data-api change.bfhphone.data-api input.bfhphone.data-api keyup.bfhphone.data-api paste.bfhphone.data-api', '.bfh-phone', BFHPhone.prototype.change)
+      .on('change.bfhphone.data-api', '.bfh-country', BFHPhone.prototype.changeCountry)
+  })
+
+}(window.jQuery);
+</script>
+
+{% schema %}
+  {
+    "name": "Page",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_img",
+        "label": "Background Image"
+      }
+    ]
+
+  }
+{% endschema %}

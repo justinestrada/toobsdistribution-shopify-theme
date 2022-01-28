@@ -1,0 +1,39 @@
+
+<div class="page container pt-5">
+
+	<div class="row mb-5">
+		<div class="col">
+			<div class="section-header text-center">
+				<h1 class="text-uppercase mb-0" >Activate Account</h1>
+				<p>Create your password to activate your account.</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="row justify-content-center mb-5">
+		<div class="col-auto">
+
+			{% form 'activate_customer_password' %}
+
+				{{ form.errors | default_errors }}
+
+				<div class="form-group password">
+					<label for="password">Password</label>
+					<input type="password" name="customer[password]" placeholder="Password" class="form-control" />
+				</div>
+				<div class="form-group password_confirm">
+					<label for="password_confirmation">Password Confirmation</label>
+					<input type="password" name="customer[password_confirmation]" placeholder="Password Confirmation" class="form-control" />
+				</div>
+				<div class="action_bottom">
+					<input type="submit" value="Activate Account" class="btn btn-black p-3" />
+					<span>or</span>
+					<input type="submit" name="decline" value="Decline Invitation" />
+				</div>
+
+			{% endform %}
+
+		</div>
+	</div>
+
+</div>

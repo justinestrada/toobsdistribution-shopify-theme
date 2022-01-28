@@ -1,0 +1,168 @@
+<style>
+/*#customer_login button[type="submit"] {
+    width: 100%;
+}*/
+@media (min-width: 992px) {
+	body {
+	  background-image: url({{section.settings.bg_img | img_url: '1920x'}});
+	}	
+	.text-lg-white {
+		color: white;
+	}
+}
+</style>
+
+<div class="page container">
+
+	<div class="row pt-5 mb-5">
+		<div class="col-4 offset-2 text-center">
+			<span class="text-uppercase text-black text-lg-white"><u>Sign In</u></span>
+			{% comment %}{{ 'Sign In' | customer_login_link }}{% endcomment %}
+		</div>
+		{% if shop.customer_accounts_optional %}
+		    <div class="col-4 text-center">
+		    	<a href="/account/register" class="text-uppercase text-black text-lg-white" title="Create An Account" >Create An Account</a>
+			    	{% comment %}{{ 'Create An Account' | customer_register_link }}{% endcomment %}
+		    </div>
+		{% endif %}
+	</div>
+
+
+	{% if shop.customer_accounts_enabled %}
+
+	  {% if customer %}
+
+		<div class="row mb-5 d-lg-none" >
+			<div class="col text-center">	
+
+			    <a href="/account" class="btn btn-outline-black mx-auto" title="Your Account" >Your Account</a>
+
+			</div>
+		</div>
+
+	  {% else %}
+
+		<div class="row mb-5 justify-content-center">
+			<div class="col-lg-6 white-color lg-z-depth-1" style="z-index: 2;">	
+
+				<div class="p-lg-5">
+					<div class="text-center mb-3">
+						<h3 class="text-uppercase mb-3" >WELCOME BACK</h3>
+						<p class="mb-0">Sign into your existing {{ shop.name }} account<br/>to view wholesale pricing and more.</p>
+					</div>
+
+					<div class="customer-login-wrap">
+
+						<div class="mb-3">
+							{% form 'customer_login' %}
+
+								{{ form.errors | default_errors }}
+						    	
+								<div class="form-group">
+									<label for="customer_email">Email Address</label>
+									<input id="customer_email" type="email" name="customer[email]" placeholder="Email Address" class="form-control" required style="letter-spacing: 1.5px;" />
+								</div>
+								<div class="form-group">
+									<label for="customer_password">Password</label>
+									<input id="customer_password" type="password" name="customer[password]" placeholder="Password" class="form-control" required />
+								</div>
+
+								<button type="submit" value="Sign In" class="btn btn-black w-100 p-3">Sign In</button>
+
+							{% endform %}							
+						</div>
+
+					    <div class="text-center">
+					    	<p class="mb-0">
+					    		<a href="javascript:void(0);" title="Forgot Password" class="show-forgot-password text-uppercase text-black" ><u>Forgot Password</u></a>
+					    	</p>
+					    </div>	
+					</div>
+
+					<div class="forgot-password-wrap" style="display: none;" >
+
+						<p class="text-center text-uppercase">Forgot Password</p>
+
+						<div class="mb-3">
+							{% form 'recover_customer_password' %}
+
+								{{ form.errors | default_errors }}
+
+								<div class="form-group">
+									<label>Email Address</label>
+									<input type="email" name="email" placeholder="Email Address" class="form-control" required >
+								</div>
+								<button type="submit" value="Submit" class="btn btn-outline-black p-3">Send Reset Instructions</button>
+
+							{% endform %}	
+						</div>
+
+					    <div class="text-center">
+					    	<p class="mb-0">
+					    		<a href="javascript:void(0);" title="Log In?" class="show-log-in text-uppercase text-black" ><u>Log In?</u></a>
+					    	</p>
+					    </div>	
+
+					</div>
+
+				</div>
+
+			</div>
+			<div class="col-lg-4 px-0 pl-lg-0 pr-lg-2 py-5" style="z-index: 1;">
+				<div class="inner-wrap py-5 text-center" style="background: #f8f9fa;" >
+					<h3 class="text-uppercase mb-3">NEW TO {{ shop.name }}?</h3>
+
+					<div class="px-5">
+						<p class="mb-3">Create a new {{ shop.name }} account and be the first to know about our exclusive offers.</p>
+
+						<div class="row">
+							<div class="col-4 text-center">
+								<div class="d-flex account-perk__image-wrap justify-content-center align-items-center mb-3">
+									{% include 'icon-cart-2' %}
+								</div>
+								<p>Checkout Faster</p>
+							</div>
+							<div class="col-4 text-center">
+								<div class="d-flex account-perk__image-wrap justify-content-center align-items-center mb-3">
+									{% include 'icon-tracking' %}
+								</div>
+								<p>Track Orders</p>
+							</div>
+							<div class="col-4 text-center">
+								<div class="d-flex account-perk__image-wrap justify-content-center align-items-center mb-3">
+									{% include 'icon-recycle' %}
+								</div>
+								<p>Easily Order Again</p>
+							</div>
+						</div>
+
+						<a href="/account/register" class="btn btn-green text-uppercase text-white" >Create Account</a>
+					</div>
+
+				</div>
+			</div>
+		</div>	      
+
+	  {% endif %}
+
+	{% else %}
+
+		<p>Please enable customer accounts in your Shopify settings.</p>
+
+	{% endif %}	
+
+</div>
+
+{% schema %}
+  {
+    "name": "Page",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_img",
+        "label": "Background Image"
+      }
+    ]
+
+  }
+{% endschema %}
