@@ -80,16 +80,19 @@ $(document).ready(function($){
   $('.header-nav .angle-up-wrap, .btn-close-search-form').on("click", function() {
     hide_Search_Form();
   });
+  apply_body_margin_on_resize();
+});
 
-  const header = $("#shopify-section-header header.fixed-top");
+function apply_body_margin_on_resize() {
+  const header = $('#shopify-section-header header.fixed-top');
   if (header.length) {
-    const body = $("body");
+    const body = $('body');
     body.css('margin-top', header.height() + 'px');
     $(window).resize(function () {
       body.css('margin-top', header.height() + 'px');
     });
   }
-});
+}
 
 function show_Search_Form() {
     $(".header-nav .icon-search-wrap").hide();
