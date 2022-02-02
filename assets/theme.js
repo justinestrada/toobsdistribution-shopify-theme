@@ -81,6 +81,14 @@ $(document).ready(function($){
     hide_Search_Form();
   });
 
+  const header = $("#shopify-section-header header.fixed-top");
+  if (header.length) {
+    const body = $("body");
+    body.css('margin-top', header.height() + 'px');
+    $(window).resize(function () {
+      body.css('margin-top', header.height() + 'px');
+    });
+  }
 });
 
 function show_Search_Form() {
