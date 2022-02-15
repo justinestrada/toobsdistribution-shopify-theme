@@ -49,7 +49,7 @@
   right: 6px;
   top: .8em;
 }
-.dropdown-submenu:hover .dropdown-menu {
+.dropdown-submenu:hover > .dropdown-menu {
     display: block;
 }
 .dropdown-submenu .dropdown-menu {
@@ -175,7 +175,6 @@
 
                           <ul class="p-0 m-0">
                             {% for childlink in link.links %}
-
                               {% if childlink.links == blank %}
                                   <li class="sub-menu-item text-uppercase" sub-menu-index="{{ forloop.index }}" >
                                     <a class="sub-menu-link p-3 text-black" href="{{ childlink.url }}" title="{{ childlink.title }}">{{ childlink.title }}</a>
@@ -186,9 +185,24 @@
                                       <a class="sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ childlink.title }}" href="{{ childlink.url }}" title="{{ childlink.title }}" >{{ childlink.title }}</a>
                                       <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ childlink.title }}" >
                                         {% for child_childlink in childlink.links %}
+                                        {% if linklists[child_childlink.title].links == blank %}
                                           <li>
                                             <a class="sub-menu-link sub-sub-menu-link p-3 text-black" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}">{{ child_childlink.title }}</a>
                                           </li>
+                                        {% else %}
+                                            <li class="sub-menu-item dropdown-submenu text-uppercase">
+                                                <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
+                                                <a class="sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ child_childlink.title }}" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" >{{ child_childlink.title }}</a>
+                                                <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ child_childlink.title }}" >
+                                                  {% for child_child_childlink in linklists[child_childlink.title].links %}
+                                                    <li>
+                                                      <a class="sub-menu-link sub-sub-menu-link p-3 text-black" href="{{ child_child_childlink.url }}" title="{{ child_child_childlink.title }}">{{ child_child_childlink.title }}</a>
+                                                    </li>
+                                                  {% endfor %}
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+
                                         {% endfor %}
                                       </ul>
                                   </li>
