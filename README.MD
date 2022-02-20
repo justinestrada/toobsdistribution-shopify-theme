@@ -11,6 +11,6 @@ macOS
 
 ## Step 2: Get a Theme Kit password
 
-# Step 3: Connect to an existing theme
+## Step 3: Connect to an existing theme
 
 * Dot not commit the config.yml

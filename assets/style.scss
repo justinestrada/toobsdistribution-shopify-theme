@@ -18,6 +18,9 @@
   }
 }
 
+.fs-0\.75 {
+  font-size: 0.75rem;
+}
 
 /*=================================================================
   Extend Bootstrap > MODAL STYLE
@@ -298,7 +301,7 @@ header {
 }
 @media (min-width: 992px) {
   .top-header-text {
-    font-size: 14px;
+    font-size: 12px;
   }  
 }
 .header-mobile-nav > div {

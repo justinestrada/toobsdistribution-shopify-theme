@@ -12,30 +12,31 @@
   padding-left: 1rem !important; 
 }
 .sub-menu .sub-menu-item.active > .sub-menu-link::before,
-.sub-sub-menu-link:hover::before {
-    content: "";
-    display: block;
-    background-image: url('https://cdn.shopify.com/s/files/1/0377/2037/t/37/assets/nav-icon-hover-right.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    position: absolute;
-    top: 17.5px;
-    left: 0;
-    width: 16px;
-    height: 16px;
-    transition: transform 0.24s ease 0s;
-    transform: translateX(-6px);
+.sub-sub-menu-link:hover::before,
+li.sub-menu-item:hover > .sub-menu-link::before {
+  content: "";
+  display: block;
+  background-image: url('https://cdn.shopify.com/s/files/1/0377/2037/t/37/assets/nav-icon-hover-right.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  top: 15.5px;
+  left: 5px;
+  width: 8px;
+  height: 18px;
+  transition: transform 0.24s ease 0s;
+  transform: translateX(-6px);
 }
+/* 
 .sub-sub-menu-link:hover::before {
     top: 20px;
     width: 4px;
     height: 12px;
-}
-.sub-menu .sub-menu-item.active > .sub-menu-link::before,
+}.sub-menu .sub-menu-item.active > .sub-menu-link::before,
 .sub-sub-menu-link:hover::before  {
     transform: translateX(0);
-}
+} */
 .sub-menu-content .sub-menu-item-content-row {
   display: none;
 }
@@ -63,21 +64,18 @@
 <header {% if template == 'index' %} class="fixed-top" {% endif %}>
 
   <div class="container-fluid">
-
     <div class="top-header-row row bg-black">
       <div class="container">
-
         <div class="row bg-black">
-          <div class="col col-lg-6 offset-lg-3 text-center py-3">
-            <p class="top-header-text text-uppercase text-white mb-0" style="letter-spacing: 2.5px;" >{{ section.settings.top_header }}</p>
+          <div class="col col-lg-6 offset-lg-3 text-center py-1">
+            <p class="fs-0.75 top-header-text text-uppercase text-white mb-0" style="letter-spacing: 2.5px;" >{{ section.settings.top_header }}</p>
           </div>
-          <div class="d-none d-lg-block col-lg-3 text-right py-3">
-            <p class="mb-0" style="letter-spacing: 2.5px;">
+          <div class="d-none d-lg-block col-lg-3 text-right py-1">
+            <p class="fs-0.75 mb-0" style="letter-spacing: 2.5px;">
               <a href="tel:+7143633899" class="text-white"><i class="fa fa-phone" aria-hidden="true"></i> (714) 363-3899</a>
             </p>
           </div>
         </div>
-        
       </div>
     </div>
 
@@ -192,7 +190,7 @@
                                         {% else %}
                                             <li class="sub-menu-item dropdown-submenu text-uppercase">
                                                 <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
-                                                <a class="sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ child_childlink.title }}" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" >{{ child_childlink.title }}</a>
+                                                <a class="sub-menu-link sub-sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ child_childlink.title }}" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" >{{ child_childlink.title }}</a>
                                                 <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ child_childlink.title }}" >
                                                   {% for child_child_childlink in linklists[child_childlink.title].links %}
                                                     <li>
@@ -264,7 +262,7 @@
                   {% endif %}
                 </ul>    
               </div>
-              <div class="col col-lg-auto" style="padding-top: 1rem; padding-bottom: 1rem;">
+              <div class="col col-lg-auto d-flex align-items-center" style="padding-top: 1rem; padding-bottom: 1rem;">
                   {% include 'icon-dot-separator' %}
               </div>
               <div class="col col-lg-auto" style="padding: 1rem;" >
