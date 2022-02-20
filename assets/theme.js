@@ -72,43 +72,55 @@ function show_Sub_Menu_Item_Content( sub_menu_item ) {
   Header > Search
 ==================================================================*/
 
-$(document).ready(function($){
+$(document).ready(function($) {
+  Header.onLoad()
+})
 
-  $(".header-nav .icon-search-wrap").on("click", function() {
-    show_Search_Form();
-  });
-  $('.header-nav .angle-up-wrap, .btn-close-search-form').on("click", function() {
-    hide_Search_Form();
-  });
-  apply_body_margin_on_resize();
-});
-
-function apply_body_margin_on_resize() {
-  const header = $('#shopify-section-header header.fixed-top');
-  if (header.length) {
-    const body = $('body');
-    body.css('margin-top', header.height() + 'px');
+const Header = {
+  onLoad: function() {
+    this.applyBodyMarginTopOnResize()
+    this.onShowSearchForm()
+    this.onHideSearchForm()
+  },
+  applyBodyMarginTopOnResize: function() {
+    const $header = $('#shopify-section-header header.fixed-top')
+    if (!$header.length) {
+      return
+    }
+    const height = $header.height()
+    const body = $('body')
+    // on load
+    body.css('margin-top', `${height}px`)
+    // on resize
     $(window).resize(function () {
-      body.css('margin-top', header.height() + 'px');
-    });
-  }
-}
-
-function show_Search_Form() {
-    $(".header-nav .icon-search-wrap").hide();
-    $(".header-nav .angle-up-wrap").show();
+      body.css('margin-top', `${height}px`)
+    })
+  },
+  onShowSearchForm: function() {
+    $('.header-nav .icon-search-wrap').on('click', function() {
+      showSearchForm()
+    })
+  },
+  showSearchForm: function() {
+    $('.header-nav .icon-search-wrap').hide()
+    $('.header-nav .angle-up-wrap').show()
     // hide all shopify sections
-    $('.shopify-section, .page').hide();
+    $('.shopify-section, .page').hide()
     // show the header and search only
-    $("#shopify-section-header, #shopify-section-search-form").show();
-    $('#shopify-section-search-form input[name="q"]').focus();
-}
-
-function hide_Search_Form() {
-    $(".header-nav .angle-up-wrap").hide();
-    $(".header-nav .icon-search-wrap").show();
-    $(".shopify-section, .page").show();
-    $("#shopify-section-search-form").hide();
+    $('#shopify-section-header, #shopify-section-search-form').show()
+    $('#shopify-section-search-form input[name="q"]').focus()
+  },
+  onHideSearchForm: function() {
+    $('.header-nav .angle-up-wrap, .btn-close-search-form').on('click', function() {
+      hideSearchForm()
+    })
+  },
+  hideSearchForm: function() {
+    $(".header-nav .angle-up-wrap").hide()
+    $(".header-nav .icon-search-wrap").show()
+    $(".shopify-section, .page").show()
+    $("#shopify-section-search-form").hide()
+  },
 }
 
 /*=================================================================
@@ -116,7 +128,6 @@ function hide_Search_Form() {
 ==================================================================*/
 
 $(document).ready(function($){
-
   // let header_height = $('header').height();
   // let screen_height = $(window).height() - header_height + 10;
   // if ( $('#homepageCarousel').length ) {
@@ -125,22 +136,20 @@ $(document).ready(function($){
   //     $("#homepageCarousel").css({ height: screen_height + "px" });
   //   });
   // }
-
   /*
   * Homepage Three Videos
   */
-  if ( $(".homepage-video").length ) {
+  if ( $('.homepage-video').length ) {
     $(".homepage-video-thumbnail-wrap").on("click", function() {
-      $(this).hide();
-      let video_number = $(this).attr("video-number");
-      let this_video_wrap = $(".homepage-video-iframe-wrap-" + video_number );
-      this_video_wrap.show();
-      let src = this_video_wrap.find("iframe").attr( "src" );
-      this_video_wrap.find("iframe").attr( "src", src + "?autoplay=1" );
-    }); 
+      $(this).hide()
+      let video_number = $(this).attr("video-number")
+      let this_video_wrap = $(".homepage-video-iframe-wrap-" + video_number )
+      this_video_wrap.show()
+      let src = this_video_wrap.find("iframe").attr( "src" )
+      this_video_wrap.find("iframe").attr( "src", src + "?autoplay=1" )
+    })
   }
-
-});
+})
 
 /*=================================================================
   Contact
