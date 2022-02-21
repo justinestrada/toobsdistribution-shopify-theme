@@ -8,16 +8,15 @@
   box-shadow: none !important;
 }
 .z-depth-1 {
-    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
 }
 @media (min-width: 992px) {
   .lg-z-depth-1 {
-      -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
-      box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)!important;
   }
 }
-
 .fs-0\.75 {
   font-size: 0.75rem;
 }
@@ -244,11 +243,11 @@ a:hover {
   Extend Bootstrap > Elements
 ==================================================================*/
 .card {
-    border: 1px solid #ddd;
-    border-radius: 0;
+  border: 1px solid #ddd;
+  border-radius: 0;
 }
 .card-header {
-    border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 form .form-control {
   font-size: 13px;
@@ -260,41 +259,41 @@ input[type="password"].form-control {
   letter-spacing: 3px;
 }
 .list--inline {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 .list--inline li {
-    display: inline-block;
-    margin-bottom: 0;
-    vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
 }
 .dropdown-menu {
-    width: max-content;
+  width: max-content;
 }
 .dropdown-hover:hover>.dropdown-menu {
   display: block;
 }
 .dropdown-menu-right {
-    right: 0;
-    left: auto;  
+  right: 0;
+  left: auto;
 }
 .dropdown-menu {
-    border-radius: 0;
+  border-radius: 0;
 }
 .dropdown-menu-active {
-      width: max-content;
+  width: max-content;
 }
 .dropdown-item.active, .dropdown-item:active {
-    color: black;
-    text-decoration: none;
-    background-color: #f8f8f8;
+  color: black;
+  text-decoration: none;
+  background-color: #f8f8f8;
 }
 
 /*=================================================================
   Header
 ==================================================================*/
 header {
-    border-bottom: 1px solid rgba(0, 0, 0, .15);
+  border-bottom: 1px solid rgba(0, 0, 0, .15);
 }
 .top-header-text {
   font-size: 10px;

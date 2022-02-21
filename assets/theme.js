@@ -92,7 +92,7 @@ const Header = {
     // on load
     body.css('margin-top', `${height}px`)
     // on resize
-    $(window).resize(function () {
+    $(window).on('resize', function () {
       body.css('margin-top', `${height}px`)
     })
   },
