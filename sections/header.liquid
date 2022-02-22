@@ -143,8 +143,10 @@ li.sub-menu-item:hover > .sub-menu-link::before {
                     <div class="dropdown-menu p-0 mt-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ link.title }}">
                       <div class="row">
                         <div class="col sub-menu mb-0">
+                          {% comment %}
                           {% assign parent_key = forloop.index | prepend:'header_sub_menu_image_' %}
                           {% assign parent_key = parent_key | append:'_' %}
+                          {% endcomment %}
                           <ul class="p-0 m-0">
                             {% for childlink in link.links %}
                               {% if childlink.links == blank %}
@@ -168,7 +170,8 @@ li.sub-menu-item:hover > .sub-menu-link::before {
                                           <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ child_childlink.title }}" >
                                             {% for child_child_childlink in linklists[child_childlink.title].links %}
                                               <li>
-                                                <a class="sub-menu-link sub-sub-menu-link p-3 text-black" href="{{ child_child_childlink.url }}" title="{{ child_child_childlink.title }}">{{ child_child_childlink.title }}</a>
+                                                <a class="sub-menu-link sub-sub-menu-link text-black p-3"
+                                                  href="{{ child_child_childlink.url }}" title="{{ child_child_childlink.title }}">{{ child_child_childlink.title }}</a>
                                               </li>
                                             {% endfor %}
                                           </ul>
@@ -260,12 +263,6 @@ li.sub-menu-item:hover > .sub-menu-link::before {
         "type": "image_picker",
         "id": "header_logo",
         "label": "Header Logo"
-      },
-      {
-        "type": "link_list",
-        "id" : "header_mobile_linklist",
-        "label": "Mobile Menu",
-        "default": "main-menu"
       },
       {
         "type": "link_list",
