@@ -1,184 +1,129 @@
-<style>
-/*
-* Off Canvas Left Sidebar Menu
-*/
-.mobile-menu-header {
-    padding: 13.5px 0;
-}
-
-#mobile-search-form-query {
-  font-size: 1.5rem;
-  height: 4rem;
-}
-
-ul.offcanvas-left-sidebar-mobile-menu {
-    padding: 0;
-    list-style: none;
-}
-ul.offcanvas-left-sidebar-mobile-menu li {
-    border-bottom: 1px solid black;
-}
-
-#mobileMenuAccordion .card,
-.sub_mobileMenuAccordion .card {
-  padding: 0 0 .5rem;
-  border: none;
-  border-radius: 0;
-}
-#mobileMenuAccordion .card:last-child,
-.sub_mobileMenuAccordion .card:last-child {
-  padding-bottom: 0;
-}
-#mobileMenuAccordion .card-header,
-.sub_mobileMenuAccordion .card-header {
-    background: #F7F8F9;
-    padding: 0;
-}
-#mobileMenuAccordion .card-header .btn,
-.sub_mobileMenuAccordion .card-header .btn {
-  display: block;
-  font-size: 16px;
-  letter-spacing: 1px;
-  padding: .75rem 1.25rem;
-  width: 100%;
-  text-align: left;
-    border: 1px solid #E8E8E8;
-    border-bottom: none;
-}
-#mobileMenuAccordion .card-body,
-.sub_mobileMenuAccordion .card-body {
-    /*background: #F7F8F9;*/
-    border: 1px solid #E8E8E8;
-    border-top: none;
-}
-
-.sub_mobileMenuAccordion .card-body ul {
-    list-style: none;
-    padding: 0;
-}
-.sub_mobileMenuAccordion .card-body ul li {
-    border-bottom: 1px solid #ddd;
-    text-transform: uppercase;
-}
-</style>
 
 <div class="modal left fade" id="offCanvasLeftSidebarMenuModal" tabindex="-1" role="dialog" aria-labelledby="offCanvasLeftSidebarMenuModalLabel" aria-hidden="true" style="z-index: 10000;" >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body" style="padding-top: 0;">
-              <div class="row">
-                <div class="col p-0">
-                  <p class="mobile-menu-header text-uppercase w-100 text-center text-white mb-0" style="background: black;">{{ section.settings.mobile_menu_header_text }}</p>
-                </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="padding-top: 0;">
+        <div class="row">
+          <div class="col p-0">
+            <p class="mobile-menu-header text-uppercase w-100 text-center text-white mb-0" style="background: black;">{{ section.settings.mobile_menu_header_text }}</p>
+          </div>
+        </div>
+        <form id="mobile-search-form" action="/search" method="POST">
+          <input type="hidden" name="type" value="product"/>
+          <div class="row">
+            <div class="col" style="position: relative;">
+              <div class="form-group">
+                <label for="" class="d-none">Search</label>
+                <input id="mobile-search-form-query" type="text" name="q" class="form-control" placeholder="Search..." >
               </div>
-              <form id="mobile-search-form" action="/search" method="POST" >
-                <input type="hidden" name="type" value="product" />
-                <div class="row">
-                    <div class="col" style="position: relative;" >
-                      <div class="form-group">
-                        <label for="" class="d-none" >Search</label>
-                        <input id="mobile-search-form-query" type="text" name="q" class="form-control" placeholder="Search..." >
-                      </div>
-                      <button type="submit" class="btn btn-transparent" style="box-shadow: none; background: transparent; top: 0; right: 0; position: absolute; padding: 1rem 1rem 0 !important;" >
-                        <div class="icon-search-wrap p-3" style="cursor: pointer;" >
-                          {% include 'icon-search-lg'  %}
-                        </div>
+              <button type="submit" class="btn btn-transparent" style="box-shadow: none; background: transparent; top: 0; right: 0; position: absolute; padding: 0 1rem 0 !important;">
+                <div class="icon-search-wrap p-3" style="cursor: pointer;">
+                  {% include 'icon-search-lg' %}
+                </div>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="row mb-3">
+          <div class="col">
+            <div id="mobileMenuAccordion" class="w-100">
+              {% for link in linklists[section.settings.header_mobile_linklist].links %}
+                {% assign parent_index = forloop.index %}
+                <div class="card">
+                  {% if link.links == blank %}
+                    <div class="card-header" id="heading{{ parent_index }}">
+                      <a class="btn btn-link box-shadow-none text-black" href="{{ link.url }}" title="{{ link.title }}" >
+                        {{ link.title }}
+                      </a>
+                    </div>
+                  {% else %}
+                    <div class="card-header" id="heading{{ parent_index }}">
+                      <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#collapse{{ parent_index }}" aria-expanded="false" aria-controls="collapse{{ parent_index }}">
+                        {{ link.title }} <i class="fa fa-angle-down float-right p-1"></i>
                       </button>
                     </div>
-                </div>
-              </form>
-              <div class="row mb-3">
-
-                <div class="col">
-                  <div id="mobileMenuAccordion" class="w-100">
-
-                    {% for link in linklists[section.settings.header_mobile_linklist].links %}
-                      {% assign parent_index = forloop.index %}
-
-                      <div class="card">
-
-                        {% if link.links == blank %}
-                          <div class="card-header" id="heading{{ parent_index }}" >
-                              <a class="btn btn-link box-shadow-none text-black" href="{{ link.url }}" title="{{ link.title }}" >
-                                {{ link.title }}
-                              </a>
-                          </div>
-                        {% else %}
-                          <div class="card-header" id="heading{{ parent_index }}" >
-                              <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#collapse{{ parent_index }}" aria-expanded="false" aria-controls="collapse{{ parent_index }}">
-                                {{ link.title }} <i class="fa fa-angle-down float-right p-1"></i>
-                              </button>
-                          </div>
-                          <div id="collapse{{ parent_index }}" class="collapse" aria-labelledby="heading{{ parent_index }}" data-parent="#mobileMenuAccordion">
-                            <div class="card-body p-3">
-
-                              <div id="sub_mobileMenuAccordion{{ parent_index }}" class="sub_mobileMenuAccordion" >
-                                {% for childlink in link.links %}
-                                  {% assign child_index = forloop.index %}
-
-                                  <div class="card">
-                                    {% if childlink.links == blank %}
-                                      <div class="card-header" id="heading{{ parent_index }}-{{ child_index }}" >
-                                          <a class="btn btn-link box-shadow-none text-black" href="{{ childlink.url }}" title="{{ childlink.title }}" >
-                                            {{ childlink.title }}
-                                          </a>
-                                      </div>
-                                    {% else %}
-                                      <div class="card-header" id="heading{{ parent_index }}-{{ child_index }}">
-                                        <h5 class="mb-0">
-                                          <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#collapse{{ parent_index }}-{{ child_index }}" aria-expanded="false" aria-controls="collapse{{ parent_index }}-{{ child_index }}">
-                                            {{ childlink.title }} <i class="fa fa-angle-down float-right p-1"></i>
-                                          </button>
-                                        </h5>
-                                      </div>
-
-                                      <div id="collapse{{ parent_index }}-{{ child_index }}" class="collapse" aria-labelledby="heading{{ parent_index }}-{{ child_index }}" data-parent="#sub_mobileMenuAccordion{{ parent_index }}">
-                                        <div class="card-body p-3">
-
-                                          {% if childlink.links != blank %}
-                                            <ul class="mb-0" >
-                                              <li>
-                                                <a href="{{ childlink.url }}" title="{{ childlink.title }}" class="d-block text-black py-2" >All</a>
-                                              </li>
-                                              {% for child_childlink in childlink.links %}
-                                                <li>
-                                                  <a href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" class="d-block text-black py-2" >{{ child_childlink.title }}</a>
-                                                </li>
-                                              {% endfor %}
-                                            </ul>
+                    <div id="collapse{{ parent_index }}" class="collapse" aria-labelledby="heading{{ parent_index }}" data-parent="#mobileMenuAccordion">
+                      <div class="card-body p-0">
+                        <div id="sub_mobileMenuAccordion{{ parent_index }}" class="sub_mobileMenuAccordion">
+                          {% for childlink in link.links %}
+                            {% assign child_index = forloop.index %}
+                            <div class="card">
+                              {% if childlink.links == blank %}
+                                <div class="card-header" id="heading{{ parent_index }}-{{ child_index }}">
+                                  <a class="btn btn-link box-shadow-none text-black" href="{{ childlink.url }}" title="{{ childlink.title }}" >
+                                    {{ childlink.title }}
+                                  </a>
+                                </div>
+                              {% else %}
+                                <div class="card-header" id="heading{{ parent_index }}-{{ child_index }}">
+                                  <h5 class="mb-0">
+                                    <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#collapse{{ parent_index }}-{{ child_index }}" aria-expanded="false" aria-controls="collapse{{ parent_index }}-{{ child_index }}">
+                                      {{ childlink.title }} <i class="fa fa-angle-down float-right p-1"></i>
+                                    </button>
+                                  </h5>
+                                </div>
+                                <div id="collapse{{ parent_index }}-{{ child_index }}" class="collapse" aria-labelledby="heading{{ parent_index }}-{{ child_index }}" data-parent="#sub_mobileMenuAccordion{{ parent_index }}">
+                                  <div class="card-body pt-0 pl-3 pr-0 pb-0">
+                                    {% if childlink.links != blank %}
+                                      <ul class="mb-0">
+                                        <li>
+                                          <a href="{{ childlink.url }}" title="{{ childlink.title }}" class="d-block text-black py-2" >All</a>
+                                        </li>
+                                        {% for child_childlink in childlink.links %}
+                                          {% assign child_child_index = forloop.index %}
+                                          {% if linklists[child_childlink.title].links == blank %}
+                                            <li>
+                                              <a href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" class="d-block text-black py-2">{{ child_childlink.title }}</a>
+                                            </li>
+                                          {% else %}
+                                            <li>
+                                              {% comment %}
+                                              <a href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" class="child-childlink_childlist-parent-link d-block text-black py-2">{{ child_childlink.title }}</a>
+                                              {% endcomment %}
+                                              <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                  <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" aria-expanded="false" aria-controls="collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}">
+                                                    {{ child_childlink.title }} <i class="fa fa-angle-down float-right p-1"></i>
+                                                  </button>
+                                                </h5>
+                                              </div>
+                                              <div id="collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" class="collapse" aria-labelledby="heading{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" data-parent="#accordion">
+                                                <div class="card-body p-0">
+                                                  <ul class="child-childlink_childlist">
+                                                    {% for child_child_childlink in linklists[child_childlink.title].links %}
+                                                      <li>
+                                                        <a class="d-block text-black py-2" href="{{ child_child_childlink.url }}" title="{{ child_child_childlink.title }}">{{ child_child_childlink.title }}</a>
+                                                      </li>
+                                                    {% endfor %}
+                                                  </ul>
+                                                </div>
+                                              </div>                                          
+                                            </li>
                                           {% endif %}
-
-                                        </div>
-                                      </div>
-                                      {% endif %}
-
-                                    </div>
-
-                                {% endfor %}
-                              </div>
-
-
+                                        {% endfor %}
+                                      </ul>
+                                    {% endif %}
+                                  </div>
+                                </div>
+                              {% endif %}
                             </div>
-                          </div>
-                        {% endif %}
-
+                          {% endfor %}
+                        </div>
                       </div>
-
-                    {% endfor %}
-
-                  </div>
+                    </div>
+                  {% endif %}
                 </div>
-
-              </div>
-
-              <div class="text-center">
-                <small class="d-block text-uppercase mb-3">OR</small>
-                <a data-dismiss="modal" class="btn btn-outline-black text-black" title="Close Menu" >Close Menu</a>
-              </div>
-                            
+              {% endfor %}
             </div>
+          </div>
         </div>
+        <!-- <div class="text-center">
+          <small class="d-block text-uppercase mb-3">OR</small>
+          <a data-dismiss="modal" class="btn btn-outline-black text-black" title="Close Menu">Close Menu</a>
+        </div> -->
+      </div>
     </div>
+  </div>
 </div>
 
 {% schema %}

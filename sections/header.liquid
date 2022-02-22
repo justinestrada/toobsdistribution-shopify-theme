@@ -28,19 +28,9 @@ li.sub-menu-item:hover > .sub-menu-link::before {
   transition: transform 0.24s ease 0s;
   transform: translateX(-6px);
 }
-/* 
-.sub-sub-menu-link:hover::before {
-    top: 20px;
-    width: 4px;
-    height: 12px;
-}.sub-menu .sub-menu-item.active > .sub-menu-link::before,
-.sub-sub-menu-link:hover::before  {
-    transform: translateX(0);
-} */
 .sub-menu-content .sub-menu-item-content-row {
   display: none;
 }
-
 .dropdown-submenu {
   position: relative;
 }
@@ -51,7 +41,7 @@ li.sub-menu-item:hover > .sub-menu-link::before {
   top: .8em;
 }
 .dropdown-submenu:hover > .dropdown-menu {
-    display: block;
+  display: block;
 }
 .dropdown-submenu .dropdown-menu {
   top: 0;
@@ -60,9 +50,7 @@ li.sub-menu-item:hover > .sub-menu-link::before {
   margin-right: .1rem;
 }
 </style>
-
 <header {% if template == 'index' %} class="fixed-top" {% endif %}>
-
   <div class="container-fluid">
     <div class="top-header-row row bg-black">
       <div class="container">
@@ -78,64 +66,55 @@ li.sub-menu-item:hover > .sub-menu-link::before {
         </div>
       </div>
     </div>
-
     <div class="row bg-white">
-
       <div class="container">
-
         <nav class="header-nav header-mobile-nav row bg-white d-lg-none">
-            <div class="col-4 text-center">
-              {% if section.settings.mobile_header_logo != blank %}
-                <a href="/" class="d-block header-logo" title="{{ shop.name }}" >
-                  <img src="{{ section.settings.mobile_header_logo | img_url: '300x300' }}" alt="{{ shop.name }}" class="d-block mobile-header-logo w-100" />
-                </a>
-              {% else %}
-                <h1 class="m-0" >
-                  <a href="/" class="text-black" title="{{ shop.name }}" >{{ shop.name }}</a>
-                </h1>
-              {% endif %}
-            </div>
-            <div class="col text-center">
-                <a class="header-nav__menu-link d-block text-uppercase text-black" href="javascript:void(0);" title="Shop" data-toggle="modal" data-target="#offCanvasLeftSidebarMenuModal" >Shop</a>  
-            </div>
-            <div class="col text-center">
-                <a class="header-nav__menu-link d-block text-uppercase text-black" href="/pages/contact" title="Contact">Contact</a> 
-            </div>
-            <div class="col text-center">    
-
-              <div class="dropdown">
-                <button class="header-nav__menu-link d-block text-uppercase text-black w-100 dropdown-toggle" id="dropdownMobileMenuAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                  <div style="display: inline-block; width: 14px;">
-                  {% if customer %}
-                    {% include 'icon-user' %}
-                  {% else %}
-                    {% include 'icon-user-green' %}
-                  {% endif %}
-                  </div>
-                </button>
-
-                <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMobileMenuAccount">
-
-                  {% if customer %}
-                    <a class="dropdown-item btn btn-white mb-3" href="/account">My Account</a>
-                    <a class="dropdown-item btn btn-white mb-3" href="/account?view=orders">Orders</a>
-                    <a class="dropdown-item btn btn-outline-white" href="/account/logout">Sign Out</a>
-                  {% else %}
-                    <a class="dropdown-item btn btn-white mb-3" href="/account/login">Login</a>
-                    <a class="dropdown-item btn btn-outline-white" href="/account/register">Sign Up</a>
-                  {% endif %}
-
-                </div>
-              </div>
-
-            </div>
-            {% if cart.item_count > 0 %}
-              <div class="col text-center">
-                  <a class="header-nav__menu-link d-block text-uppercase text-black"  href="javascript:void(0);" data-toggle="modal" data-target="#offCanvasRightSidebarCartModal" title="Cart" >{% include 'icon-cart-2' %}</a> 
-              </div>
+          <div class="col-4 text-center">
+            {% if section.settings.mobile_header_logo != blank %}
+              <a href="/" class="d-block header-logo" title="{{ shop.name }}" >
+                <img src="{{ section.settings.mobile_header_logo | img_url: '300x300' }}" alt="{{ shop.name }}" class="d-block mobile-header-logo w-100" />
+              </a>
+            {% else %}
+              <h1 class="m-0" >
+                <a href="/" class="text-black" title="{{ shop.name }}" >{{ shop.name }}</a>
+              </h1>
             {% endif %}
-        </nav>    
-
+          </div>
+          <div class="col text-center">
+            <a class="header-nav__menu-link d-block text-uppercase text-black" href="javascript:void(0);" title="Shop" data-toggle="modal" data-target="#offCanvasLeftSidebarMenuModal" >Shop</a>  
+          </div>
+          <div class="col text-center">
+            <a class="header-nav__menu-link d-block text-uppercase text-black" href="/pages/contact" title="Contact">Contact</a> 
+          </div>
+          <div class="col text-center">
+            <div class="dropdown">
+              <button class="header-nav__menu-link d-block text-uppercase text-black w-100 dropdown-toggle" id="dropdownMobileMenuAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                <div style="display: inline-block; width: 14px;">
+                {% if customer %}
+                  {% include 'icon-user' %}
+                {% else %}
+                  {% include 'icon-user-green' %}
+                {% endif %}
+                </div>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMobileMenuAccount">
+                {% if customer %}
+                  <a class="dropdown-item btn btn-white mb-3" href="/account">My Account</a>
+                  <a class="dropdown-item btn btn-white mb-3" href="/account?view=orders">Orders</a>
+                  <a class="dropdown-item btn btn-outline-white" href="/account/logout">Sign Out</a>
+                {% else %}
+                  <a class="dropdown-item btn btn-white mb-3" href="/account/login">Login</a>
+                  <a class="dropdown-item btn btn-outline-white" href="/account/register">Sign Up</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% if cart.item_count > 0 %}
+            <div class="col text-center">
+              <a class="header-nav__menu-link d-block text-uppercase text-black"  href="javascript:void(0);" data-toggle="modal" data-target="#offCanvasRightSidebarCartModal" title="Cart" >{% include 'icon-cart-2' %}</a> 
+            </div>
+          {% endif %}
+        </nav>
         <nav class="header-nav header-desktop-nav row bg-white hidden-md-down navbar navbar-expand-lg navbar-light white p-0">
           <div class="col-auto text-center">
             {% if section.settings.header_logo != blank %}
@@ -151,72 +130,64 @@ li.sub-menu-item:hover > .sub-menu-link::before {
           <div class="col col-lg">
             <ul class="header-desktop-menu" >
               {% for link in linklists[section.settings.header_desktop_linklist].links %}
-                
                 {% if link.links == blank %}
                   <li>
                     <a class="header-nav__menu-link d-block py-3 text-uppercase text-black" href="{{ link.url }}" title="{{ link.title }}" >{{ link.title }}</a>
                   </li>
                 {% else %}
-
                   <li class="nav-item dropdown">
                     <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
                     <a class="nav-link dropdown-toggle text-uppercase text-black" id="navbarDropdownMenu{{ link.title }}" href="{{ link.url }}" title="{{ link.title }}" style="position: relative;" >{{ link.title }}
                       <span class="sr-only">(current)</span>
                     </a>
                     <div class="dropdown-menu p-0 mt-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ link.title }}">
-
                       <div class="row">
                         <div class="col sub-menu mb-0">
-
+                          {% comment %}
                           {% assign parent_key = forloop.index | prepend:'header_sub_menu_image_' %}
                           {% assign parent_key = parent_key | append:'_' %}
-
+                          {% endcomment %}
                           <ul class="p-0 m-0">
                             {% for childlink in link.links %}
                               {% if childlink.links == blank %}
-                                  <li class="sub-menu-item text-uppercase" sub-menu-index="{{ forloop.index }}" >
-                                    <a class="sub-menu-link p-3 text-black" href="{{ childlink.url }}" title="{{ childlink.title }}">{{ childlink.title }}</a>
-                                  </li>
+                                <li class="sub-menu-item text-uppercase" sub-menu-index="{{ forloop.index }}" >
+                                  <a class="sub-menu-link p-3 text-black" href="{{ childlink.url }}" title="{{ childlink.title }}">{{ childlink.title }}</a>
+                                </li>
                               {% else %}
-                                  <li class="sub-menu-item dropdown-submenu text-uppercase">
-                                      <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
-                                      <a class="sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ childlink.title }}" href="{{ childlink.url }}" title="{{ childlink.title }}" >{{ childlink.title }}</a>
-                                      <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ childlink.title }}" >
-                                        {% for child_childlink in childlink.links %}
-                                        {% if linklists[child_childlink.title].links == blank %}
-                                          <li>
-                                            <a class="sub-menu-link sub-sub-menu-link p-3 text-black" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}">{{ child_childlink.title }}</a>
-                                          </li>
-                                        {% else %}
-                                            <li class="sub-menu-item dropdown-submenu text-uppercase">
-                                                <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
-                                                <a class="sub-menu-link sub-sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ child_childlink.title }}" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" >{{ child_childlink.title }}</a>
-                                                <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ child_childlink.title }}" >
-                                                  {% for child_child_childlink in linklists[child_childlink.title].links %}
-                                                    <li>
-                                                      <a class="sub-menu-link sub-sub-menu-link p-3 text-black" href="{{ child_child_childlink.url }}" title="{{ child_child_childlink.title }}">{{ child_child_childlink.title }}</a>
-                                                    </li>
-                                                  {% endfor %}
-                                                </ul>
-                                            </li>
-                                        {% endif %}
-
-                                        {% endfor %}
-                                      </ul>
-                                  </li>
+                                <li class="sub-menu-item dropdown-submenu text-uppercase">
+                                  <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
+                                  <a class="sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ childlink.title }}" href="{{ childlink.url }}" title="{{ childlink.title }}" >{{ childlink.title }}</a>
+                                  <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ childlink.title }}" >
+                                    {% for child_childlink in childlink.links %}
+                                      {% if linklists[child_childlink.title].links == blank %}
+                                        <li>
+                                          <a class="sub-menu-link sub-sub-menu-link p-3 text-black" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}">{{ child_childlink.title }}</a>
+                                        </li>
+                                      {% else %}
+                                        <li class="sub-menu-item dropdown-submenu text-uppercase">
+                                          <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
+                                          <a class="sub-menu-link sub-sub-menu-link p-3 text-black text-uppercase dropdown-toggle" id="navbarDropdownMenu{{ child_childlink.title }}" href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" >{{ child_childlink.title }}</a>
+                                          <ul class="dropdown-menu p-0 m-0 z-depth-1" aria-labelledby="navbarDropdownMenu{{ child_childlink.title }}" >
+                                            {% for child_child_childlink in linklists[child_childlink.title].links %}
+                                              <li>
+                                                <a class="sub-menu-link sub-sub-menu-link text-black p-3"
+                                                  href="{{ child_child_childlink.url }}" title="{{ child_child_childlink.title }}">{{ child_child_childlink.title }}</a>
+                                              </li>
+                                            {% endfor %}
+                                          </ul>
+                                        </li>
+                                      {% endif %}
+                                    {% endfor %}
+                                  </ul>
+                                </li>
                               {% endif %}
-
                             {% endfor %}
                           </ul>
-
                         </div>
                       </div>
-
                     </div>
                   </li>
-                  
                 {% endif %}
-                
               {% endfor %}     
             </ul>
           </div>
@@ -226,33 +197,24 @@ li.sub-menu-item:hover > .sub-menu-link::before {
                 <ul class="header-desktop-menu float-right" >
                   <li>
                     {% if customer %}
-    
                       <div class="dropdown dropdown-hover">
                         <a class="header-nav__menu-link d-block py-3 text-uppercase text-black dropdown-toggle" href="/account" title="Account" id="dropdownMenuAccount" >Account ({{ customer.first_name }})</a>
-    
                         <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMenuAccount">
                           <a class="dropdown-item btn btn-white mb-3" href="/account">My Account</a>
                           <a class="dropdown-item btn btn-white mb-3" href="/account?view=orders">Orders</a>
                           <a class="dropdown-item btn btn-outline-white" href="/account/logout">Sign Out</a>
                         </div>
-                        
                       </div>
-    
                     {% else %}
-    
                       <div class="dropdown dropdown-hover">
-    
                         <a class="header-nav__menu-link d-block text-uppercase text-green w-100 dropdown-toggle font-weight-bold" href="/account/" id="dropdownMenuAccount" >
                           <span class="mr-2 text-green">Account</span><div style="display: inline-block; width: 14px;">{% include 'icon-user-green' %}</div>
                         </a>
-    
                         <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMenuAccount">
                           <a class="dropdown-item btn btn-white mb-3" href="/account/login">Login</a>
                           <a class="dropdown-item btn btn-green" href="/account/register">Create Account</a>
                         </div>
-                        
                       </div>
-    
                     {% endif %}
                   </li>
                   {% if cart.item_count > 0 and template != 'cart' %}
@@ -263,25 +225,23 @@ li.sub-menu-item:hover > .sub-menu-link::before {
                 </ul>    
               </div>
               <div class="col col-lg-auto d-flex align-items-center" style="padding-top: 1rem; padding-bottom: 1rem;">
-                  {% include 'icon-dot-separator' %}
+                {% include 'icon-dot-separator' %}
               </div>
               <div class="col col-lg-auto" style="padding: 1rem;" >
-                  <div class="icon-search-wrap text-center p-3" style="cursor: pointer;" >
-                    {% include 'icon-search' %}
-                  </div>
-                  <div class="angle-up-wrap text-center p-3" style="cursor: pointer; display: none;" >
-                    <i class="fa fa-angle-up"></i>
-                  </div>
+                <div class="icon-search-wrap text-center p-3" style="cursor: pointer;">
+                  {% include 'icon-search' %}
+                </div>
+                <div class="angle-up-wrap text-center p-3" style="cursor: pointer; display: none;">
+                  <i class="fa fa-angle-up" aria-hidden="true"></i>
+                  <span class="sr-only">Close Search</span>
+                </div>
               </div>
             </div>
           </div>
         </nav>
-        
       </div>
-      
     </div>
   </div>
-
 </header>
 
 {% schema %}
@@ -303,12 +263,6 @@ li.sub-menu-item:hover > .sub-menu-link::before {
         "type": "image_picker",
         "id": "header_logo",
         "label": "Header Logo"
-      },
-      {
-        "type": "link_list",
-        "id" : "header_mobile_linklist",
-        "label": "Mobile Menu",
-        "default": "main-menu"
       },
       {
         "type": "link_list",

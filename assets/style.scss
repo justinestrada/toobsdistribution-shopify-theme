@@ -148,40 +148,40 @@ button[type="submit"] {
   cursor: pointer;
 }
 .btn {
-    border-radius: 0;
-    text-transform: uppercase;  
-    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  border-radius: 0;
+  text-transform: uppercase;  
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
 .btn {
-    padding: 1rem 1.75rem;
-    letter-spacing: 3px;
-    cursor: pointer;
+  padding: 1rem 1.75rem;
+  letter-spacing: 3px;
+  cursor: pointer;
 }
 .btn.focus, .btn:focus {
   box-shadow: inherit;
 }
 .btn-sale {
-    background: #2baa64;
-    color: white;
-    border-color: #2baa64;
+  background: #2baa64;
+  color: white;
+  border-color: #2baa64;
 }
 .btn-outline-white {
-    color: white;
-    background-color: transparent;
-    border: 1px solid white;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
 }
 .btn-white {
-    color: black;
-    background-color: white;
-    border: 1px solid white;
+  color: black;
+  background-color: white;
+  border: 1px solid white;
 }
 .btn-black,
 .btn-black:hover
 .btn-black:focus {
-    color: white !important;
-    background-color: black;
-    border-color: black;
+  color: white !important;
+  background-color: black;
+  border-color: black;
 }
 .btn-outline-black {
   border: 1px solid black;
@@ -308,21 +308,21 @@ header {
   border-right: 1px solid rgba(0, 0, 0, .15);
 }
 .header-nav > div:last-child {
-    border-right: none;
+  border-right: none;
 }
 .header-nav .header-nav__menu-link {
-    border: none;
-    font-size: 11px;
-    background: white;
-    padding: 22.5px 0;
+  border: none;
+  font-size: 11px;
+  background: white;
+  padding: 22.5px 0;
 }
 .header-nav .header-nav__menu-link:hover {
   text-decoration: none;
   color: black;
 }
 ul.header-desktop-menu {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 ul.header-desktop-menu li {
   display: inline-block;
@@ -333,7 +333,6 @@ ul.header-desktop-menu li .nav-link {
 }
 @media (min-width: 992px) {
   ul.header-desktop-menu li .nav-link {
-    /*padding-top: 32px; padding-bottom: 32px;*/
     padding: 32px .5rem;
     font-size: 12px;
   }
@@ -350,34 +349,23 @@ ul.header-desktop-menu li .nav-link {
     width: 100%;
   }
 }
-@media (min-width: 1200px) {
-}
-
-/*.mobile-header-logo {
-  max-width: 64px;
-  margin: 0 auto;
-}*/
 .mobile-header-logo {
   max-width: 94px;
   margin: 0 auto;
   padding: 0.25rem 0;
 }
-
 .header-desktop-menu .sub-menu li {
   display: block;
 }
-
 .navbar .mega-dropdown {
   position: static!important;
 }
-
 .navbar .mega-dropdown .dropdown-menu.mega-menu {
   width: 100%;
   border: none;
   -webkit-border-radius: 0;
   border-radius: 0;
 }
-
 .navbar .mega-dropdown .dropdown-menu.mega-menu .sub-menu ul li a,
 .navbar .mega-dropdown .dropdown-menu.mega-menu .sub-menu ul li button {
   width: 100%;
@@ -385,11 +373,9 @@ ul.header-desktop-menu li .nav-link {
   -o-transition: .3s;
   transition: .3s;
 }
-
 .dropdown-toggle::after {
   display: none;
 }
-
 .header-nav .nav-link.dropdown-toggle-active::after,
 .header-nav .nav-link.dropdown-toggle:hover::after,
 .header-nav .nav-link.dropdown-toggle:focus::after, 
@@ -409,20 +395,87 @@ ul.header-desktop-menu li .nav-link {
   right: 0;
   margin: auto;
 }
-
 .header-nav .nav-link.dropdown-toggle:hover + .dropdown-menu,
 .header-nav .nav-link.dropdown-toggle:focus + .dropdown-menu {
-    display: block;
-}
-/*.header-nav .nav-link.dropdown-toggle .dropdown-menu:hover,
-.header-nav .nav-link.dropdown-toggle .dropdown-menu:focus {
   display: block;
-}*/
+}
 .header-nav .nav-item .dropdown-menu-active {
   display: block !important;
 }
 
-
+/*
+* Off Canvas Left Sidebar Menu
+*/
+.mobile-menu-header {
+  padding: 0.625px 0;
+  font-size: 14px;
+}
+#mobile-search-form-query {
+  font-size: 1.5rem;
+  height: 4rem;
+}
+ul.offcanvas-left-sidebar-mobile-menu {
+  padding: 0;
+  list-style: none;
+}
+ul.offcanvas-left-sidebar-mobile-menu li {
+  border-bottom: 1px solid black;
+}
+.sub_mobileMenuAccordion {
+  padding-left: 1rem;
+}
+#mobileMenuAccordion .card,
+.sub_mobileMenuAccordion .card {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+#mobileMenuAccordion .card:last-child,
+.sub_mobileMenuAccordion .card:last-child {
+  padding-bottom: 0;
+}
+#mobileMenuAccordion .card-header,
+.sub_mobileMenuAccordion .card-header {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+#mobileMenuAccordion .card-header .btn,
+.sub_mobileMenuAccordion .card-header .btn {
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 0.5rem 0;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+#mobileMenuAccordion .card-body,
+.sub_mobileMenuAccordion .card-body {
+  border: none;
+}
+.sub_mobileMenuAccordion .card-body ul {
+  list-style: none;
+  padding: 0;
+}
+.sub_mobileMenuAccordion .card-body ul li {
+  border-bottom: 1px solid #ddd;
+  text-transform: uppercase;
+}
+.sub_mobileMenuAccordion .card-body ul.child-childlink_childlist {
+  padding-left: 16px;
+}
+.sub_mobileMenuAccordion .card-body ul.child-childlink_childlist li:last-child {
+  border-bottom: none;
+}
+.child-childlink_childlist li a {
+  display: block;
+}
+.child-childlink_childlist-parent-link {
+  border-bottom: 1px solid #ddd;
+}
 
 /*=================================================================
   Search Form
@@ -434,14 +487,15 @@ ul.header-desktop-menu li .nav-link {
   box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.26);
 }
 .form-control:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 form#mobile-search-form input[name="q"],
 form#search-form input[name="q"] {
-    height: 5rem;
-    border: none;
-    border-bottom: 2px solid black;
-    border-radius: 0;
+  height: 4rem;
+  font-size: 14px;
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 0;
 }
 
 /*=================================================================
@@ -1923,10 +1977,10 @@ footer a:focus {
   Misc
 ==================================================================*/
 .errors {
-    color: #dc3545 !important;
-    padding: 1rem;
-    border: 1px solid #dc3545!important;
-    margin-bottom: 1rem;
+  color: #dc3545 !important;
+  padding: 1rem;
+  border: 1px solid #dc3545!important;
+  margin-bottom: 1rem;
 }
 #shopify-challenge__container {
   margin-top: 3rem!important;
@@ -1971,23 +2025,22 @@ footer a:focus {
   right: -30px;
 }
 .owl-carousel-wrap .item {
-    border: 1px solid #ddd;
-    padding: 1px;
+  border: 1px solid #ddd;
+  padding: 1px;
 }
 .owl-theme .owl-nav [class*=owl-]:hover {
-    background: #f7f8f9 !important;
+  background: #f7f8f9 !important;
 }
 .owl-carousel-wrap button.owl-dot:focus {
-    outline: none !important;
+  outline: none !important;
 }
-
 
 /*=================================================================
   Sales Beeketing
 ==================================================================*/
 .sale_notification_default .wrapper-noti.bottom {
-    bottom: 25px;
-    right: 0 !important;
+  bottom: 25px;
+  right: 0 !important;
 }
 
 #homepageCarousel .carousel-item {
@@ -1997,32 +2050,26 @@ footer a:focus {
 }
 
 #homepageCarousel .vimeo-wrapper {
-   position: relative;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   z-index: 1;
-   pointer-events: none;
-   overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 #homepageCarousel .vimeo-wrapper iframe {
-   width: 100vw;
-   height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
-   min-height: 100vh;
-   min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
-   position: absolute;
-   top: 40%;
-   left: 50%;
-   transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+  min-height: 100vh;
+  min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
-/*@media (min-width: 992px) {
-  #homepageCarousel .vimeo-wrapper iframe {
-     top: 40%;
-  }  
-}*/
 
 #homepageCarousel .btn-vimeo-wrapper {
   position: absolute;
@@ -2045,14 +2092,11 @@ footer a:focus {
   font-weight: bold;
 }
 
-
 .btn-collection-add-to-cart:hover,
 .btn-collection-add-to-cart:focus {
   background-color: #2ab960;
   color: white !important;
 }
-
-
 
 .products .slick-dots {
 	margin-top: -3rem;
