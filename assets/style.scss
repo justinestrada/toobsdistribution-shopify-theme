@@ -148,40 +148,40 @@ button[type="submit"] {
   cursor: pointer;
 }
 .btn {
-    border-radius: 0;
-    text-transform: uppercase;  
-    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  border-radius: 0;
+  text-transform: uppercase;  
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
 .btn {
-    padding: 1rem 1.75rem;
-    letter-spacing: 3px;
-    cursor: pointer;
+  padding: 1rem 1.75rem;
+  letter-spacing: 3px;
+  cursor: pointer;
 }
 .btn.focus, .btn:focus {
   box-shadow: inherit;
 }
 .btn-sale {
-    background: #2baa64;
-    color: white;
-    border-color: #2baa64;
+  background: #2baa64;
+  color: white;
+  border-color: #2baa64;
 }
 .btn-outline-white {
-    color: white;
-    background-color: transparent;
-    border: 1px solid white;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
 }
 .btn-white {
-    color: black;
-    background-color: white;
-    border: 1px solid white;
+  color: black;
+  background-color: white;
+  border: 1px solid white;
 }
 .btn-black,
 .btn-black:hover
 .btn-black:focus {
-    color: white !important;
-    background-color: black;
-    border-color: black;
+  color: white !important;
+  background-color: black;
+  border-color: black;
 }
 .btn-outline-black {
   border: 1px solid black;
@@ -422,11 +422,11 @@ ul.offcanvas-left-sidebar-mobile-menu li {
   border-bottom: 1px solid black;
 }
 .sub_mobileMenuAccordion {
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }
 #mobileMenuAccordion .card,
 .sub_mobileMenuAccordion .card {
-  padding: 0 0 .5rem;
+  padding: 0;
   border: none;
   border-radius: 0;
 }
@@ -444,9 +444,9 @@ ul.offcanvas-left-sidebar-mobile-menu li {
 .sub_mobileMenuAccordion .card-header .btn {
   display: block;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 1px;
-  padding: 0.25rem 0;
+  padding: 0.5rem 0;
   width: 100%;
   text-align: left;
   border: none;
@@ -472,6 +472,9 @@ ul.offcanvas-left-sidebar-mobile-menu li {
 }
 .child-childlink_childlist li a {
   display: block;
+}
+.child-childlink_childlist-parent-link {
+  border-bottom: 1px solid #ddd;
 }
 
 /*=================================================================
