@@ -1492,12 +1492,14 @@ section.collection-filters .col-filter:focus .btn {
 }
 .sub_collectionAccordion .card.selected .card-header a,
 .sub_collectionAccordion .card .card-body ul li a.selected {
-    background: #f8f8f8;
-    color: black;
-    border-bottom: 1px solid black;
-        padding-left: .5rem!important;
+  background: #f8f8f8;
+  color: black;
+  border-bottom: 1px solid black;
+  padding-left: .5rem !important;
 } 
-
+.sub_collectionAccordion .card-body ul li:last-child {
+  border-bottom: none !important;
+}
 
 /*=================================================================
   Collections > Products
