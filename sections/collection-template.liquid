@@ -55,14 +55,38 @@
                               </div>
                               <div id="collapse-{{ parent_index }}-{{ child_index }}" class="collapse {% comment %}{% if forloop.first %} show {% endif %}{% endcomment %}" aria-labelledby="heading-{{ parent_index }}-{{ child_index }}-" data-parent="#sub_collectionAccordion-{{ parent_index }}" >
                                 <div class="card-body">
-                                  <ul class="p-0 m-0" >
+                                  <ul class="p-0 m-0">
                                     <li>
-                                      <a href="{{ childlink.url }}" title="{{ childlink.title }}" class="d-block text-black py-2" >All</a>
+                                      <a href="{{ childlink.url }}" title="{{ childlink.title }}" class="d-block text-black py-2">All</a>
                                     </li>
                                     {% for child_childlink in childlink.links %}
-                                      <li>
-                                        <a href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" class="d-block text-black py-2" >{{ child_childlink.title }}</a>
-                                      </li>
+                                      {% assign child_child_index = forloop.index %}
+                                      {% if linklists[child_childlink.title].links == blank %}
+                                        <li>
+                                          <a href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" class="d-block text-black py-2" >{{ child_childlink.title }}</a>
+                                        </li>
+                                      {% else %}
+                                        <li>
+                                          <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                              <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" aria-expanded="false" aria-controls="collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}">
+                                                {{ child_childlink.title }} <i class="fa fa-angle-down float-right p-1"></i>
+                                              </button>
+                                            </h5>
+                                          </div>
+                                          <div id="collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" class="collapse" aria-labelledby="heading{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" data-parent="#accordion">
+                                            <div class="card-body p-0">
+                                              <ul class="child-childlink_childlist">
+                                                {% for child_child_childlink in linklists[child_childlink.title].links %}
+                                                  <li>
+                                                    <a class="d-block text-black py-2" href="{{ child_child_childlink.url }}" title="{{ child_child_childlink.title }}">{{ child_child_childlink.title }}</a>
+                                                  </li>
+                                                {% endfor %}
+                                              </ul>
+                                            </div>
+                                          </div>                                          
+                                        </li>
+                                      {% endif %}
                                     {% endfor %}
                                   </ul>
                                 </div>
