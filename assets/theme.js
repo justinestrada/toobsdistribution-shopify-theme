@@ -98,7 +98,7 @@ const Header = {
   },
   onShowSearchForm: function() {
     $('.header-nav .icon-search-wrap').on('click', function() {
-      showSearchForm()
+      Header.showSearchForm()
     })
   },
   showSearchForm: function() {
@@ -112,7 +112,7 @@ const Header = {
   },
   onHideSearchForm: function() {
     $('.header-nav .angle-up-wrap, .btn-close-search-form').on('click', function() {
-      hideSearchForm()
+      Header.hideSearchForm()
     })
   },
   hideSearchForm: function() {
