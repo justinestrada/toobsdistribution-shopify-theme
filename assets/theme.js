@@ -570,7 +570,7 @@ function update_Frontend_Cart( product_data ) {
             new_cart_item += '<div class="row">';
 
               new_cart_item += '<div class="col">';
-                // let line_price = format_Currency( insert_Decimal( product_data.line_price ) );
+                // let line_price = Utilities.formatCurrency( Utilities.insertDecimal( product_data.line_price ) );
                 // console.log( "line_price", line_price );
                 new_cart_item += '<p class="cart-item-price d-block mb-1" >$' + product_data.original_price + '</p>';
                 new_cart_item += '<a class="cart-item-remove d-inline-block text-red mb-1" href="javascript:void(0);" remove-cart-line="' + new_cart_item_index + '" rel="' + product_data.id + '" >Remove</a>';
@@ -679,11 +679,11 @@ function update_Cart() {
       // console.log("Data returned form server", cart_data);
       cart_data.items.forEach(function(cart_item) {
         $('.cart-item-list [product-id="' + cart_item.id + '"] .cart-item-thumbnail').attr( 'src', cart_item.image );
-        // console.log( format_Currency( insert_Decimal( cart_item.line_price ) ) );
-        $('.cart-item-list [product-id="' + cart_item.id + '"] .cart-item-price').text( format_Currency( insert_Decimal( cart_item.original_price ) ) );
+        // console.log( Utilities.formatCurrency( Utilities.insertDecimal( cart_item.line_price ) ) );
+        $('.cart-item-list [product-id="' + cart_item.id + '"] .cart-item-price').text( Utilities.formatCurrency( Utilities.insertDecimal( cart_item.original_price ) ) );
       });
       // update cart total
-      $('#form-cart .cart-total-price').text( format_Currency( insert_Decimal( cart_data.original_total_price ) ) );
+      $('#form-cart .cart-total-price').text( Utilities.formatCurrency( Utilities.insertDecimal( cart_data.original_total_price ) ) );
 
       // update dynamic shipping announcement
       update_Dynamic_Shipping_Announcement();
@@ -705,7 +705,7 @@ function remove_Cart_Item( cart_line_item_index, product_id ) {
       // if cart has items
       if ( $('.cart-item-list .cart-item-row').length ) {
         // then update the total
-        $('#form-cart .cart-total-price').text( format_Currency( insert_Decimal( cart_data.total_price ) ) );
+        $('#form-cart .cart-total-price').text( Utilities.formatCurrency( Utilities.insertDecimal( cart_data.total_price ) ) );
 
         // set the remove-cart-line value
         let inc = 1;
@@ -753,19 +753,67 @@ function update_Dynamic_Shipping_Announcement() {
   }  
 }
 
-function insert_Decimal(num) {
-   return (num / 100).toFixed(2);
-}  
+/* =================================================================
+ * Collection
+================================================================== */
+const Collection = {
+  onLoad: function() {
+    if ( !$("#shopify-section-collection-template").length ) {
+      return
+    }
+    this.load()
+  },
+  load: function() {
+    const this_location = Collection.stripQueryStringAndHashFromPath( location.pathname )
+    $('.sub_collectionAccordion .card').each( function() {
+      const link_href = $(this).find('.card-header-link').attr('href').trim().toLowerCase().replace(/ /g, '-')
+      const data_parent_target = $(this).attr('data-parent-target')
+      if ( this_location === link_href ) {
+        $(this).addClass('selected')
+        Collection.triggerAccordion( data_parent_target )
+      } else {
+        if ( $(this).find(".card-body").length ) {
+          let data_target = $(this).find('.card-header-link').attr('data-target')
+          // console.log("data_target", data_target)
+          // check card-body ul
+          $(this).find('.card-body ul li a').each(function() {
+            let sub_link_href = $(this).attr('href').trim().toLowerCase().replace(/ /g, '-')
+            if ( this_location == sub_link_href ) {
+              $(this).addClass('selected')
+              Collection.triggerAccordion( data_parent_target )
+              // trigger the sub accordion too
+              Collection.triggerAccordion( data_target )
+            }
+          })
+        }    
+      }
+    })
+  },
+  stripQueryStringAndHashFromPath: function(url) {
+    return url.split("?")[0].split("#")[0]
+  },
+  triggerAccordion: function( data_target ) {
+    console.log("selected data_target", data_target);
+    $('a[data-target="' + data_target + '"]').trigger("click");
+  },
+}
+$(document).ready(function() {
+  Collection.onLoad()
+})
 
-function format_Currency(value) {
-  value = parseFloat(value);
-  return '$' + value.toFixed(2);
+const Utilities = {
+  insertDecimal: function(num) {
+    return (num / 100).toFixed(2)
+  },
+  formatCurrency: function(value) {
+    value = parseFloat(value)
+    return '$' + value.toFixed(2)
+  }
 }
 
-
-/*=================================================================
-  Account
-==================================================================*/
+/* =================================================================
+ * Account
+================================================================== */
 $(document).ready(function() {
   if ( $("#shopify-section-account-login").length ) {
     $(".show-forgot-password").on("click", function() {
@@ -778,8 +826,6 @@ $(document).ready(function() {
       $(".customer-login-wrap").show();
     });
   }
-
-
   if ( $("#shopify-section-account-template").length ) {
     let view = getParameterByName( "view" )
     if ( view == "orders" ) {
@@ -788,10 +834,9 @@ $(document).ready(function() {
   }
 });
 
-
-  $(document).ready(function() {
-    customerAddressForm();
-  });
+$(document).ready(function() {
+  customerAddressForm();
+});
   /**
    *
    *  Show/hide customer address forms
