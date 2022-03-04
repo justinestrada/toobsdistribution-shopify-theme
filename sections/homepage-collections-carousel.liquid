@@ -1,118 +1,113 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-
-<style>
-#shopify-section-homepage-jumbotron {
-  margin-bottom: 0 !important;
-}
-</style>
-
-<section class="homepage-collections products section container-fluid light-gray-color py-5">
-    <div class="row">
-        <div class="container">
-
-            <div class="row mb-5">
-                <div class="col-md-12">
-                    <div class="title text-uppercase text-center">
-                        <h3 class="mb-0">{{ section.settings.title }}</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-
-            <div class="owl-carousel-wrap">
-                <div class="owl-carousel owl-theme mb-3">
-
-                    {% if section.blocks %}
-                        {% for block in section.blocks %}
-
-                        <div class="item">
-                            <a href="{{ block.settings.collection_link }}" title="{{ block.settings.collection_title }}">
-                                <img src="{{ block.settings.collection_image | img_url: '300x300' }}" alt="{{ block.settings.collection_title }}" />                                
-                            </a>
-                        </div>
-
-                        {% endfor %}
-                    {% endif %}
-
-                </div>
-                <div class="owl-theme">
-                    <div class="owl-controls">
-                        <div class="custom-nav owl-nav"></div>
-                    </div>
-                </div>
-            </div>
-        
-            </div>
-
+<section class="homepage-collections products section section_homepage_collections-carousel section_homepage_100vh light-gray-color py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <div class="title text-uppercase text-center">
+          <h3 class="mb-0">{{ section.settings.title }}</h3>
         </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div id="{{ section.id }}-owl-carousel" class="owl-carousel-wrap" style="visibility: hidden;">
+          <div class="owl-carousel owl-theme mb-3">
+            {% if section.blocks %}
+              {% for block in section.blocks %}
+              <div class="item">
+                <a href="{{ block.settings.collection_link }}" title="{{ block.settings.collection_title | escape }}">
+                  <img src="{{ block.settings.collection_image | img_url: '300x300' }}" alt="{{ block.settings.collection_title | escape }}"/>
+                </a>
+              </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="owl-theme">
+            <div class="owl-controls">
+              <div class="custom-nav owl-nav"></div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
 </section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script>
-$(document).ready(function() {
-
-});
-$('.owl-carousel-wrap .owl-carousel').owlCarousel({
-    stagePadding: 50,
-    loop: true,
-    margin: 10,
-    nav: true,
-    navText: [
+const HomepageCollections = {
+  onLoad: function() {
+    if (!$('.section_homepage_collections-carousel').length) {
+      return
+    }
+    this.loadCarousel()
+  },
+  loadCarousel: function() {
+    $('#{{ section.id }}-owl-carousel .owl-carousel').owlCarousel({
+      stagePadding: 50,
+      loop: true,
+      margin: 10,
+      nav: true,
+      navText: [
         '<i class="fa fa-angle-left" aria-hidden="true"></i>',
         '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-    ],
-    navContainer: '.owl-carousel-wrap .custom-nav',
-    responsive:{
-        0:{
-            items: 1
+      ],
+      navContainer: '.owl-carousel-wrap .custom-nav',
+      responsive: {
+        0: {
+          items: 1
         },
-        600:{
-            items: 3
+        600: {
+          items: 3
         },
-        1000:{
-            items: 5
+        1000: {
+          items: 5
         }
-    }
-});
+      }
+    })
+    // setTimeout( () => {
+      $('#{{ section.id }}-owl-carousel').css('visibility', 'initial')
+    // }, 500)
+  },
+}
+$(document).ready(function() {
+  HomepageCollections.onLoad()
+})
 </script>
 
 {% schema %}
 {
-    "name": "Homepage Collections",
-    "settings": [
+  "name": "Homepage Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Shop By Collection"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection Image"
+        },
         {
           "type": "text",
-          "id": "title",
-          "label": "Section Title",
-          "default": "Shop By Collection"
+          "id": "collection_title",
+          "label": "Collection Title"
+        },
+        {
+          "type": "url",
+          "id": "collection_link",
+          "label": "Collection Link"
         }
-    ],
-    "blocks": [
-      {
-        "type": "text",
-        "name": "Collection",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "collection_image",
-            "label": "Collection Image"
-          },
-          {
-            "type": "text",
-            "id": "collection_title",
-            "label": "Collection Title"
-          },
-          {
-            "type": "url",
-            "id": "collection_link",
-            "label": "Collection Link"
-          }
-        ]
-      }
-    ]
+      ]
+    }
+  ]
 }
 {% endschema %}
