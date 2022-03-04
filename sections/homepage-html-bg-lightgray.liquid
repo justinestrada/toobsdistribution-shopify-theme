@@ -1,48 +1,44 @@
 
-<section class="homepage-html-lightgray section container-fluid bg-lightgray py-5">
-	<div class="row">
-		<div class="container">
-
-			<div class="row mb-5">
-				<div class="col-md-12">
-				  <div class="title text-uppercase text-center">
-				    <h2 class="m-0">{{ section.settings.title }}</h2>
-				  </div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col text-center">
-					{{ section.settings.html }}
-				</div>
-			</div>
-		</div>
-	</div>
+<section class="homepage-html-lightgray section section_homepage_100vh bg-lightgray py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8">
+        <div class="title text-uppercase text-center">
+          <h2 class="m-0">{{ section.settings.title }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        {{ section.settings.html }}
+      </div>
+    </div>
+  </div>
 </section>
 
 {% schema %}
-  {
-    "name": "HTML Light Gray",
-    "settings": [
-		{
-			"type": "text",
-			"id": "title",
-			"label": "Section Title"
-		},
-	    {
-	      "type": "html",
-	      "id": "html",
-	      "label": "Section HTML"
-	    }
-    ],
-	"presets": [
-		{
-			"name": "HTML Light Gray",	
-			"settings": {
-					"title": "Section Title",
-					"html": "Custom HTML"
-			}
-		}
-	]
-  }
+{
+  "name": "HTML Light Gray",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title"
+    },
+    {
+      "type": "html",
+      "id": "html",
+      "label": "Section HTML"
+    }
+  ],
+  "presets": [
+    {
+      "name": "HTML Light Gray",	
+      "settings": {
+        "title": "Section Title",
+        "html": "Custom HTML"
+      }
+    }
+  ]
+}
 {% endschema %}

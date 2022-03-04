@@ -163,13 +163,13 @@
                     {% endif %}
 
                     <div class="col-md-4">
-                      <a class="card mb-2" href="{{ product.url }}" title="{{ product.title }}" style="box-shadow: none;" >
+                      <a class="card mb-2" href="{{ product.url }}" title="{{ product.title | escape }}" style="box-shadow: none;" >
                         {% if product.compare_at_price and product.compare_at_price != product.price %}
                           <span class="bage">Sale</span>
                         {% endif %}
                         {% if product.featured_image.src %}
                           <img class="card-img-top mx-auto" src="{{ product.featured_image.src | img_url: '1920x' }}"
-                            alt="{{ product.title }}">
+                            alt="{{ product.title | escape }}"/>
                         {% endif %}
                         <div class="card-body text-center">
                           <h4 class="card-title text-uppercase text-black" style="font-size: 16px;" >{{ product.title }}</h4>
@@ -183,19 +183,12 @@
                         </div>
                       </a>
                     </div>
-
                   {% endfor %}
-
                 </div>
-
               </div>
-
             </div>
-            
           </div>
-
         </div>
-
     </div>
   </div>
 </section>

@@ -2,7 +2,7 @@
 <div class="product-item {% if product.images[1] %} product-item-show-secondary-img {% endif %} h-100">
   <div class="product-thumb mb-3" style="padding: 1px;" >
 	
-    <a href="{{ product.url }}" title="{{ product.title }}" class="d-block" >
+    <a href="{{ product.url }}" title="{{ product.title | escape }}" class="d-block" >
       <div class="primary-img" style="background-image: url('{{ product.featured_image.src | img_url: '1920x' }}');"></div>
       {% if product.images[1] %}
         <div class="secondary-img" style="background-image: url('{{ product.images[1].src| img_url: '1920x' }}');"></div>
@@ -18,7 +18,7 @@
       <span class="badge btn-sale mb-3">Sale</span>
     {% endif %}
     <h4 class="text-uppercase mt-0 mb-3">
-      <a href="{{ product.url }}" title="{{ product.title }}" >{{product.title}}</a>
+      <a href="{{ product.url }}" title="{{ product.title | escape }}">{{ product.title }}</a>
     </h4>
     {% if customer %}
       <p class="price mb-0">

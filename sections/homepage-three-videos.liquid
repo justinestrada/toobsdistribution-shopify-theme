@@ -2,7 +2,6 @@
 <section class="homepage-video section container-fluid bg-gray">
 	<div class="row">
 		<div class="container">
-
 			<div class="row mb-5">
 				<div class="col-md-12">
 				  <div class="title text-uppercase text-center">
@@ -10,52 +9,45 @@
 				  </div>
 				</div>
 			</div>
-
 			<div class="row mb-5">
-
 				<div class="col-12 col-xl-8 mb-3 mb-xl-0">
 					<div class="homepage-video-thumbnail-wrap" video-number="1" >
 						<img src="{{ section.settings.thumbnail_img_1 | img_url: '1920x1080' }}" alt="{{ section.settings.title }}" class="homepage-video-thumbnail img-fluid w-100" />
 						<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase position-absolute" >{{ section.settings.btn_text_1 }}</button>
 					</div>
-
-					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-1 embed-responsive embed-responsive-16by9 z-depth-1" >
+					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-1 embed-responsive embed-responsive-16by9 z-depth-1">
+            {% comment %}
 					  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {% endcomment %}
+            <iframe title="vimeo-player" src="https://player.vimeo.com/video/684512742?h=2c9fbe6c3c" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>						  
 					</div>
 				</div>
 				<div class="col-12 col-xl-4">
-
 					<div class="mb-3">
 						<div class="homepage-video-thumbnail-wrap" video-number="2" >
 							<img src="{{ section.settings.thumbnail_img_2 | img_url: '1920x1080' }}" alt="{{ section.settings.title }}" class="homepage-video-thumbnail img-fluid w-100" />
 							<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase position-absolute" >{{ section.settings.btn_text_2 }}</button>
 						</div>
-
-						<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-2 embed-responsive embed-responsive-16by9 z-depth-1" >
-						  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_2 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-2 embed-responsive embed-responsive-16by9 z-depth-1">
+              <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_2 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 					</div>
-
 					<div class="homepage-video-thumbnail-wrap" video-number="3" >
 						<img src="{{ section.settings.thumbnail_img_3 | img_url: '1920x1080' }}" alt="{{ section.settings.title }}" class="homepage-video-thumbnail img-fluid w-100" />
 						<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase position-absolute" >{{ section.settings.btn_text_3 }}</button>
 					</div>
-
-					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-3 embed-responsive embed-responsive-16by9 z-depth-1" >
+					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-3 embed-responsive embed-responsive-16by9 z-depth-1">
 					  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_3 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
-
 				</div>
-
 			</div>
-			{% if section.settings.show_view_more %}
-		        <div class="row mb-5">
-		        	<div class="col text-center">
-		        		<a href="{{ section.settings.view_more_link }}" class="btn btn-outline-black" title="View More" >View More</a>
-		        	</div>
-		        </div>
-	        {% endif %}
-
+      {% if section.settings.show_view_more %}
+        <div class="row mb-5">
+          <div class="col text-center">
+            <a href="{{ section.settings.view_more_link }}" class="btn btn-outline-black" title="View More" >View More</a>
+          </div>
+        </div>
+      {% endif %}
 		</div>
 	</div>
 </section>

@@ -1,41 +1,33 @@
 
-<section class="products section container-fluid pt-5">
-	<div class="row">
-		<div class="container">
-
-			<div class="row mb-5">
-				<div class="col-md-12">
-					<div class="title text-uppercase text-center">
-						<h3 class="mb-0">{{ section.settings.title }}</h3>
-					</div>
-				</div>
-			</div>
-			{% assign collection = collections[section.settings.collection] %}
-
-			<div class="row">
-				<div class="col">
-				
-					<div id="{{ section.id }}-slick-carousel" class="homepage-collection-products-slick" style="display: none;" >
-						{% for this_product in collection.products limit: section.settings.product_limit %}
-							<div class="{{ collection-product-col-class }} px-3 mb-5">
-								{% include 'collection-product-card', product: this_product %}
-							</div>
-						{% endfor %}
-					</div>
-
-				</div>
-			</div>
-
-			{% if section.settings.show_view_more and collection.products.size > section.settings.product_limit %}
-				<div class="row mb-5">
-					<div class="col text-center">
-						<a href="{{ collection.url }}" class="btn btn-outline-black" title="View More" >View More</a>
-					</div>
-				</div>
-			{% endif %}
-
-		</div>
-	</div>
+<section class="products section section_homepage_products-carousel section_homepage_100vh py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <div class="title text-uppercase text-center">
+          <h3 class="mb-0">{{ section.settings.title }}</h3>
+        </div>
+      </div>
+    </div>
+    {% assign collection = collections[section.settings.collection] %}
+    <div class="row">
+      <div class="col">
+        <div id="{{ section.id }}-slick-carousel" class="homepage-collection-products-slick" style="display: none;" >
+          {% for this_product in collection.products limit: section.settings.product_limit %}
+            <div class="{{ collection-product-col-class }} h-100 px-3 mb-5">
+              {% include 'collection-product-card', product: this_product %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% if section.settings.show_view_more and collection.products.size > section.settings.product_limit %}
+      <div class="row mb-5">
+        <div class="col text-center">
+          <a href="{{ collection.url }}" class="btn btn-outline-black" title="View More" >View More</a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 <script>
@@ -68,15 +60,15 @@ $(document).ready(function() {
 					slidesToScroll: 1
 				}
 			}
-	    ]
+    ]
     // You can unslick at a given breakpoint now by adding:
     // settings: "unslick"
     // instead of a settings object
 	}).on('setPosition', function (event, slick) {
-		slick.$slides.css('height', slick.$slideTrack.height() + 'px');
-	});	
-	$('.homepage-collection-products-slick').show();
-});
+		slick.$slides.css('height', slick.$slideTrack.height() + 'px')
+	})
+	$('.homepage-collection-products-slick').show()
+})
 </script>
 
 {% schema %}
@@ -101,27 +93,27 @@ $(document).ready(function() {
       "label": "Collection",
       "info": "Click save for the carousel to properly display."
     },
-	{
-	    "type":      "range",
-	    "id":        "product_limit",
-	    "min":       3,
-	    "max":       15,
-	    "step":      3,
-	    "label":     "Number Of Products To Show",
-	    "default":   12
-	},
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 3,
+      "max": 15,
+      "step": 3,
+      "label": "Number Of Products To Show",
+      "default": 12
+    },
     {
       "type": "checkbox",
       "id": "show_add_to_cart",
       "label": "Show Add to Cart",
       "default": false
     },
-	{
-	    "type":      "checkbox",
-	    "id":        "show_view_more",
-	    "label":     "Show View More Button",
-	    "default":   true
-	}
+    {
+      "type": "checkbox",
+      "id": "show_view_more",
+      "label": "Show View More Button",
+      "default": true
+    }
   ],
   "presets": [
     {

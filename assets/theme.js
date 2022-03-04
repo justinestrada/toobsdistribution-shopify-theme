@@ -2,13 +2,13 @@
   Utilities
 ==================================================================*/
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 /*=================================================================
@@ -127,28 +127,28 @@ const Header = {
   Homepage
 ==================================================================*/
 
-$(document).ready(function($){
-  // let header_height = $('header').height();
-  // let screen_height = $(window).height() - header_height + 10;
-  // if ( $('#homepageCarousel').length ) {
-  //   $("#homepageCarousel").css({ height: screen_height + "px" });
-  //   $(window).resize( function() {
-  //     $("#homepageCarousel").css({ height: screen_height + "px" });
-  //   });
-  // }
-  /*
-  * Homepage Three Videos
-  */
-  if ( $('.homepage-video').length ) {
-    $(".homepage-video-thumbnail-wrap").on("click", function() {
+const Homepage = {
+  onLoad: function() {
+    this.threeVideos()
+  },
+  // autoplay=1
+  threeVideos: function() {
+    if ( !$('.homepage-video').length ) {
+      return
+    }
+    $('.homepage-video-thumbnail-wrap').on('click', function() {
       $(this).hide()
-      let video_number = $(this).attr("video-number")
-      let this_video_wrap = $(".homepage-video-iframe-wrap-" + video_number )
+      let video_number = $(this).attr('video-number')
+      let this_video_wrap = $(`.homepage-video-iframe-wrap-${video_number}`)
       this_video_wrap.show()
-      let src = this_video_wrap.find("iframe").attr( "src" )
-      this_video_wrap.find("iframe").attr( "src", src + "?autoplay=1" )
+      let src = this_video_wrap.find('iframe').attr( 'src' )
+      this_video_wrap.find('iframe').attr( 'src', `${src}?autoplay=1` )
     })
-  }
+  },
+}
+
+$(document).ready(function($) {
+  Homepage.onLoad()
 })
 
 /*=================================================================

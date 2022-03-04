@@ -1,27 +1,29 @@
 
-  <div class="product-item h-100">
-    <div class="product-thumb mb-3">
-      <a href="{{ product.url }}" class="d-block" title="{{ product.title }}" >
-        <img class="img-responsive w-100" src="{{product.featured_image.src | img_url: '1920x'}}" alt="product-img">
-        {% if product.images[1] %}
-          <img class="secondary-img img-responsive w-100" style="display: none;" src="{{ product.images[1].src | img_url: '1920x' }}" alt="product-img">
-        {% endif %}
-      </a>
-    </div>
-    <div class="product-content">
-      {% unless product.available %}
-        <span class="badge btn-danger btn-sold-out mb-3">Sold Out</span>
-      {% endunless %}
-      {% if product.compare_at_price and product.compare_at_price != product.price %}
-        <span class="badge btn-sale mb-3">Sale</span>
+<div class="product-item h-100">
+  <div class="product-thumb mb-3">
+    <a href="{{ product.url }}" class="d-block" title="{{ product.title | escape }}">
+      <img class="img-responsive w-100" src="{{product.featured_image.src | img_url: '1920x'}}" alt="product-img">
+      {% if product.images[1] %}
+        <img class="secondary-img img-responsive w-100" style="display: none;" src="{{ product.images[1].src | img_url: '1920x' }}" alt="product-img">
       {% endif %}
-      <h4 class="text-uppercase mt-0 mb-3" >
-        <a href="{{ product.url }}" title="{{ product.title }}" >{{ product.title }}</a>
-      </h4>
-      {% if customer %}
-        <p class="price">{{ product.price | money_without_trailing_zeros }}</p>
-      {% else %}
-        <p><a href="/account" title="Account" class="text-green text-uppercase" ><u>Login to view price.</u></a></p>
-      {% endif %}
-    </div>
+    </a>
   </div>
+  <div class="product-content">
+    {% unless product.available %}
+      <span class="badge btn-danger btn-sold-out mb-3">Sold Out</span>
+    {% endunless %}
+    {% if product.compare_at_price and product.compare_at_price != product.price %}
+      <span class="badge btn-sale mb-3">Sale</span>
+    {% endif %}
+    <h4 class="text-uppercase mt-0 mb-3" >
+      <a href="{{ product.url }}" title="{{ product.title | escape }}">{{ product.title }}</a>
+    </h4>
+    {% if customer %}
+      <p class="price">{{ product.price | money_without_trailing_zeros }}</p>
+    {% else %}
+      <p>
+        <a href="/account" title="Account" class="text-green text-uppercase" ><u>Login to view price.</u></a>
+      </p>
+    {% endif %}
+  </div>
+</div>
