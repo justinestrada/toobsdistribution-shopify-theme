@@ -1,5 +1,5 @@
 
-<section class="homepage-video section section_homepage_three-videos section_homepage_100vh container-fluid py-5">
+<section class="homepage-video section section_homepage_three-videos section_homepage_100vh container-fluid {% if section.settings.enable_bg_lightgray %}light-gray-color{% endif %} py-5">
 	<div class="row">
 		<div class="container">
 			<div class="row mb-5">
@@ -47,7 +47,7 @@
 				</div>
 			</div>
       {% if section.settings.show_view_more %}
-        <div class="row mb-5">
+        <div class="row">
           <div class="col text-center">
             <a href="{{ section.settings.view_more_link }}" class="btn btn-outline-black" title="View More" >View More</a>
           </div>
@@ -61,6 +61,12 @@
 {
 	"name": "Three Videos",
 	"settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_bg_lightgray",
+      "label": "Enable BG Light Gray",
+      "default": true
+    },
 		{
 			"type": "text",
 			"id": "title",

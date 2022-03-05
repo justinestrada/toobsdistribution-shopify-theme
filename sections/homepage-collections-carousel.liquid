@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-<section class="homepage-collections products section section_homepage_collections-carousel section_homepage_100vh light-gray-color py-5">
+<section class="homepage-collections products section section_homepage_collections-carousel section_homepage_100vh {% if section.settings.enable_bg_lightgray %}light-gray-color{% endif %} py-5">
   <div class="container">
     <div class="row mb-5">
       <div class="col">
@@ -79,6 +79,12 @@ $(document).ready(function() {
 {
   "name": "Homepage Collections",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_bg_lightgray",
+      "label": "Enable BG Light Gray",
+      "default": false
+    },
     {
       "type": "text",
       "id": "title",

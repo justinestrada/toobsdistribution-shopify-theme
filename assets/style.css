@@ -678,6 +678,21 @@ form#search-form input[name="q"] {
 /*=================================================================
   Homepage
 ==================================================================*/
+.template-index .light-gray-color {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;    
+}
+
+#homepageCarousel .carousel-control-next-icon,
+#homepageCarousel .carousel-control-prev-icon {
+  height: 48px;
+  width: 48px;
+  background-size: 32px;
+  background-color: black;
+  background-position: center;
+  border-radius: 50%;
+}
+
 .homepage-jumbotron {
   color: white;
   background-position: center;
@@ -686,7 +701,7 @@ form#search-form input[name="q"] {
   height: 100vh;
 }
 .homepage-collection-products-slick.slick-dotted.slick-slider {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 } 
 .homepage-collection-products-slick .slick-dots,
 .homepage-collections .owl-theme .owl-dots {
@@ -694,14 +709,11 @@ form#search-form input[name="q"] {
 }
 @media (min-width: 768px) {
   .homepage-collection-products-slick .slick-dots,
-.homepage-collections .owl-theme .owl-dots  {
+  .homepage-collections .owl-theme .owl-dots  {
     display: block !important;
   }
 }
-.homepage-collections {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
+
 .homepage-video-thumbnail-wrap {
   cursor: pointer;
   position: relative;
@@ -816,6 +828,7 @@ form#search-form input[name="q"] {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background-color: white;
   border: 1px solid #ddd;
 }
 
