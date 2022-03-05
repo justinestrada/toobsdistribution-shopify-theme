@@ -348,9 +348,8 @@ ul.header-desktop-menu li .nav-link {
     padding: 2rem .25rem !important;
     font-size: 12px;
     font-weight: 500;
-  } 
+  }
   .header-logo {
-    padding: .25rem 0;
     margin: 0 auto;
   }
   .header-logo svg {
@@ -2058,7 +2057,8 @@ footer a:focus {
   left: 0;
   right: 0;
 }
-.owl-carousel-wrap .owl-theme .custom-nav .owl-prev, .owl-carousel-wrap .owl-theme .custom-nav .owl-next {
+.owl-carousel-wrap .owl-theme .custom-nav .owl-prev,
+.owl-carousel-wrap .owl-theme .custom-nav .owl-next {
   position: absolute;
   height: 50px;
   width: 50px;
@@ -2069,17 +2069,18 @@ footer a:focus {
   z-index: 100;
 }
 
-.owl-carousel-wrap .owl-theme .custom-nav .owl-prev i, .owl-carousel-wrap .owl-theme .custom-nav .owl-next i {
+.owl-carousel-wrap .owl-theme .custom-nav .owl-prev i,
+.owl-carousel-wrap .owl-theme .custom-nav .owl-next i {
   font-size: 2.5rem;
   color: black;
 }
 
 .owl-carousel-wrap .owl-theme .custom-nav .owl-prev {
-  left: -30px;
+  left: -15px;
 }
 
 .owl-carousel-wrap .owl-theme .custom-nav .owl-next {
-  right: -30px;
+  right: -15px;
 }
 
 .owl-carousel-wrap .item {

@@ -116,10 +116,10 @@ li.sub-menu-item:hover > .sub-menu-link::before {
           {% endif %}
         </nav>
         <nav class="header-nav header-desktop-nav row bg-white hidden-md-down navbar navbar-expand-lg navbar-light white p-0">
-          <div class="col-auto text-center">
+          <div class="col-auto text-center pr-0">
             {% if section.settings.header_logo != blank %}
-              <a href="/" class="d-block header-logo" title="{{ shop.name }}" >
-                <img src="{{ section.settings.header_logo | img_url: '300x300' }}" alt="{{ shop.name }}" class="d-block w-100" style="max-width: 78px" />
+              <a href="/" class="d-block header-logo" title="{{ shop.name | escape }}">
+                <img src="{{ section.settings.header_logo | img_url: '300x300' }}" alt="{{ shop.name | escape }}" class="d-block" style="height: 64px;"/>
               </a>
             {% else %}
               <h1 class="py-3 m-0" >
@@ -194,11 +194,11 @@ li.sub-menu-item:hover > .sub-menu-link::before {
           <div class="col col-lg-auto">
             <div class="row">
               <div class="col">
-                <ul class="header-desktop-menu float-right" >
+                <ul class="header-desktop-menu float-right">
                   <li>
                     {% if customer %}
                       <div class="dropdown dropdown-hover">
-                        <a class="header-nav__menu-link d-block py-3 text-uppercase text-black dropdown-toggle" href="/account" title="Account" id="dropdownMenuAccount" >Account ({{ customer.first_name }})</a>
+                        <a class="header-nav__menu-link d-block py-3 text-uppercase text-black dropdown-toggle" href="/account" title="Account" id="dropdownMenuAccount" style="font-weight: bold !important;" >Account ({{ customer.first_name }})</a>
                         <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMenuAccount">
                           <a class="dropdown-item btn btn-white mb-3" href="/account">My Account</a>
                           <a class="dropdown-item btn btn-white mb-3" href="/account?view=orders">Orders</a>
@@ -227,7 +227,7 @@ li.sub-menu-item:hover > .sub-menu-link::before {
               <div class="col col-lg-auto d-flex align-items-center" style="padding-top: 1rem; padding-bottom: 1rem;">
                 {% include 'icon-dot-separator' %}
               </div>
-              <div class="col col-lg-auto" style="padding: 1rem;" >
+              <div class="col col-lg-auto px-0" style="padding-top: 1rem; padding-bottom: 1rem;">
                 <div class="icon-search-wrap text-center p-3" style="cursor: pointer;">
                   {% include 'icon-search' %}
                 </div>
