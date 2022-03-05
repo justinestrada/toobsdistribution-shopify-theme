@@ -16,10 +16,11 @@
 						<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase">{{ section.settings.btn_text_1 }}</button>
 					</div>
 					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-1 embed-responsive embed-responsive-16by9 z-depth-1">
-            {% comment %}
-					  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            {% endcomment %}
-            <iframe title="vimeo-player" src="https://player.vimeo.com/video/684512742?h=2c9fbe6c3c" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>						  
+            {% if section.settings.vimeo_id_1 %}
+              <iframe title="vimeo-player" src="https://player.vimeo.com/video/{{ section.settings.vimeo_id_1 }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+            {% else %}
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ section.settings.youtube_id_1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {% endif %}
 					</div>
 				</div>
 				<div class="col-12 col-xl-4">
@@ -29,7 +30,9 @@
 							<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase">{{ section.settings.btn_text_2 }}</button>
 						</div>
 						<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-2 embed-responsive embed-responsive-16by9 z-depth-1">
-              <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_2 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              {% if section.settings.youtube_id_2 %}
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ section.settings.youtube_id_2 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              {% endif %}
 						</div>
 					</div>
 					<div class="homepage-video-thumbnail-wrap" video-number="3" >
@@ -37,7 +40,9 @@
 						<button class="homepage-video-thumbnail-btn btn btn-outline-black text-uppercase">{{ section.settings.btn_text_3 }}</button>
 					</div>
 					<div class="homepage-video-iframe-wrap homepage-video-iframe-wrap-3 embed-responsive embed-responsive-16by9 z-depth-1">
-					  <iframe class="embed-responsive-item " src="{{ section.settings.youtube_iframe_src_3 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {% if section.settings.youtube_id_3 %}
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ section.settings.youtube_id_3 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {% endif %}
 					</div>
 				</div>
 			</div>
@@ -68,8 +73,13 @@
 		},
 		{
 		    "type":	"text",
-		    "id": "youtube_iframe_src_1",
-		    "label": "YouTube iFrame SRC 1"
+		    "id": "vimeo_id_1",
+		    "label": "Vimeo ID"
+		},
+		{
+		    "type":	"text",
+		    "id": "youtube_id_1",
+		    "label": "YouTube ID"
 		},
 		{
 		    "type":	"text",
@@ -83,8 +93,8 @@
 		},
 		{
 		    "type":	"text",
-		    "id": "youtube_iframe_src_2",
-		    "label": "YouTube iFrame SRC 2"
+		    "id": "youtube_id_2",
+		    "label": "YouTube ID 2"
 		},
 		{
 		    "type":	"text",
@@ -98,8 +108,8 @@
 		},
 		{
 		    "type":	"text",
-		    "id": "youtube_iframe_src_3",
-		    "label": "YouTube iFrame SRC 3"
+		    "id": "youtube_id_3",
+		    "label": "YouTube ID 3"
 		},
 		{
 		    "type":	"text",
@@ -123,18 +133,16 @@
 			"name": "Three Videos",	
 			"settings": {
 				"title": "Section Title",
-
 				"thumbnail_img_1": "",
-				"youtube_iframe_src_1": "https://www.youtube.com/embed/9qEv1HG7wk0",
-				"btn_text_1": "Play Episode #4",
-
+        "vimeo_id_1": "684512742",
+				"youtube_id_1": "xDtcFFt3NMM",
+				"btn_text_1": "MAV March Madness 10k giveaway!",
 				"thumbnail_img_2": "",
-				"youtube_iframe_src_2": "https://www.youtube.com/embed/UauYj_0EVHI",
-				"btn_text_2": "Play Episode #5",
-
+				"youtube_id_2": "aOI9hK9yH8U",
+				"btn_text_2": "February 4k Roor Raffle",
 				"thumbnail_img_3": "",
-				"youtube_iframe_src_3": "https://www.youtube.com/embed/rva2L-U2mHI",
-				"btn_text_3": "Play Episode #6"
+				"youtube_id_3": "VorakntrQd8",
+				"btn_text_3": "Episode #15"
 			}
 		}
 	]

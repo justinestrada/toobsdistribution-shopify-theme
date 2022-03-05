@@ -538,13 +538,17 @@ form#search-form input[name="q"] {
   margin-bottom: 0;
 }
 
+.section_homepage_100vh {
+  min-height: calc(100vh - 86px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (min-width: 992px) {
   .section_homepage_100vh {
     min-height: 512px;
     height: calc(100vh - 112px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 
