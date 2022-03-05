@@ -79,14 +79,14 @@
                                             {% comment %}
                                             <a href="{{ child_childlink.url }}" title="{{ child_childlink.title }}" class="child-childlink_childlist-parent-link d-block text-black py-2">{{ child_childlink.title }}</a>
                                             {% endcomment %}
-                                            <div class="card-header" id="headingOne">
+                                            <div class="card-header" id="offcanvas_heading{{ parent_index }}-{{ child_index }}-{{ child_child_index }}">
                                               <h5 class="mb-0">
-                                                <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" aria-expanded="false" aria-controls="collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}">
+                                                <button class="btn btn-link text-black box-shadow-none" data-toggle="collapse" data-target="#offcanvas_collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" aria-expanded="false" aria-controls="offcanvas_collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}">
                                                   {{ child_childlink.title }} <i class="fa fa-angle-down float-right p-1"></i>
                                                 </button>
                                               </h5>
                                             </div>
-                                            <div id="collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" class="collapse" aria-labelledby="heading{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" data-parent="#accordion">
+                                            <div id="offcanvas_collapse{{ parent_index }}-{{ child_index }}-{{ child_child_index }}" class="collapse" aria-labelledby="offcanvas_heading{{ parent_index }}-{{ child_index }}-{{ child_child_index }}">
                                               <div class="card-body p-0">
                                                 <ul class="child-childlink_childlist">
                                                   {% for child_child_childlink in linklists[child_childlink.title].links %}

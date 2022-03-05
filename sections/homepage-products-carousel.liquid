@@ -9,7 +9,7 @@
       </div>
     </div>
     {% assign collection = collections[section.settings.collection] %}
-    <div class="row">
+    <div class="row mb-5">
       <div class="col">
         <div id="{{ section.id }}-slick-carousel" class="homepage-collection-products-slick" style="display: none;" >
           {% for this_product in collection.products limit: section.settings.product_limit %}
@@ -21,7 +21,7 @@
       </div>
     </div>
     {% if section.settings.show_view_more and collection.products.size > section.settings.product_limit %}
-      <div class="row mb-5">
+      <div class="row">
         <div class="col text-center">
           <a href="{{ collection.url }}" class="btn btn-outline-black" title="View More" >View More</a>
         </div>
