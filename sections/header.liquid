@@ -1,6 +1,6 @@
 <style>
 /* elements */
-.sub-menu .sub-menu-item .sub-menu-link {
+header .sub-menu .sub-menu-item .sub-menu-link {
   position: relative;
   display: block;
   width: 100%;
@@ -8,12 +8,12 @@
   text-align: left;
   font-size: 12px;
 }
-.sub-menu .sub-menu-item.active .sub-menu-link {
+header .sub-menu .sub-menu-item.active .sub-menu-link {
   padding-left: 1rem !important; 
 }
-.sub-menu .sub-menu-item.active > .sub-menu-link::before,
-.sub-sub-menu-link:hover::before,
-li.sub-menu-item:hover > .sub-menu-link::before {
+header .sub-menu .sub-menu-item.active > .sub-menu-link::before,
+header .sub-sub-menu-link:hover::before,
+header li.sub-menu-item:hover > .sub-menu-link::before {
   content: "";
   display: block;
   background-image: url('https://cdn.shopify.com/s/files/1/0377/2037/t/37/assets/nav-icon-hover-right.svg');
@@ -28,22 +28,22 @@ li.sub-menu-item:hover > .sub-menu-link::before {
   transition: transform 0.24s ease 0s;
   transform: translateX(-6px);
 }
-.sub-menu-content .sub-menu-item-content-row {
+header .sub-menu-content .sub-menu-item-content-row {
   display: none;
 }
-.dropdown-submenu {
+header .dropdown-submenu {
   position: relative;
 }
-.dropdown-submenu a::after {
+header .dropdown-submenu a::after {
   transform: rotate(-90deg);
   position: absolute;
   right: 6px;
   top: .8em;
 }
-.dropdown-submenu:hover > .dropdown-menu {
+header .dropdown-submenu:hover > .dropdown-menu {
   display: block;
 }
-.dropdown-submenu .dropdown-menu {
+header .dropdown-submenu .dropdown-menu {
   top: 0;
   left: 100%;
   margin-left: .1rem;
@@ -53,7 +53,7 @@ li.sub-menu-item:hover > .sub-menu-link::before {
 <header {% if template == 'index' %} class="fixed-top" {% endif %}>
   <div class="container-fluid">
     <div class="top-header-row row bg-black">
-      <div class="container">
+      <div class="col">
         <div class="row bg-black">
           <div class="col col-lg-6 offset-lg-3 text-center py-1">
             <p class="fs-0.75 top-header-text text-uppercase text-white mb-0" style="letter-spacing: 2.5px;" >{{ section.settings.top_header }}</p>
@@ -67,7 +67,7 @@ li.sub-menu-item:hover > .sub-menu-link::before {
       </div>
     </div>
     <div class="row bg-white">
-      <div class="container">
+      <div class="col">
         <nav class="header-nav header-mobile-nav row bg-white d-lg-none">
           <div class="col-4 text-center">
             {% if section.settings.mobile_header_logo != blank %}
@@ -194,11 +194,11 @@ li.sub-menu-item:hover > .sub-menu-link::before {
           <div class="col col-lg-auto">
             <div class="row">
               <div class="col">
-                <ul class="header-desktop-menu float-right">
+                <ul class="header-desktop-menu float-right" >
                   <li>
                     {% if customer %}
                       <div class="dropdown dropdown-hover">
-                        <a class="header-nav__menu-link d-block py-3 text-uppercase text-black dropdown-toggle" href="/account" title="Account" id="dropdownMenuAccount" style="font-weight: bold !important;" >Account ({{ customer.first_name }})</a>
+                        <a class="header-nav__menu-link d-block py-3 text-uppercase text-black dropdown-toggle" href="/account" title="Account" id="dropdownMenuAccount" >Account ({{ customer.first_name }})</a>
                         <div class="dropdown-menu dropdown-menu-right text-center black-color p-3" aria-labelledby="dropdownMenuAccount">
                           <a class="dropdown-item btn btn-white mb-3" href="/account">My Account</a>
                           <a class="dropdown-item btn btn-white mb-3" href="/account?view=orders">Orders</a>
