@@ -1,28 +1,23 @@
 <style>
 #shopify-section-account-banner {
-    background-color: black;
-    background-image: url("{{ 'default-banner.jpg' | asset_url }}");
+  background-color: black;
+  background-image: url("{{ 'default-banner.jpg' | asset_url }}");
 }
 </style>
-
 <section class="account-banner main-banner section" style="background-image: url('https://cdn.shopify.com/s/files/1/0066/5049/5060/files/black-banner.jpg');">
-    <div class="container-fluid py-5">
+  <div class="container-fluid py-5">
+    <div class="row">
+      <div class="container">
         <div class="row">
-
-        	<div class="container">
-        		<div class="row">
-                    <div class="col text-center">
-
-                        {% if template.name != "order" %}
-                            <h1 class="text-uppercase text-white m-0" >Toobs {{ template.name }}</p>
-                        {% else %}
-                            <h1 class="text-uppercase text-white m-0" >Order {{ order.name }}</p>
-                        {% endif %}
-                        
-                    </div>
-        		</div>
-        	</div>
-
+          <div class="col text-center">
+            {% if template.name != "order" %}
+              <h1 class="text-uppercase text-white m-0" >Toobs {{ template.name }}</p>
+            {% else %}
+              <h1 class="text-uppercase text-white m-0" >Order {{ order.name }}</p>
+            {% endif %}
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>

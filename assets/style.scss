@@ -179,11 +179,13 @@ button[type="submit"] {
   background-color: transparent;
   border: 1px solid white;
 }
+
 .btn-white {
   color: black;
   background-color: white;
   border: 1px solid white;
 }
+
 .btn-black,
 .btn-black:hover
 .btn-black:focus {
@@ -191,14 +193,23 @@ button[type="submit"] {
   background-color: black;
   border-color: black;
 }
+
 .btn-outline-black {
   border: 1px solid black;
   background: white;
 }
+
 .btn-green {
   color: white;
   background: #30a05c;
   border-color: #30a05c;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  background: white;
+  box-shadow: none;
 }
 
 /*=================================================================
@@ -339,6 +350,7 @@ ul.header-desktop-menu li .nav-link {
   border: none;
   background: white;
 }
+
 @media (min-width: 992px) {
   ul.header-desktop-menu li .nav-link {
     padding: 32px .5rem;
@@ -1735,17 +1747,21 @@ section.collection-filters .col-filter:focus .btn {
   Account
 ==================================================================*/
 .account-tabs {
-    text-align: center;
-    justify-content: center;
-    margin: 0;
+  text-align: center;
+  justify-content: center;
+  margin: 0;
 }
 .account-tabs .nav-item {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 .account-tabs .nav-item .nav-link {
-    border: 1px solid #ddd !important;
-    color: black;
-    background: transparent !important;
+  color: black;
+  background: transparent !important;
+  border: none !important;
+  border-right: 1px solid #ddd !important;
+}
+.account-tabs .nav-item:first-child .nav-link {
+  border-left: 1px solid #ddd !important;
 }
 .account-tabs .nav-item .nav-link.active {
     background-color: #F7F8F9 !important;

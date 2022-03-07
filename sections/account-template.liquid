@@ -1,15 +1,12 @@
 <style>
 input#customer_email {
-	letter-spacing: 1.5px;
+  letter-spacing: 1.5px;
 }
 </style>
-
 <div class="container-fluid" style="border-bottom: 1px solid #E8E8E8;" >
 	<div class="row">
-
 			<div class="container">
 				<div class="row">
-
 						<ul class="account-tabs nav nav-tabs w-100" id="accountTab" role="tablist">
 							<li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase p-3 h-100 active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
@@ -18,85 +15,77 @@ input#customer_email {
 								<a class="nav-link text-uppercase p-3 h-100" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Order History</a>
 							</li>
 							<li class="nav-item col col-xl-2 px-0">
+								<a class="nav-link text-uppercase p-3 h-100" id="giveaways-tab" data-toggle="tab" href="#giveaways" role="tab" aria-controls="giveaways" aria-selected="false">Giveaways</a>
+							</li>
+							<li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase text-danger p-3 h-100" href="/account/logout" title="Sign Out" >Sign Out</a>
 							</li>
 						</ul>
-
 				</div>
-
 			</div>
-			
 	</div>
 </div>
 
 <div class="page container pt-5">
 	<div class="tab-content" id="accountTabContent">
 		<div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-
 			<section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10">
-
-						<h3 class="text-uppercase d-inline-block mb-3" >My Orders</h3> | <a href="/account?view=orders" class="text-uppercase text-black" ><u>View Orders</u></a></h3>						
+            <div>
+              <h3 class="text-uppercase d-inline-block mb-3">My Orders</h3>
+               |
+              <a href="/account?view=orders" class="text-uppercase text-black">
+                <u>View Orders</u>
+              </a>
+            </div>
 						{% if customer.orders.size == 0 %}
 							<p>You don't have any orders yet.</p>
 						{% else %}
 							<p>You have placed {{ customer.orders.size }} orders.</p>
 						{% endif %}
-
 						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;" >
-
 					</div>
 				</div>
 			</section>
-		
 			<section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10">
-
-						<h3 class="text-uppercase mb-3" >My Information</h3>
-
+						<h3 class="text-uppercase mb-3">My Information</h3>
 						<p class="text-uppercase">Personal Information</p>
 						<p>Name: {{ customer.first_name }} {{ customer.last_name }}</p>
 						<p>Email: {{ customer.email }}</p>
 						<p>Phone: {{ customer.default_address.phone }}</p>
-
-						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;" >
-						
+						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
 					</div>
 				</div>
 			</section>
-		
 			<section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10">
-						
-						<h3 class="d-inline-block text-uppercase mb-3" >Address Book</h3> | <a href="/account/addresses" class="text-uppercase text-black" ><u>Manage Addresses ({{ customer.addresses_count }})</u></a>
-						
+            <div>
+              <h3 class="d-inline-block text-uppercase mb-3">Address Book</h3>
+               | 
+              <a href="/account/addresses" class="text-uppercase text-black">
+                <u>Manage Addresses ({{ customer.addresses_count }})</u>
+              </a>
+            </div>
 						<p class="text-uppercase">Default Address</p>	
 						{{ customer.default_address | format_address }}
-
-						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;" >
-
+						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
 					</div>
 				</div>
 			</section>
-
 			{% if section.settings.show_account_recommended_products %}
 				<section class="products mb-5">
-
 					<div class="row justify-content-center">
 						<div class="col col-xl-10">
 							<h3 class="text-uppercase mb-3" >Recommended Products</h3>
 						</div>
 					</div>
-
-
-			        {% assign collection = collections[section.settings.recommended_collection] %}
-
+          {% assign collection = collections[section.settings.recommended_collection] %}
 					<div class="row justify-content-center">
 						<div class="col col-xl-10">
-
 							{% if collection.products %}
 								<div class="row">
 									{% for this_product in collection.products limit: 3 %}
@@ -108,95 +97,99 @@ input#customer_email {
 							{% else %}
 								<p>There are no products in this collection.</p>
 							{% endif %}
-							
 						</div>
 					</div>
-
 				</section>
 			{% endif %}
-
 		</div>
 		<div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-
 			<section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10 text-center"> 
 						<h1 class="text-uppercase account-heading__title">Order History</h1>
 						<p>If you need to view past orders or want to track a current order, you’re in the right spot!</p>
-
-						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;" >
-
+						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
 					</div>
 				</div>
 			</section>
-
 			{% if customer.orders.size > 0 %}
-
 				{% paginate customer.orders by 20 %}
-				<section class="mb-5">
-					<div class="row justify-content-center">
-						<div class="col-auto">
-
-							<table class="table table-responsive">
-								<thead>
-									<tr>
-										<th scope="col">Order</th>
-										<th scope="col">Date</th>
-										<th scope="col">Payment Status</th>
-										<th scope="col">Fulfillment Status</th>
-										<th scope="col">Total</th>
-									</tr>
-								</thead>
-								<tbody>
-
-								{% for order in customer.orders %}
-
-									<tr>
-
-										<th scope="row">
-											<a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}" class="text-black"><u>{{ order.name }}</u></a>
-										</th>
-										<td>{{ order.created_at | date: "%b %d, %Y" }}</td>
-										<td style="text-transform: capitalize;" >
-											<span class="badge status_{{ order.financial_status }}">{{ order.financial_status }}</span>
-										</td>
-										<td style="text-transform: capitalize;" >
-											<span class="badge status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span>
-										</td>
-										<td>{{ order.total_price | money_without_trailing_zeros }}</td>
-									</tr>
-								
-								{% endfor %}
-								</tbody>
-							</table>
-
-							<hr class="mt-5" style="border-top: 1px solid #e8e8e8;" >
-
-						</div>
-					</div>
-				</section>
-
-		        {% if paginate.pages > 1 %}
-		          {% include 'pagination' %}
-		        {% endif %}
+          <section class="mb-5">
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <table class="table table-responsive">
+                  <thead>
+                    <tr>
+                      <th scope="col">Order</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Payment Status</th>
+                      <th scope="col">Fulfillment Status</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in customer.orders %}
+                      <tr>
+                        <th scope="row">
+                          <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}" class="text-black">
+                            <u>{{ order.name }}</u>
+                          </a>
+                        </th>
+                        <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                        <td style="text-transform: capitalize;" >
+                          <span class="badge status_{{ order.financial_status }}">{{ order.financial_status }}</span>
+                        </td>
+                        <td style="text-transform: capitalize;" >
+                          <span class="badge status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span>
+                        </td>
+                        <td>{{ order.total_price | money_without_trailing_zeros }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
+              </div>
+            </div>
+          </section>
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
 				{% endpaginate %}
-
 			{% else %}
-
 				<section class="mb-5">
 					<div class="row justify-content-center">
 						<div class="col col-xl-10 text-center">
 							<h3 class="mb-3 text-uppercase">No orders yet.</h3>
-							<a href="/products" class="btn btn-outline-black text-black" title="Shop" >Shop Products</a>    	
+							<a href="/products" class="btn btn-outline-black text-black" title="Shop">Shop Products</a>    	
 						</div>
 					</div>
 				</section>
-
 			{% endif %}
-			
 		</div>
-	</div>
+		<div class="tab-pane fade" id="giveaways" role="tabpanel" aria-labelledby="giveaways-tab">
+      <section class="mb-5">
+				<div class="row justify-content-center">
+					<div class="col col-xl-10 text-center"> 
+						<h1 class="text-uppercase account-heading__title">Giveaways</h1>
+						<p>For every $500 you spend with Toobs Distribution whether with a sales representative or on our website earns you 1 raffle ticket!</p>
+            <p>You can earn unlimited raffle tickets.</p>
+						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
+					</div>
+				</div>
+      </section>
+      <section class="mb-5">
+        Giveaway accordion goes here
 
+				<div class="row justify-content-center">
+					<div class="col col-xl-10 text-center"> 
+						<h1 class="text-uppercase account-heading__title">Order History</h1>
+						<p>If you need to view past orders or want to track a current order, you’re in the right spot!</p>
+						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
+					</div>
+				</div>        
+      </section>
+    </div>
+	</div>
 </div>
 
 {% schema %}
