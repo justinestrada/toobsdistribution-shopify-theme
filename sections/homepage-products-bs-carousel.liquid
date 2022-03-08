@@ -169,7 +169,7 @@
                         {% endif %}
                         {% if product.featured_image.src %}
                           <img class="card-img-top mx-auto" src="{{ product.featured_image.src | img_url: '1920x' }}"
-                            alt="{{ product.title | escape }}"/>
+                            alt="{{ product.title | escape }}" loading="lazy"/>
                         {% endif %}
                         <div class="card-body text-center">
                           <h4 class="card-title text-uppercase text-black" style="font-size: 16px;" >{{ product.title }}</h4>

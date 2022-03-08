@@ -40,7 +40,7 @@
         {% for block in section.blocks %}
           <div class="carousel-item {% if forloop.index == 1 %}active{% endif %}">
             <a href="{{ block.settings.slide_link }}" title="{{ block.settings.slide_btn_text }}" class="d-block">
-              <img src="{{ block.settings.slide_image | img_url: '1920x' }}" alt="" class="w-100" alt="{{ block.settings.slide_btn_text }}"/>
+              <img src="{{ block.settings.slide_image | img_url: '1920x' }}" alt="Toobs Home Carousel Slide" class="w-100" alt="{{ block.settings.slide_btn_text }}"/>
             </a>
           </div>
         {% endfor %}
