@@ -739,8 +739,8 @@ form#search-form input[name="q"] {
   Homepage > Products
 ==================================================================*/
 .section_homepage_products-carousel .slick-dots {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 0;
 }
 
 .section_homepage_products-carousel .slick-slide > div {
@@ -2122,7 +2122,7 @@ footer a:focus {
 .owl-carousel-wrap .owl-stage-outer {
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  margin-bottom: 1rem!important;
+  margin-bottom: 3rem !important;
 }
 .owl-carousel-wrap .owl-theme .custom-nav {
   position: absolute;

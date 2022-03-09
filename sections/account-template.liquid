@@ -106,7 +106,7 @@ input#customer_email {
 			<section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10 text-center"> 
-						<h1 class="text-uppercase account-heading__title">Order History</h1>
+						<h1 class="text-uppercase account-giveawayHeading__title">Order History</h1>
 						<p>If you need to view past orders or want to track a current order, you’re in the right spot!</p>
 						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
 					</div>
@@ -170,23 +170,17 @@ input#customer_email {
       <section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10 text-center"> 
-						<h1 class="text-uppercase account-heading__title">Giveaways</h1>
-						<p>For every $500 you spend with Toobs Distribution whether with a sales representative or on our website earns you 1 raffle ticket!</p>
+						<h1 class="text-uppercase account-giveawayHeading__title">Giveaways</h1>
+						<p>Earn 1 raffle ticket for every $500 you spend with Toobs Distribution <br>whether with a sales representative or on our website!</p>
             <p>You can earn unlimited raffle tickets.</p>
 						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
+            <h3>My Tickets for {{ "now" | date: "%b" }} Giveaway</h3>
+            <alert class="alert-danger" role="alert">
+              My Tickets Coming Soon! Viewing your giveaway tickets and percentage to win and rewards.
+            </alert>
+            <a href="/giveaways" class="btn btn-primary">View All Giveaways!</a>
 					</div>
 				</div>
-      </section>
-      <section class="mb-5">
-        Giveaway accordion goes here
-
-				<div class="row justify-content-center">
-					<div class="col col-xl-10 text-center"> 
-						<h1 class="text-uppercase account-heading__title">Order History</h1>
-						<p>If you need to view past orders or want to track a current order, you’re in the right spot!</p>
-						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
-					</div>
-				</div>        
       </section>
     </div>
 	</div>
@@ -196,17 +190,17 @@ input#customer_email {
   {
     "name": "Account Template",
     "settings": [
-		{
-			"type": "checkbox",
-			"id": "show_account_recommended_products",
-			"label": "Show Recommended Products",
-			"default": true
-		},
-	    {
-	      "type": "collection",
-	      "id": "recommended_collection",
-	      "label": "Recommended Collection"
-	    }
+      {
+        "type": "checkbox",
+        "id": "show_account_recommended_products",
+        "label": "Show Recommended Products",
+        "default": true
+      },
+      {
+        "type": "collection",
+        "id": "recommended_collection",
+        "label": "Recommended Collection"
+      }
     ]
   }
 {% endschema %}
