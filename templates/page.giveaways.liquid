@@ -3,6 +3,15 @@
   background-color: black;
   background-image: url("{{ 'default-banner.jpg' | asset_url }}");
 }
+#giveawayAccordion .badge {
+  display: block;
+  margin-top: 1rem;
+}
+@media (min-width: 992px) {
+  #giveawayAccordion .badge {
+    margin: 0;
+  }
+}
 </style>
 <section class="account-banner main-banner section" style="background-image: url('https://cdn.shopify.com/s/files/1/0066/5049/5060/files/black-banner.jpg'); background-color: black; background-position: center; background-size: cover;">
   <div class="container py-5">
@@ -17,11 +26,15 @@
   <div class="container py-5">
     <div id="giveawayAccordion">
       <div class="card">
-        <div class="card-header" id="giveawayHeadingOne">
+        <div class="card-header p-0" id="giveawayHeadingOne">
           <h3 class="mb-0">
             <button class="text-left btn btn-link text-black w-100" data-toggle="collapse" data-target="#giveawayCollapseOne" aria-expanded="true" aria-controls="giveawayCollapseOne">
               March Mav Glass 10k Giveaway
-              <span class="badge badge-info float-right">In Progress</span>
+              <div class="float-right">
+                <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                <span class="sr-only">Toggle Collapse</span>
+              </div>
+              <span class="badge badge-info float-lg-right">In Progress</span>
             </button>
           </h3>
         </div>
@@ -37,11 +50,11 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-header" id="giveawayHeadingTwo">
+        <div class="card-header p-0" id="giveawayHeadingTwo">
           <h3 class="mb-0">
             <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseTwo" aria-expanded="false" aria-controls="giveawayCollapseTwo">
               February Roor Glass Giveaway
-              <span class="badge badge-success float-right">Completed</span>
+              <span class="badge badge-success float-lg-right">Completed</span>
             </button>
           </h3>
         </div>
@@ -58,11 +71,11 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-header" id="giveawayHeadingThree">
+        <div class="card-header p-0" id="giveawayHeadingThree">
           <h3 class="mb-0">
             <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseThree" aria-expanded="false" aria-controls="giveawayCollapseTwo">
               January illadelph $4k Giveaway
-              <span class="badge badge-success float-right">Completed</span>
+              <span class="badge badge-success float-lg-right">Completed</span>
             </button>
           </h3>
         </div>
