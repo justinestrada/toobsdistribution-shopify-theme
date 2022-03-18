@@ -2231,3 +2231,26 @@ footer a:focus {
   background-color: #2ab960;
   color: white !important;
 }
+
+/*=================================================================
+  Mailchimp
+==================================================================*/
+.mc-modal {
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mc-layout__modalContent {
+  height: fit-content !important;
+  display: flex !important;
+  width: 100%;
+}
+.mc-closeModal {
+  position: relative;
+  left: 50%;
+  top: 15px;
+}
