@@ -2,6 +2,113 @@
 input#customer_email {
   letter-spacing: 1.5px;
 }
+
+.entry {
+  text-align: center;
+  min-height: 25vh;
+  position: relative;
+  height:100%;
+}
+
+#raffle-red div {
+  background-image: radial-gradient(circle at top left, transparent 17px, #dc143c 17px), radial-gradient(circle at top right, transparent 17px, #dc143c 17px), radial-gradient(circle at bottom left, transparent 17px, #dc143c 17px), radial-gradient(circle at bottom right, transparent 17px, #dc143c 17px);
+  box-shadow: 0 38px 14px -35px rgba(0,0,0,0.3);
+  background-size: 50% 50%;
+  background-position: top left, top right, bottom left, bottom right;
+  margin: 0 auto;
+  display: block;
+}
+.raffle div {
+  width: 220px;
+  height: 110px;
+  background-repeat: no-repeat;
+}
+
+.entry div {
+  position: relative;
+}
+
+#raffle-red div:before {
+  width: 234px;
+  height: 76px;
+  left: -7px;
+  top: 17px;
+  background-size: 7px 7px;
+  background-repeat: repeat-y;
+  background-position: 0 0, 0 0, 100% 0, 100% 0;
+  background-image: linear-gradient(45deg, transparent 75%, #dc143c 75%), linear-gradient(135deg, transparent 75%, #dc143c 75%), linear-gradient(-45deg, transparent 75%, #dc143c 75%), linear-gradient(-135deg, transparent 75%, #dc143c 75%);
+  line-height: 1.9;
+  font-size: 42px;
+  text-align: center;
+}
+
+.raffle div:before {
+  font-family: 'HelveticaNeue-CondensedBold', 'Arial Narrow', Impact, 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.raffle div:before, .raffle div:after {
+  box-sizing: border-box;
+  color: #333;
+}
+
+.entry div:before, .entry div:after {
+  display: block;
+  position: absolute;
+}
+#raffle-red div:after {
+  content: 'BB94CF';
+  width: 75px;
+  height: 185px;
+  padding-top: 162px;
+  top: -37px;
+  left: 72px;
+  background: linear-gradient(to bottom, transparent 155px, #fa8072 155px, #fa8072 158px, transparent 158px);
+  border: 3px solid #fa8072;
+}
+
+.raffle div:after {
+  border-radius: 10px;
+  transform: rotate(-90deg);
+  font-size: 14px;
+  font-family: monospace;
+  text-align: center;
+  line-height: 1;
+}
+
+.raffle div:before, .raffle div:after {
+  box-sizing: border-box;
+  color: #333;
+}
+
+.entry div:before, .entry div:after {
+  display: block;
+  position: absolute;
+}
+
+
+.no-scale:after {
+  border-radius: 10px;
+  -ms-transform: rotate(-90deg) !important; /* IE 9 */
+  -webkit-transform: rotate(-90deg)!important;
+  transform: rotate(-90deg)!important ; 
+  font-size: 14px;
+  font-family: monospace;
+  text-align: center;
+  line-height: 1;
+}
+
+.raffle div:before, .raffle div:after {
+  box-sizing: border-box;
+  color: #333;
+}
+
+.entry div:before, .entry div:after {
+  display: block;
+  position: absolute;
+}
+
 </style>
 <div class="container-fluid" style="border-bottom: 1px solid #E8E8E8;" >
 	<div class="row">
@@ -16,6 +123,9 @@ input#customer_email {
 							</li>
 							<li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase p-3 h-100" id="giveaways-tab" data-toggle="tab" href="#giveaways" role="tab" aria-controls="giveaways" aria-selected="false">Giveaways</a>
+							</li>
+              <li class="nav-item col col-xl-2 px-0">
+								<a class="nav-link text-uppercase p-3 h-100" id="my-tickets-tab" data-toggle="tab" href="#my-tickets" role="tab" aria-controls="my-tickets" aria-selected="false">My Tickets</a>
 							</li>
 							<li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase text-danger p-3 h-100" href="/account/logout" title="Sign Out" >Sign Out</a>
@@ -179,6 +289,35 @@ input#customer_email {
               My Tickets Coming Soon! Viewing your giveaway tickets and percentage to win and rewards.
             </alert>
             <a href="/pages/giveaways" class="btn btn-primary">View All Giveaways!</a>
+					</div>
+				</div>
+      </section>
+    </div>
+    <div class="tab-pane fade" id="my-tickets" role="tabpanel" aria-labelledby="my-tickets-tab">
+      <section class="mb-5">
+				<div class="row justify-content-center">
+					<div class="col col-xl-10 text-center"> 
+						<h1 class="text-uppercase account-giveawayHeading__title">My Tickets</h1>
+            {% capture nowunix %}{{'now' | date: '%Y%b'}}{% endcapture %}
+            {% for order in customer.orders %}
+              {% capture orderCreatedAt %}{{ order.created_at | date: '%Y%b'}}{% endcapture %}
+              {% if orderCreatedAt >= nowunix and orderCreatedAt <= nowunix and order.financial_status == 'paid' and order.fulfillment_status == 'fulfilled' %}
+                {% assign customerOrdersTotal = customerOrdersTotal | plus: order.total_price %}
+              {% endif %}
+            {% endfor %}
+            {% assign customerOrdersTotal = customerOrdersTotal | divided_by: 50000 | round %}
+            <style>
+              #raffle-red div:before {
+                content: '{{ customerOrdersTotal }}';
+              }
+              #raffle-red div:after {
+                content: '{{ "now" | date: "%b" }}';
+              }
+            </style>
+            <div id="raffle-red" class="entry raffle">
+              <div class="no-scale"></div>
+            </div>
+            </div>
 					</div>
 				</div>
       </section>
