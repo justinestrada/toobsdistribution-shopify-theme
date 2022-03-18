@@ -18,6 +18,7 @@ input#customer_email {
   margin: 0 auto;
   display: block;
 }
+
 .raffle div {
   width: 220px;
   height: 110px;
@@ -43,7 +44,6 @@ input#customer_email {
 }
 
 .raffle div:before {
-  font-family: 'HelveticaNeue-CondensedBold', 'Arial Narrow', Impact, 'Roboto', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -57,6 +57,7 @@ input#customer_email {
   display: block;
   position: absolute;
 }
+
 #raffle-red div:after {
   content: 'BB94CF';
   width: 75px;
@@ -77,16 +78,17 @@ input#customer_email {
   line-height: 1;
 }
 
-.raffle div:before, .raffle div:after {
+.raffle div:before,
+.raffle div:after {
   box-sizing: border-box;
   color: #333;
 }
 
-.entry div:before, .entry div:after {
+.entry div:before,
+.entry div:after {
   display: block;
   position: absolute;
 }
-
 
 .no-scale:after {
   border-radius: 10px;
@@ -99,18 +101,19 @@ input#customer_email {
   line-height: 1;
 }
 
-.raffle div:before, .raffle div:after {
+.raffle div:before,
+.raffle div:after {
   box-sizing: border-box;
   color: #333;
 }
 
-.entry div:before, .entry div:after {
+.entry div:before,
+.entry div:after {
   display: block;
   position: absolute;
 }
-
 </style>
-<div class="container-fluid" style="border-bottom: 1px solid #E8E8E8;" >
+<div class="container-fluid" style="border-bottom: 1px solid #E8E8E8;">
 	<div class="row">
 			<div class="container">
 				<div class="row">
@@ -124,9 +127,9 @@ input#customer_email {
 							<li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase p-3 h-100" id="giveaways-tab" data-toggle="tab" href="#giveaways" role="tab" aria-controls="giveaways" aria-selected="false">Giveaways</a>
 							</li>
-              <li class="nav-item col col-xl-2 px-0">
+              <!-- <li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase p-3 h-100" id="my-tickets-tab" data-toggle="tab" href="#my-tickets" role="tab" aria-controls="my-tickets" aria-selected="false">My Tickets</a>
-							</li>
+							</li> -->
 							<li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase text-danger p-3 h-100" href="/account/logout" title="Sign Out" >Sign Out</a>
 							</li>
@@ -216,7 +219,7 @@ input#customer_email {
 			<section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10 text-center"> 
-						<h1 class="text-uppercase account-giveawayHeading__title">Order History</h1>
+						<h2 class="text-uppercase account-giveawayHeading__title mb-3">Order History</h2>
 						<p>If you need to view past orders or want to track a current order, you’re in the right spot!</p>
 						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
 					</div>
@@ -280,46 +283,34 @@ input#customer_email {
       <section class="mb-5">
 				<div class="row justify-content-center">
 					<div class="col col-xl-10 text-center"> 
-						<h1 class="text-uppercase account-giveawayHeading__title">Giveaways</h1>
-						<p>Earn 1 raffle ticket for every $500 you spend with Toobs Distribution <br>whether with a sales representative or on our website!</p>
+            <h2 class="text-uppercase account-giveawayHeading__title mb-3">Giveaways</h2>
+            <p>Earn 1 raffle ticket for every $500 you spend with Toobs Distribution <br>whether with a sales representative or on our website!</p>
             <p>You can earn unlimited raffle tickets.</p>
 						<hr class="mt-5" style="border-top: 1px solid #e8e8e8;"/>
-            <h3>My Tickets for {{ "now" | date: "%b" }} Giveaway</h3>
-            <alert class="alert-danger" role="alert">
-              My Tickets Coming Soon! Viewing your giveaway tickets and percentage to win and rewards.
-            </alert>
-            <a href="/pages/giveaways" class="btn btn-primary">View All Giveaways!</a>
-					</div>
-				</div>
-      </section>
-    </div>
-    <div class="tab-pane fade" id="my-tickets" role="tabpanel" aria-labelledby="my-tickets-tab">
-      <section class="mb-5">
-				<div class="row justify-content-center">
-					<div class="col col-xl-10 text-center"> 
-						<h1 class="text-uppercase account-giveawayHeading__title">My Tickets</h1>
-            {% capture nowunix %}{{'now' | date: '%Y%b'}}{% endcapture %}
+            <h3>My Tickets for {{ "now" | date: "%B" }} Giveaway</h3>
+            {% capture nowunix %}{{ 'now' | date: '%Y%b' }}{% endcapture %}
             {% for order in customer.orders %}
               {% capture orderCreatedAt %}{{ order.created_at | date: '%Y%b'}}{% endcapture %}
-              {% if orderCreatedAt >= nowunix and orderCreatedAt <= nowunix and order.financial_status == 'paid' and order.fulfillment_status == 'fulfilled' %}
+              {% if orderCreatedAt >= nowunix and orderCreatedAt <= nowunix %}
+                {% comment %} and order.financial_status == 'paid' and order.fulfillment_status == 'fulfilled' {% endcomment %}
                 {% assign customerOrdersTotal = customerOrdersTotal | plus: order.total_price %}
               {% endif %}
             {% endfor %}
             {% assign customerOrdersTotal = customerOrdersTotal | divided_by: 50000 | round %}
             <style>
-              #raffle-red div:before {
-                content: '{{ customerOrdersTotal }}';
-              }
-              #raffle-red div:after {
-                content: '{{ "now" | date: "%b" }}';
-              }
+            #raffle-red div:before {
+              content: '{{ customerOrdersTotal }}';
+            }
+            #raffle-red div:after {
+              content: '{{ "now" | date: "%b" }}';
+            }
             </style>
             <div id="raffle-red" class="entry raffle">
               <div class="no-scale"></div>
             </div>
-            </div>
-					</div>
-				</div>
+            <a href="/pages/giveaways" class="btn btn-primary">View All Giveaways!</a>
+          </div>
+        </div>
       </section>
     </div>
 	</div>
