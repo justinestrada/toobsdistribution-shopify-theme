@@ -21,14 +21,10 @@ $(document).ready(function() {
     $(this).removeClass('hovered');
   });
   $(".sub-menu-item").on( "mouseover", function() {
-    
     $(".sub-menu-item").removeClass("active");
     $(this).addClass("active");
-
-    //    show_Sub_Menu_Item_Content( $(this) )
   });
 });
-
 
 $(".header-nav .nav-link.dropdown-toggle").on("mouseover", function() {
   if ( $(".dropdown-toggle-active").length ) {
@@ -39,7 +35,6 @@ $(".header-nav .nav-link.dropdown-toggle").on("mouseover", function() {
   $(".header-nav .nav-item .dropdown-menu").removeClass("dropdown-menu-active");
   var dropdown_menu = $(this).next();
   dropdown_menu.addClass("dropdown-menu-active");
-
 }).on("mouseleave", function() {
   setTimeout(function() {
     if ( ! $(".header-nav .nav-item .dropdown-menu").hasClass("hovered") ) {
@@ -47,26 +42,17 @@ $(".header-nav .nav-link.dropdown-toggle").on("mouseover", function() {
     }
   }, 3500);
 });
+
 $("body").on("click", function(e) {
   if ( $(".dropdown-toggle-active").length ) {
-    hide_Mega_Menu();
+    hide_Mega_Menu()
   }
-});
+})
 
 function hide_Mega_Menu() {  
-    $(".dropdown-toggle-active").removeClass("dropdown-toggle-active");
-    $(".header-nav .nav-item .dropdown-menu").removeClass("dropdown-menu-active");
+  $(".dropdown-toggle-active").removeClass("dropdown-toggle-active");
+  $(".header-nav .nav-item .dropdown-menu").removeClass("dropdown-menu-active");
 }
-
-/*
-function show_Sub_Menu_Item_Content( sub_menu_item ) {
-    $(".sub-menu-item").removeClass("active"); // TODO only remove active from the sub-menu-item(s) under this parent menu
-    sub_menu_item.addClass("active");
-    let sub_menu_index = sub_menu_item.attr( "sub-menu-index" );
-    $(".sub-menu-item-content-row").hide(); // TODO only hide the sub-menu-item-content-row(s) under this parent menu
-    $('.sub-menu-item-content-row[sub-menu-index="' + sub_menu_index + '"]').show();
-}
-*/
 
 /*=================================================================
   Header > Search
@@ -78,23 +64,24 @@ $(document).ready(function($) {
 
 const Header = {
   onLoad: function() {
-    this.applyBodyMarginTopOnResize()
+    this.onSetBodyMarginTop()
     this.onShowSearchForm()
     this.onHideSearchForm()
   },
-  applyBodyMarginTopOnResize: function() {
+  onSetBodyMarginTop: function() {
     const $header = $('#shopify-section-header header.fixed-top')
     if (!$header.length) {
       return
     }
+    this.setBodyMarginTop($header)
+    $(window).on('resize', function () {
+      Header.setBodyMarginTop($header)
+    })
+  },
+  setBodyMarginTop: function($header) {
     const height = $header.height()
     const body = $('body')
-    // on load
     body.css('margin-top', `${height}px`)
-    // on resize
-    $(window).on('resize', function () {
-      body.css('margin-top', `${height}px`)
-    })
   },
   onShowSearchForm: function() {
     $('.header-nav .icon-search-wrap').on('click', function() {
@@ -793,10 +780,11 @@ const Collection = {
     return url.split("?")[0].split("#")[0]
   },
   triggerAccordion: function( data_target ) {
-    console.log("selected data_target", data_target);
-    $('a[data-target="' + data_target + '"]').trigger("click");
+    console.log("selected data_target", data_target)
+    $('a[data-target="' + data_target + '"]').trigger("click")
   },
 }
+
 $(document).ready(function() {
   Collection.onLoad()
 })
@@ -814,99 +802,104 @@ const Utilities = {
 /* =================================================================
  * Account
 ================================================================== */
-$(document).ready(function() {
-  if ( $("#shopify-section-account-login").length ) {
-    $(".show-forgot-password").on("click", function() {
-      $(".customer-login-wrap").hide();
-      $(".forgot-password-wrap").show();
-    });
-
-    $(".show-log-in").on("click", function() {
-      $(".forgot-password-wrap").hide();
-      $(".customer-login-wrap").show();
-    });
-  }
-  if ( $("#shopify-section-account-template").length ) {
-    let view = getParameterByName( "view" )
-    if ( view == "orders" ) {
-      $('.account-tabs a[href="#orders"]').tab('show');
+const Account = {
+  onLoad: function() {
+    if ( $("#shopify-section-account-login").length ) {
+      $(".show-forgot-password").on("click", function() {
+        $(".customer-login-wrap").hide()
+        $(".forgot-password-wrap").show()
+      })
+      $(".show-log-in").on("click", function() {
+        $(".forgot-password-wrap").hide()
+        $(".customer-login-wrap").show()
+      })
     }
-  }
-});
-
-$(document).ready(function() {
-  customerAddressForm();
-});
-  /**
-   *
-   *  Show/hide customer address forms
-   *
-   */
-  function customerAddressForm() {
-    var $newAddressForm = $('#AddressNewForm');
-    var $newAddressFormButton = $('#AddressNewButton');
-
-    if (!$newAddressForm.length) {
-      return;
-    }
-
-    // Initialize observers on address selectors, defined in shopify_common.js
-    if (Shopify) {
-      // eslint-disable-next-line no-new
-      new Shopify.CountryProvinceSelector(
-        'AddressCountryNew',
-        'AddressProvinceNew',
-        {
-          hideElement: 'AddressProvinceContainerNew'
-        }
-      );
-    }
-
-    // Initialize each edit form's country/province selector
-    $('.address-country-option').each(function() {
-      var formId = $(this).data('form-id');
-      var countrySelector = 'AddressCountry_' + formId;
-      var provinceSelector = 'AddressProvince_' + formId;
-      var containerSelector = 'AddressProvinceContainer_' + formId;
-
-      // eslint-disable-next-line no-new
-      new Shopify.CountryProvinceSelector(countrySelector, provinceSelector, {
-        hideElement: containerSelector
-      });
-    });
-
-    // Toggle new/edit address forms
-    $('.address-new-toggle').on('click', function() {
-      var isExpanded = $newAddressFormButton.attr('aria-expanded') === 'true';
-
-      $newAddressForm.toggleClass('hide');
-      $newAddressFormButton.attr('aria-expanded', !isExpanded).focus();
-    });
-
-    $('.address-edit-toggle').on('click', function() {
-      var formId = $(this).data('form-id');
-      var $editButton = $('#EditFormButton_' + formId);
-      var $editAddress = $('#EditAddress_' + formId);
-      var isExpanded = $editButton.attr('aria-expanded') === 'true';
-
-      $editAddress.toggleClass('hide');
-      $editButton.attr('aria-expanded', !isExpanded).focus();
-    });
-
-    $('.address-delete').on('click', function() {
-      var $el = $(this);
-      var formId = $el.data('form-id');
-      var confirmMessage = $el.data('confirm-message');
-
-      // eslint-disable-next-line no-alert
-      if (
-        confirm(
-          confirmMessage || 'Are you sure you wish to delete this address?'
-        )
-      ) {
-        Shopify.postLink('/account/addresses/' + formId, {
-          parameters: { _method: 'delete' }
-        });
+    if ( $("#shopify-section-account-template").length ) {
+      const view = getParameterByName( 'view' )
+      if ( view === 'orders' ) {
+        $('.account-tabs a[href="#orders"]').tab('show')
+      } else if ( view === 'giveaways' ) {
+        $('.account-tabs a[href="#giveaways"]').tab('show')
       }
-    });
+    }
+  },
+}
+
+$(document).ready(function() {
+  Account.onLoad()
+  customerAddressForm()
+})
+
+/**
+ *
+ *  Show/hide customer address forms
+ *
+ */
+function customerAddressForm() {
+  var $newAddressForm = $('#AddressNewForm');
+  var $newAddressFormButton = $('#AddressNewButton');
+
+  if (!$newAddressForm.length) {
+    return;
   }
+
+  // Initialize observers on address selectors, defined in shopify_common.js
+  if (Shopify) {
+    // eslint-disable-next-line no-new
+    new Shopify.CountryProvinceSelector(
+      'AddressCountryNew',
+      'AddressProvinceNew',
+      {
+        hideElement: 'AddressProvinceContainerNew'
+      }
+    );
+  }
+
+  // Initialize each edit form's country/province selector
+  $('.address-country-option').each(function() {
+    var formId = $(this).data('form-id');
+    var countrySelector = 'AddressCountry_' + formId;
+    var provinceSelector = 'AddressProvince_' + formId;
+    var containerSelector = 'AddressProvinceContainer_' + formId;
+
+    // eslint-disable-next-line no-new
+    new Shopify.CountryProvinceSelector(countrySelector, provinceSelector, {
+      hideElement: containerSelector
+    });
+  });
+
+  // Toggle new/edit address forms
+  $('.address-new-toggle').on('click', function() {
+    var isExpanded = $newAddressFormButton.attr('aria-expanded') === 'true';
+
+    $newAddressForm.toggleClass('hide');
+    $newAddressFormButton.attr('aria-expanded', !isExpanded).focus();
+  });
+
+  $('.address-edit-toggle').on('click', function() {
+    var formId = $(this).data('form-id');
+    var $editButton = $('#EditFormButton_' + formId);
+    var $editAddress = $('#EditAddress_' + formId);
+    var isExpanded = $editButton.attr('aria-expanded') === 'true';
+
+    $editAddress.toggleClass('hide');
+    $editButton.attr('aria-expanded', !isExpanded).focus();
+  });
+
+  $('.address-delete').on('click', function() {
+    var $el = $(this);
+    var formId = $el.data('form-id');
+    var confirmMessage = $el.data('confirm-message');
+
+    // eslint-disable-next-line no-alert
+    if (
+      confirm(
+        confirmMessage || 'Are you sure you wish to delete this address?'
+      )
+    ) {
+      Shopify.postLink('/account/addresses/' + formId, {
+        parameters: { _method: 'delete' }
+      });
+    }
+  });
+}
