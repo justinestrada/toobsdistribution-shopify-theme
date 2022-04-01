@@ -1,12 +1,11 @@
 <style>
-/*#customer_login button[type="submit"] {
-    width: 100%;
-}*/
 @media (min-width: 992px) {
 	body {
 	  background-image: url({{section.settings.bg_img | img_url: '1920x'}});
-	}	
-	.text-lg-white {
+	}
+	.text-lg-white,
+	.text-lg-white:hover,
+	.text-lg-white:focus {
 		color: white;
 	}
 }
@@ -27,16 +26,13 @@
 		{% endif %}
 	</div>
 
-
 	{% if shop.customer_accounts_enabled %}
 
 	  {% if customer %}
 
 		<div class="row mb-5 d-lg-none" >
 			<div class="col text-center">	
-
-			    <a href="/account" class="btn btn-outline-black mx-auto" title="Your Account" >Your Account</a>
-
+        <a href="/account" class="btn btn-outline-black mx-auto" title="Your Account" >Your Account</a>
 			</div>
 		</div>
 
@@ -52,7 +48,6 @@
 					</div>
 
 					<div class="customer-login-wrap">
-
 						<div class="mb-3">
 							{% form 'customer_login' %}
 
@@ -71,42 +66,32 @@
 
 							{% endform %}							
 						</div>
-
-					    <div class="text-center">
-					    	<p class="mb-0">
-					    		<a href="javascript:void(0);" title="Forgot Password" class="show-forgot-password text-uppercase text-black" ><u>Forgot Password</u></a>
-					    	</p>
-					    </div>	
+            <div class="text-center">
+              <p class="mb-0">
+                <a href="javascript:void(0);" title="Forgot Password" class="show-forgot-password text-uppercase text-black" ><u>Forgot Password</u></a>
+              </p>
+            </div>	
 					</div>
 
 					<div class="forgot-password-wrap" style="display: none;" >
-
 						<p class="text-center text-uppercase">Forgot Password</p>
-
 						<div class="mb-3">
 							{% form 'recover_customer_password' %}
-
 								{{ form.errors | default_errors }}
-
 								<div class="form-group">
 									<label>Email Address</label>
 									<input type="email" name="email" placeholder="Email Address" class="form-control" required >
 								</div>
 								<button type="submit" value="Submit" class="btn btn-outline-black p-3">Send Reset Instructions</button>
-
 							{% endform %}	
 						</div>
-
-					    <div class="text-center">
-					    	<p class="mb-0">
-					    		<a href="javascript:void(0);" title="Log In?" class="show-log-in text-uppercase text-black" ><u>Log In?</u></a>
-					    	</p>
-					    </div>	
-
+            <div class="text-center">
+              <p class="mb-0">
+                <a href="javascript:void(0);" title="Log In?" class="show-log-in text-uppercase text-black" ><u>Log In?</u></a>
+              </p>
+            </div>
 					</div>
-
 				</div>
-
 			</div>
 			<div class="col-lg-4 px-0 pl-lg-0 pr-lg-2 py-5" style="z-index: 1;">
 				<div class="inner-wrap py-5 text-center" style="background: #f8f9fa;" >
@@ -154,15 +139,15 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Page",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "bg_img",
-        "label": "Background Image"
-      }
-    ]
+{
+  "name": "Page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Background Image"
+    }
+  ]
 
-  }
+}
 {% endschema %}

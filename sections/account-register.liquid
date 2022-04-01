@@ -6,8 +6,10 @@ input[type="email"].form-control {
 @media (min-width: 992px) {
 	body {
 	  background-image: url('{{section.settings.bg_img | img_url: "1920x"}}');
-	}	
-	.text-lg-white {
+	}
+	.text-lg-white,
+	.text-lg-white:hover,
+	.text-lg-white:focus {
 		color: white;
 	}
 }
@@ -16,11 +18,11 @@ input[type="email"].form-control {
 
 	<div class="row pt-5 mb-5">
 		<div class="col-4 offset-2 text-center">
-			<a href="/account/login" class="text-uppercase text-black text-lg-white" title="Sign In" >Sign In</a>
+			<a href="/account/login" class="text-uppercase text-black text-lg-white" title="Sign In">Sign In</a>
 		</div>
 		{% if shop.customer_accounts_optional %}
 		    <div class="col-4 text-center">
-		    	<span class="text-uppercase text-lg-white" ><u>Create An Account</u></span>
+		    	<span class="text-uppercase text-lg-white"><u>Create An Account</u></span>
 		    </div>
 		{% endif %}
 	</div>
