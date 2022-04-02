@@ -1,0 +1,61 @@
+
+<style>
+.section_homepage_giveaways .giveaways_image-column {
+  background-size: cover;
+  background-position: cover;
+}
+@media (min-width: 992px) {
+  .fs-lg-1\.125x {
+    font-size: 1.125rem;
+  }
+}
+</style>
+<section class="homepage-video section section_homepage_giveaways section_homepage_100vh {% if section.settings.enable_bg_lightgray %}light-gray-color{% endif %} py-5">
+  <div class="container">
+    <div class="row bg-white" style="border: 1px solid #ddd;">
+      <div class="d-flex justify-content-center align-items-center col-lg-6 text-center py-5">
+        <div>
+          <div class="title text-uppercase mb-3">
+            <h2 class="m-0">{{ section.settings.title }}</h2>
+          </div>
+          <img src="https://cdn.shopify.com/s/files/1/1535/0149/files/raffle-ticket-drum.jpg" alt="Raffle Tickets Drum" class="w-100 mb-3" style="max-width: 196px;"/>
+          <p clas="fs-lg-1.125x mb-3">Win $$$ Thousands in Prizes!</p>
+          <a href="{{ section.settings.view_more_link }}" class="btn btn-outline-black" title="View More">View Giveaways</a>
+        </div>
+      </div>
+      <div class="giveaways_image-column col-lg-6 px-0 py-5 d-none d-lg-block"
+         style="background-image: url('https://cdn.shopify.com/s/files/1/1535/0149/files/toobs-giveaways.jpg?v=1648856632');">
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Giveaways",
+	"settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_bg_lightgray",
+      "label": "Enable BG Light Gray",
+      "default": true
+    },
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Section Title",
+      "default": "Giveaways"
+		},
+		{
+      "type": "url",
+      "id": "view_more_link",
+      "label": "View More Link"
+		}
+	],
+	"presets": [
+		{
+			"name": "Giveaways"
+		}
+	]
+}
+{% endschema %}

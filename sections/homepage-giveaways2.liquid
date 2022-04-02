@@ -1,0 +1,91 @@
+
+<section class="homepage-video section section_homepage_three-videos section_homepage_100vh container-fluid {% if section.settings.enable_bg_lightgray %}light-gray-color{% endif %} py-5">
+  <div class="row">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-12">
+          <div class="title text-uppercase text-center">
+            <h2 class="m-0">{{ section.settings.title }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 class="text-center mb-4">How To Enter</h2>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="mb-3 mb-lg-0 col-lg-4">
+          <div class="w-100 card h-100">
+            <div class="card-body">
+              <div class="card-title h5">Shop Toobs</div>
+              <div class="mb-2 text-muted card-subtitle h6">Step 1</div>
+              <p class="card-text">Earn 1 lottery ticket for every $500 you spend.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 mb-lg-0 col-lg-4">
+          <div class="w-100 card h-100">
+            <div class="card-body">
+              <div class="card-title h5">Wait For The Draw</div>
+              <div class="mb-2 text-muted card-subtitle h6">Step 2</div>
+              <p class="card-text">The previous months Lottery Draw happens on the 1st of every month.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 mb-lg-0 col-lg-4">
+          <div class="w-100 card h-100">
+            <div class="card-body">
+              <div class="card-title h5">Check For Prizes</div>
+              <div class="mb-2 text-muted card-subtitle h6">Step 3</div>
+              <p class="card-text">Once the Lottery round is over. Come back here to see if you've won. Then repeat step 1.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if section.settings.show_view_more %}
+        <div class="row">
+          <div class="col text-center">
+            <a href="{{ section.settings.view_more_link }}" class="btn btn-outline-black" title="View More">View More</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Giveaways",
+	"settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_bg_lightgray",
+      "label": "Enable BG Light Gray",
+      "default": true
+    },
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Section Title",
+      "default": "Giveaways"
+		},
+		{
+      "type": "checkbox",
+      "id": "show_view_more",
+      "label": "Show View More Button",
+      "default": false
+		},
+		{
+      "type": "url",
+      "id": "view_more_link",
+      "label": "View More Link"
+		}
+	],
+	"presets": [
+		{
+			"name": "Giveaways"
+		}
+	]
+}
+{% endschema %}
