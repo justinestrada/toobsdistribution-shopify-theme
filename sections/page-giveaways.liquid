@@ -60,7 +60,7 @@
         </div> -->
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div id="get-tickets-now" class="row justify-content-center" style="display: none;">
       <div class="col-auto text-center">
         <h2 class="mb-3">Get your tickets now!</h2>
         <div class="countdown-wrapper">
@@ -84,18 +84,21 @@ const Countdown = {
     const hour = minute * 60
     const day = hour * 24
     let countDown = new Date('{{ section.settings.countdown_date }}').getTime()
-    let x = setInterval(function() {
-      const now = new Date().getTime()
-      let distance = countDown - now
-      document.getElementById('days').innerHTML = Math.floor(distance / (day))
-      document.getElementById('hours').innerHTML = Math.floor((distance % (day)) / (hour))
-      document.getElementById('minutes').innerHTML = Math.floor((distance % (hour)) / (minute))
-      document.getElementById('seconds').innerHTML = Math.floor((distance % (minute)) / second)
-      //do something later when date is reached
-      //if (distance < 0) {
-      // clearInterval(x) // 'IT'S MY BIRTHDAY!
-      //}
-    }, second)
+    if (countDown > now) {
+      let x = setInterval(function() {
+        const now = new Date().getTime()
+        let distance = countDown - now
+        document.getElementById('days').innerHTML = Math.floor(distance / (day))
+        document.getElementById('hours').innerHTML = Math.floor((distance % (day)) / (hour))
+        document.getElementById('minutes').innerHTML = Math.floor((distance % (hour)) / (minute))
+        document.getElementById('seconds').innerHTML = Math.floor((distance % (minute)) / second)
+        //do something later when date is reached
+        //if (distance < 0) {
+        // clearInterval(x) // 'IT'S MY BIRTHDAY!
+        //}
+      }, second)
+      $('#get-tickets-now').slideDown()
+    }
   },
 }
 jQuery(document).ready(function () {
@@ -167,6 +170,31 @@ jQuery(document).ready(function () {
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div id="giveawayAccordion">
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingZero">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseZero" aria-expanded="false" aria-controls="giveawayCollapseZero">
+                  April 10k Empire Glassworks Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
+                  </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseZero" class="collapse" aria-labelledby="giveawayHeadingZero" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <h3 class="mb-3">Winner</h3>
+                <div class="alert alert-success mb-3" role="alert">
+                  Congratulations, Anita from Hashtag Smokeshop!
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">         
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oRvaHtc2xZg?rel=0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="card">
             <div class="card-header p-0" id="giveawayHeadingOne">
               <h3 class="mb-0">
