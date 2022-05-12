@@ -42,7 +42,7 @@
     <div class="row">
       <div class="col text-white text-center">
         <!-- <h1 class="text-uppercase mb-2">{{ page.title }}</h1> -->
-        <div class="mb-2" style="font-size: 40px; color: #feca2d;">$10,000</div>
+        <div class="mb-2" style="font-size: 40px; color: #feca2d;">$6,000</div>
         <div style="font-size: 24px;">in prizes!</div>
       </div>
     </div>
@@ -52,9 +52,9 @@
   <div class="container py-5">
     <div class="row justify-content-center mb-4">
       <div class="col-lg-8">
-        <h2 class="text-center mb-4">April 10k Empire Glassworks Giveaway</h2>
+        <h2 class="text-center mb-4">May Stundenglass X Electronics 6k Giveaway!</h2>
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe title="vimeo-player" src="https://www.youtube.com/embed/mJoXtXF40F4?controls=1&rel=0" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+          <iframe title="vimeo-player" src="https://www.youtube.com/embed/uEzwFcRmkR8?controls=1&rel=0" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
         </div>
         <!-- <div style="justify-content: center; display: flex;">
         </div> -->
@@ -84,7 +84,7 @@ const Countdown = {
     const hour = minute * 60
     const day = hour * 24
     let countDown = new Date('{{ section.settings.countdown_date }}').getTime()
-    if (countDown > now) {
+    // if (countDown > now) {
       let x = setInterval(function() {
         const now = new Date().getTime()
         let distance = countDown - now
@@ -98,7 +98,7 @@ const Countdown = {
         //}
       }, second)
       $('#get-tickets-now').slideDown()
-    }
+    // }
   },
 }
 jQuery(document).ready(function () {
