@@ -718,17 +718,14 @@ function remove_Cart_Item( cart_line_item_index, product_id ) {
 
 function update_Dynamic_Shipping_Announcement() {
   if ( $("#form-cart .cart-item-list .cart-item-row").length ) {
-    let free_shipping_threshold = 420;
-    
+    const free_shipping_threshold = 1000;
     // get cart sub_total
-    let cart_total_price = parseInt( $("#form-cart .cart-total-price").text().replace('$', '') );
-
+    const cart_total_price = parseInt( $("#form-cart .cart-total-price").text().replace('$', '') );
     let text_dynamic_shipping = "";
-
     // if free_shipping_threshold is greater than cart_total_price
     if ( free_shipping_threshold > cart_total_price ) {
       let price_diff = ( free_shipping_threshold - cart_total_price );
-      console.log( free_shipping_threshold, cart_total_price, price_diff );
+      // console.log( free_shipping_threshold, cart_total_price, price_diff );
       // then
       text_dynamic_shipping = "Only $" + price_diff + " away from free shipping.";
     } else {
@@ -736,7 +733,6 @@ function update_Dynamic_Shipping_Announcement() {
       text_dynamic_shipping = "Congratulations you've achieved free shipping.";
     }
     $(".text-dynamic-shipping").html( '<i class="fa fa-check-circle"></i> ' + text_dynamic_shipping );
-
   }  
 }
 
