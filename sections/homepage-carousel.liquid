@@ -1,102 +1,164 @@
 
 <style>
-#homepageCarousel .carousel-control-next-icon,
-#homepageCarousel .carousel-control-prev-icon {
-  height: 48px;
-  width: 48px;
-  background-size: 32px;
-  background-color: black;
-  background-position: center;
-  border-radius: 50%;
-}
-</style>
-<section class="container-fluid px-0">
-  <div id="homepageCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner h-100">
-      {%comment%}
-      <div class="carousel-item h-100 active py-0" >
-        <div class="d-block vimeo-wrapper" title="G Pen Connect" >
-          <iframe src="https://player.vimeo.com/video/370184774?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </div>
-        <a class="btn btn-vimeo-wrapper px-2 px-md-4"
-          href="https://www.toobsdistribution.com/products/g-pen-connect" title="G Pen Connect" >Shop G Pen Connect</a>
-      </div>
-      {% if section.blocks %}
-        {% for block in section.blocks %}
-          <div class="carousel-item h-100 py-5 {% if forloop.index == 1 %}active{% endif %}" style="background-image: url('{{ block.settings.slide_image | img_url: '1920x' }}')" >
-            <div class="d-flex h-100 align-items-center justify-content-center py-5">
-              <div class="text-center text-white py-5 my-5" >
-                <h1 class="text-uppercase font-weight-bold m-0 mb-3" >{{ block.settings.slide_title }}</h1>
-                <h5 class="text-uppercase m-0" >{{ block.settings.slide_sub_title }}</h5>
-                <br/>
-                <a class="btn btn-white btn-jumbotron-second px-2 px-md-4" href="{{ block.settings.slide_link }}" title="{{ block.settings.slide_btn_text }}" >{{ block.settings.slide_btn_text }}</a>          
+  .video-background {
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -99;
+  }
+  .video-foreground,
+  .video-background iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  @media (min-aspect-ratio: 16/9) {
+    .video-foreground {
+      height: 300%;
+      top: -100%;
+    }
+  }
+  @media (max-aspect-ratio: 16/9) {
+    .video-foreground {
+      width: 300%;
+      left: -100%;
+    }
+  }
+  /* .carousel-item_flurish {
+    height: 256px;
+  } */
+  @media (min-width: 992px) {
+    .carousel-item_flurish {
+      height: 524px;
+    }
+  }
+  </style>
+  <script>
+  (function($) {
+  const FlurishVideo = {
+    onLoad: function() {
+      if (!$('.carousel-item_flurish').length) {
+        return
+      }
+      this.refresh()
+    },
+    refresh: function() {
+      const $iframe = $('.carousel-item_flurish').find('iframe')
+      const src = $iframe.attr('src')
+      let intervalID;
+      intervalID = setInterval(function() {
+        $iframe.attr('src', src)
+      }, 23000);
+    }
+  }
+  $(document).ready(function() {
+    FlurishVideo.onLoad()
+  })
+  })(jQuery)
+  </script>
+  <section class="container px-0">
+    <div id="homepageCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner h-100">
+        <div class="carousel-item active" style="position: relative;">
+          <a href="https://www.toobsdistribution.com/collections/flurish" title="Flurish" class="d-block carousel-item_flurish">
+            <img src="https://cdn.shopify.com/s/files/1/1535/0149/files/flurish_mobile.jpg?v=1661588520" alt="Flurish" class="d-lg-none" style="width: 100%;"/>
+            <div class="video-background d-none d-lg-block">
+              <div class="video-foreground">
+                <iframe src="https://www.youtube.com/embed/jrT9nii6_ug?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
+          </a>
+        </div>
+        {%comment%}
+        <div class="carousel-item h-100 active py-0" >
+          <div class="d-block vimeo-wrapper" title="G Pen Connect" >
+            <iframe src="https://player.vimeo.com/video/370184774?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
-        {% endfor %}
-      {% endif %}
-      {%endcomment%}
-      {% if section.blocks %}
-        {% for block in section.blocks %}
-          <div class="carousel-item {% if forloop.index == 1 %}active{% endif %}">
-            <a href="{{ block.settings.slide_link }}" title="{{ block.settings.slide_btn_text }}" class="d-block">
-              <img src="{{ block.settings.slide_image | img_url: '1920x' }}" alt="Toobs Home Carousel Slide" class="w-100" alt="{{ block.settings.slide_btn_text }}"/>
-            </a>
-          </div>
-        {% endfor %}
+          <a class="btn btn-vimeo-wrapper px-2 px-md-4"
+            href="https://www.toobsdistribution.com/products/g-pen-connect" title="G Pen Connect" >Shop G Pen Connect</a>
+        </div>
+        {% if section.blocks %}
+          {% for block in section.blocks %}
+            <div class="carousel-item h-100 py-5 {% if forloop.index == 1 %}active{% endif %}" style="background-image: url('{{ block.settings.slide_image | img_url: '1920x' }}')" >
+              <div class="d-flex h-100 align-items-center justify-content-center py-5">
+                <div class="text-center text-white py-5 my-5" >
+                  <h1 class="text-uppercase font-weight-bold m-0 mb-3" >{{ block.settings.slide_title }}</h1>
+                  <h5 class="text-uppercase m-0" >{{ block.settings.slide_sub_title }}</h5>
+                  <br/>
+                  <a class="btn btn-white btn-jumbotron-second px-2 px-md-4" href="{{ block.settings.slide_link }}" title="{{ block.settings.slide_btn_text }}" >{{ block.settings.slide_btn_text }}</a>          
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {%endcomment%}
+        {% if section.blocks %}
+          {% for block in section.blocks %}
+            <div class="carousel-item {% comment %}{% if forloop.index == 1 %}active{% endif %}{% endcomment %}">
+              <a href="{{ block.settings.slide_link }}" title="{{ block.settings.slide_btn_text }}" class="d-block">
+                <img src="{{ block.settings.slide_image | img_url: '1920x' }}" alt="" class="w-100" alt="{{ block.settings.slide_btn_text }}"/>
+              </a>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      {% if section.blocks.size > 0 %}
+        <a class="carousel-control-prev" href="#homepageCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#homepageCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       {% endif %}
     </div>
-    {% if section.blocks.size > 0 %}
-      <a class="carousel-control-prev" href="#homepageCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#homepageCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    {% endif %}
-  </div>
-</section>
-
-{%comment%}
-{
+  </section>
+  
+  {%comment%}
+  {
+    "type": "text",
+    "id": "slide_sub_title",
+    "label": "Slide Sub Title"
+  },
+  {
   "type": "text",
-  "id": "slide_sub_title",
-  "label": "Slide Sub Title"
-},
-{
-"type": "text",
-"id": "slide_btn_text",
-"label": "Slide Button Text"
-}
-{%endcomment%}
-{% schema %}
-{
-  "name": "Homepage Carousel",
-  "settings": [ ],
-  "blocks": [
-    {
-      "type": "text",
-      "name": "Slide",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "slide_image",
-          "label": "Slide Image"
-        },
-        {
-          "type": "text",
-          "id": "slide_title",
-          "label": "Slide Title"
-        },
-        {
-          "type": "url",
-          "id": "slide_link",
-          "label": "Slide Link"
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
+  "id": "slide_btn_text",
+  "label": "Slide Button Text"
+  }
+  {%endcomment%}
+  {% schema %}
+  {
+    "name": "Homepage Carousel",
+    "settings": [ ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "slide_image",
+            "label": "Slide Image"
+          },
+          {
+            "type": "text",
+            "id": "slide_title",
+            "label": "Slide Title"
+          },
+          {
+            "type": "url",
+            "id": "slide_link",
+            "label": "Slide Link"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
