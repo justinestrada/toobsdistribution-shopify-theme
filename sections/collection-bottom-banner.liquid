@@ -1,0 +1,63 @@
+
+
+<style>
+section.collection_banner-bottom-giveaways {
+	display: none;
+	position: relative;
+	background-image: url('https://cdn.shopify.com/s/files/1/1535/0149/files/Toobs-Distribution_Raffles-Giveaways_Banner.jpg');
+    background-size: 1600px;
+	background-position: center;
+	min-height: 400px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@media (min-width: 992px) {
+	section.collection_banner-bottom-giveaways {
+		display: flex;
+	}
+}
+section.collection_banner-bottom-giveaways::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.325);
+}
+.collection_banner-bottom-giveaways_inner-col {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.collection_banner-bottom-giveaways_inner-col > div {
+	font-weight: bold;
+	font-size: 1.5rem;
+	border-bottom: 2px solid;
+	margin: 0;
+}
+</style>
+<section class="collection_banner-bottom-giveaways">
+	<div class="container">
+		<div class="row">
+			<div class="collection_banner-bottom-giveaways_inner-col col">
+				<div class="text-white">Win thousands in product ever month!</div>
+				<a href="https://www.toobsdistribution.com/pages/giveaways" class="btn btn-white">View Giveaways</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
