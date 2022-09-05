@@ -715,7 +715,6 @@ function remove_Cart_Item( cart_line_item_index, product_id ) {
 
 }
 
-
 function update_Dynamic_Shipping_Announcement() {
   if ( $("#form-cart .cart-item-list .cart-item-row").length ) {
     const free_shipping_threshold = 1000;
@@ -731,9 +730,14 @@ function update_Dynamic_Shipping_Announcement() {
     } else {
       // else then cart_total_price is greater than or equal to free_shipping_threshold
       text_dynamic_shipping = "Congratulations you've achieved free shipping.";
+      const _confetti = Confetti;
+      _confetti.init()
+      _confetti.resizeCanvas()
+      _confetti.render()
+      _confetti.initConfetti()
     }
     $(".text-dynamic-shipping").html( '<i class="fa fa-check-circle"></i> ' + text_dynamic_shipping );
-  }  
+  }
 }
 
 /* =================================================================
