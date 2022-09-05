@@ -64,7 +64,7 @@ const Confetti = {
     setTimeout(
       function() {
         Confetti.canvas.style.display = 'none'
-      }, (Confetti.gravity * 1000));
+      }, (Confetti.gravity * 1100));
   },
 
   render: () => {
