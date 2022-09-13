@@ -1,7 +1,7 @@
 const Confetti = {
   confettis: [],
   confettisCount : 300,
-  gravity : 1.5,
+  gravity : 1,
   terminalVelocity : 5,
   drag : 0.075,
   colors : [
@@ -64,7 +64,7 @@ const Confetti = {
     setTimeout(
       function() {
         Confetti.canvas.style.display = 'none'
-      }, (Confetti.gravity * 1100));
+      }, (Confetti.gravity * 2500));
   },
 
   render: () => {
