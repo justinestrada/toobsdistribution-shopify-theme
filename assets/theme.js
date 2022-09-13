@@ -715,25 +715,33 @@ function remove_Cart_Item( cart_line_item_index, product_id ) {
 
 }
 
-
 function update_Dynamic_Shipping_Announcement() {
   if ( $("#form-cart .cart-item-list .cart-item-row").length ) {
-    const free_shipping_threshold = 1000;
+    const $text_dynamic_shipping = $('.text-dynamic-shipping')
+    const free_shipping_threshold = 1000
     // get cart sub_total
-    const cart_total_price = parseInt( $("#form-cart .cart-total-price").text().replace('$', '') );
-    let text_dynamic_shipping = "";
+    const cart_total_price = parseInt( $('#form-cart .cart-total-price').text().replace('$', '') )
+    let text_dynamic_shipping = ''
     // if free_shipping_threshold is greater than cart_total_price
     if ( free_shipping_threshold > cart_total_price ) {
-      let price_diff = ( free_shipping_threshold - cart_total_price );
-      // console.log( free_shipping_threshold, cart_total_price, price_diff );
+      let price_diff = ( free_shipping_threshold - cart_total_price )
       // then
-      text_dynamic_shipping = "Only $" + price_diff + " away from free shipping.";
+      text_dynamic_shipping = `Only $${price_diff} away from free shipping.`
+      $text_dynamic_shipping.removeClass('achieved-free-shipping')
     } else {
       // else then cart_total_price is greater than or equal to free_shipping_threshold
-      text_dynamic_shipping = "Congratulations you've achieved free shipping.";
+      text_dynamic_shipping = "Congratulations you've achieved free shipping."
+      if (!$text_dynamic_shipping.hasClass('achieved-free-shipping')) {
+        const _confetti = Confetti;
+        _confetti.init()
+        _confetti.resizeCanvas()
+        _confetti.render()
+        _confetti.initConfetti()        
+      }
+      $text_dynamic_shipping.addClass('achieved-free-shipping')
     }
-    $(".text-dynamic-shipping").html( '<i class="fa fa-check-circle"></i> ' + text_dynamic_shipping );
-  }  
+    $text_dynamic_shipping.html('<i class="fa fa-check-circle" aria-hidden="true"></i> ' + text_dynamic_shipping)
+  }
 }
 
 /* =================================================================
