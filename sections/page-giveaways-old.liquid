@@ -164,51 +164,191 @@ jQuery(document).ready(function () {
     </div>
   </div>
 </section>
-{% if section.blocks %}
-  <section id="past-giveaways" class="mb-5">
-    <div class="container py-5">
-      <div class="row mb-4">
-        <div class="col text-center">
-          <h2 class="mb-0">Past Giveaways</h2>
-        </div>
+<section id="past-giveaways" class="mb-5">
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col text-center">
+        <h2 class="mb-0">Past Giveaways</h2>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div id="giveawayAccordion">
-            {% for block in section.blocks %}
-              {% capture _ %}
-              <div class="card">
-                <div class="card-header p-0" id="giveawayHeading{{forloop.index}}">
-                  <h3 class="mb-0">
-                    <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapse{{forloop.index}}" aria-expanded="false" aria-controls="giveawayCollapse{{forloop.index}}">
-                      {{ block.settings.title }}
-                      <div class="float-right">
-                        <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
-                        <span class="sr-only">Toggle Collapse</span>
-                      </div>
-                      <span class="badge badge-success float-lg-right">{{ block.settings.status }}</span>
-                    </button>
-                  </h3>
-                </div>
-                <div id="giveawayCollapse{{forloop.index}}" class="collapse" aria-labelledby="giveawayHeading{{forloop.index}}" data-parent="#giveawayAccordion">
-                  <div class="card-body">
-                    <h3 class="mb-3">Winner</h3>
-                    <div class="alert alert-success mb-3" role="alert">
-                      {{ block.settings.winner }}
-                    </div>
-                    {{ block.settings.content }}
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div id="giveawayAccordion">
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingJuly">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseJuly" aria-expanded="false" aria-controls="giveawayCollapseJuly">
+                  July Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
                   </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseJuly" class="collapse" aria-labelledby="giveawayHeadingJuly" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <h3 class="mb-3">Winner</h3>
+                <div class="alert alert-success mb-3" role="alert">
+                  Wise Guys
                 </div>
               </div>
-              {% endcapture %}
-              {{ _ }}
-            {% endfor %}
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingJune">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseJune" aria-expanded="false" aria-controls="giveawayCollapseJune">
+                  June Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
+                  </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseJune" class="collapse" aria-labelledby="giveawayHeadingJune" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <h3 class="mb-3">Winner</h3>
+                <div class="alert alert-success mb-3" role="alert">
+                  Cloud 9 Head and Vape Shop
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingMay">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseMay" aria-expanded="false" aria-controls="giveawayCollapseMay">
+                  May Stunden Glass & 4k in Electronics Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
+                  </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseMay" class="collapse" aria-labelledby="giveawayHeadingMay" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <h3 class="mb-3">Winner</h3>
+                <div class="alert alert-success mb-3" role="alert">
+                  Congratulations, Connite from Asylum Smoke shops!
+                </div>
+                <p>The May Raffle for three Stunden Glass pieces along with 4k in free electronics is now complete! Big congratulations to Asylum smoke shops for being this months raffle winner.</p>
+                <div class="embed-responsive embed-responsive-16by9">         
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2gwaJWLoZoE?rel=0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingZero">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseZero" aria-expanded="false" aria-controls="giveawayCollapseZero">
+                  April 10k Empire Glassworks Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
+                  </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseZero" class="collapse" aria-labelledby="giveawayHeadingZero" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <h3 class="mb-3">Winner</h3>
+                <div class="alert alert-success mb-3" role="alert">
+                  Congratulations, Anita from Hashtag Smokeshop!
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">         
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oRvaHtc2xZg?rel=0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingOne">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseOne" aria-expanded="false" aria-controls="giveawayCollapseOne">
+                  March Mav Glass 10k Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
+                  </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseOne" class="collapse" aria-labelledby="giveawayHeadingOne" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <h3 class="mb-3">Winner</h3>
+                <div class="alert alert-success mb-3" role="alert">
+                  Congratulations, Pittsburgh Smoke Shop!
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">         
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/AM64UiBgh6s?rel=0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingTwo">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseTwo" aria-expanded="false" aria-controls="giveawayCollapseTwo">
+                  February Roor Glass Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
+                  </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseTwo" class="collapse" aria-labelledby="giveawayHeadingTwo" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <h3 class="mb-3">Winner</h3>
+                <div class="alert alert-success mb-3" role="alert">
+                  Congratulations, Ethan from Herbal Tea
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">         
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/aOI9hK9yH8U?rel=0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" id="giveawayHeadingThree">
+              <h3 class="mb-0">
+                <button class="text-left btn btn-link text-black collapsed w-100" data-toggle="collapse" data-target="#giveawayCollapseThree" aria-expanded="false" aria-controls="giveawayCollapseTwo">
+                  January illadelph $4k Giveaway
+                  <div class="float-right">
+                    <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Collapse</span>
+                  </div>
+                  <span class="badge badge-success float-lg-right">Completed</span>
+                </button>
+              </h3>
+            </div>
+            <div id="giveawayCollapseThree" class="collapse" aria-labelledby="giveawayHeadingThree" data-parent="#giveawayAccordion">
+              <div class="card-body">
+                <div class="mb-5">
+                  <h3 class="mb-3">Winner</h3>
+                  <div class="alert alert-success mb-0" role="alert">
+                    Congratulations, Grace from Headlines Boutique
+                  </div>
+                </div>    
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-{% endif %}
+  </div>
+</section>
+
 {% schema %}
 {
   "name": "Giveaways",
@@ -217,49 +357,6 @@ jQuery(document).ready(function () {
       "type": "text",
       "id": "countdown_date",
       "label": "Countdown Date"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "text",
-      "name": "Past Giveaways",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "text",
-          "id": "winner",
-          "label": "Winner"
-        },
-        {
-          "type": "select",
-          "id": "status",
-          "label": "Status",
-          "options": [
-            {
-              "value": "completed",
-              "label": "Completed"
-            },
-            {
-              "value": "pending",
-              "label": "Pending"
-            },
-            {
-              "value": "canceled",
-              "label": "Canceled"
-            }
-          ],
-          "default": "completed"
-        },
-        {
-          "type": "textarea",
-          "id": "content",
-          "label": "Content"
-        }
-      ]
     }
   ]
 }
