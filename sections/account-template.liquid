@@ -121,9 +121,9 @@ input#customer_email {
 							<li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase p-3 h-100" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Order History</a>
 							</li>
-							<li class="nav-item col col-xl-2 px-0">
+							<!-- <li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase p-3 h-100" id="giveaways-tab" data-toggle="tab" href="#giveaways" role="tab" aria-controls="giveaways" aria-selected="false">Giveaways</a>
-							</li>
+							</li> -->
               <!-- <li class="nav-item col col-xl-2 px-0">
 								<a class="nav-link text-uppercase p-3 h-100" id="my-tickets-tab" data-toggle="tab" href="#my-tickets" role="tab" aria-controls="my-tickets" aria-selected="false">My Tickets</a>
 							</li> -->
@@ -276,6 +276,7 @@ input#customer_email {
 				</section>
 			{% endif %}
 		</div>
+      {% comment %}
 		<div class="tab-pane fade" id="giveaways" role="tabpanel" aria-labelledby="giveaways-tab">
       <section class="mb-5">
 				<div class="row justify-content-center">
@@ -289,7 +290,7 @@ input#customer_email {
             {% for order in customer.orders %}
               {% capture orderCreatedAt %}{{ order.created_at | date: '%Y%b'}}{% endcapture %}
               {% if orderCreatedAt >= nowunix and orderCreatedAt <= nowunix %}
-                {% comment %} and order.financial_status == 'paid' and order.fulfillment_status == 'fulfilled' {% endcomment %}
+                <!-- and order.financial_status == 'paid' and order.fulfillment_status == 'fulfilled' -->
                 {% assign customerOrdersTotal = customerOrdersTotal | plus: order.total_price %}
               {% endif %}
             {% endfor %}
@@ -305,11 +306,11 @@ input#customer_email {
             <div id="raffle-red" class="entry raffle mb-5">
               <div class="no-scale"></div>
             </div>
-            <a href="/pages/giveaways" class="btn btn-black">View All Giveaways!</a>
+            <a href="/pages/giveaways" class="btn btn-primary">View All Giveaways!</a>
           </div>
         </div>
       </section>
-    </div>
+    </div>{% endcomment %}
 	</div>
 </div>
 
